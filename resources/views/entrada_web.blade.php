@@ -55,13 +55,13 @@
   <div class="carousel slide" id="mainSlider" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="img/Portada.jpg" alt="Portada del juego Elden Ring" class="d-block w-100">
+        <img src="../resources/img/camara1.jpg" alt="Portada de camara1" class="d-block w-100">
       </div>
       <div class="carousel-item">
-        <img src="img/Renna.jpg" alt="Personaje de la historia Renna" class="d-block w-100">
+        <img src="../resources/img/camara2.jpg" alt="Portada de camara2" class="d-block w-100">
       </div>
       <div class="carousel-item">
-        <img src="img/Malenia.jpg" alt="Personaje Malenia" class="d-block w-100">
+        <img src="../resources/img/camara3.jpg" alt="Portada de camara3" class="d-block w-100">
       </div>
     </div>
   </div>
