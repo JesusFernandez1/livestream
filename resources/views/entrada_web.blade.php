@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elden Ring</title>
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../resources/css/main.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -76,7 +76,7 @@
   <div class="container-md p-5">
 
     <div class="row pt-5">
-      <h3 class="text-center pb-5 pt-5 h1">Featured Elden Ring bosses</h3>
+      <h3 class="text-center pb-5 pt-5 h1">Los mas vendidos!</h3>
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -128,7 +128,7 @@
   <div id="figuras">
     <div class="container">
       <div class="row">
-        <h2 class="text-center text-danger text-shadow h1">Featured Elden figures</h2>
+        <h2 class="text-center text-danger text-shadow h1">Nuestros productos:</h2>
       </div>
       <div class="row row-cols-1 row-cols-2 row-cols-sm-2 row-cols-md-4">
         <div class="col-sm">
@@ -165,75 +165,6 @@
   </video>
 </div>
 
-  <div id="footer" class="p-5">
-    <div class="container w-50 pt-5">
-      <div class="row row-cols-md-2 justify-content-md-center">
-        <div class="col text-center">
-          <a href="#">
-            <button class="btn btn-lg rounded-pill btn-warning w-100  p-3 shadow-sm font-weight-bold">Customer
-              Support</button>
-          </a>
-        </div>
-      </div>
-      <div class="container mt-3">
-        <h2>Tabla de jefes principales</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Titulo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Godrick</td>
-              <td>Astel</td>
-            </tr>
-            <tr>
-              <td>The Grafted</td>
-              <td>Naturalborn of the Void</td>
-            </tr>
-            <tr>
-              <td>July</td>
-              <td>Dooley</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card">
-        <div class="card-header">
-            Refistrate ahora!
-        </div>
-        <div class="card-body">
-            
-            <form>
-
-                <div class="mb-3">
-                  <label for="nombre" class="form-label">Nombre:</label>
-                  <input type="text"
-                    class="form-control" required name="nombre" id="nombre" aria-describedby="helpId" placeholder="Nombre">
-                  <small id="helpId" class="form-text text-muted">Escribe el nombre</small>
-                </div>
-
-                <div class="mb-3">
-                  <label for="correo" class="form-label">Correo</label>
-                  <input type="email"
-                    class="form-control" required name="correo" id="correo" aria-describedby="helpId" placeholder="Correo">
-                  <small id="helpcorreo" class="form-text text-muted">Escribe el correo</small>
-                </div>
-
-                <div class="btn-group" role="group" aria-label="Button group name">
-                    <button type="submit" class="btn btn-success">Aceptar</button>
-                </div>
-
-            </form>
-
-        </div>
-        
-    </div>
-    </div>
-  </div>
-
   <!-- MOdals -->
 
   <div id="malenia" class="modal fade">
@@ -252,8 +183,6 @@
     </div>
 </div>
 
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function(){
   $('#myButton').click(function(){

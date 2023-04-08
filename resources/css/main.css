@@ -1,0 +1,145 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+button,
+.figura-name {
+    font-family: 'Bitter', serif;
+
+}
+
+#navbar {
+    z-index: 1;
+}
+
+.mi-audio {
+    background-color: #504f4f;
+    /* Color de fondo gris */
+    color: #333;
+    /* Color de texto oscuro */
+    border-radius: 10px;
+    /* Borde redondeado */
+    padding: 10px;
+    /* Espacio interno */
+}
+
+.video-container {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .video-container video {
+    width: 75%;
+    height: auto;
+  }
+
+#separator-ribbon {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+#separator-ribbon .content {
+    width: 150%;
+    height: 150px;
+    margin-left: -25%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+#birthday {
+    background-color: rgb(219, 26, 26);
+    position: relative;
+    margin-top: -20px;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+#birthday img {
+    position: relative;
+    margin-top: -30px;
+}
+
+#boss {
+    background: rgb(255, 255, 255);
+    background: url(../img/fondo.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+    margin-top: -20px;
+    margin-bottom: -30px;
+
+}
+
+.card-border {
+    border: solid 10px rgb(69, 95, 34);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all ease-out 0.2s;
+}
+
+.card-border:hover {
+    transform: scale(1.05);
+}
+
+.text-shadow {
+    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.6);
+}
+
+#separator-figuras {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+#separator-figuras .content {
+    width: 110%;
+    height: 100px;
+    margin-left: -5%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+
+#separator-figuras-footer {
+    height: 20vw;
+}
+
+
+#figuras {
+    background: url(../img/fondo2.png);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+.figura {
+    cursor: pointer;
+    transition: all ease-out 0.2s;
+}
+
+.figura:hover {
+    transform: scale(1.05);
+}
+
+.figura-name {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#footer {
+    background-color: rgb(22, 31, 44);
+    background-size: 50px 50px;
+}
