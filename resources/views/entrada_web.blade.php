@@ -17,16 +17,16 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      {{-- <a class="navbar-brand" href="#">
         <img src="img/logoFrom.png" alt="" width="200">
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> --}}
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="#">Intro</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
@@ -70,30 +70,30 @@
   <div id="separator-ribbon">
     <div class="content bg-dark"></div>
   </div>
-  <!-- boss-->
+  <!-- top-->
 
-  <div id="boss">
+  <div id="top">
   <div class="container-md p-5">
 
     <div class="row pt-5">
-      <h3 class="text-center pb-5 pt-5 h1">Los mas vendidos!</h3>
+      <h3 class="text-center pb-5 pt-5 h1">Lo mas vendido!</h3>
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card h-100 card-border">
-          <img src="img/caballero.jpg" class="card-img-top" alt="Enemigo comun en Elden Ring, caballero">
+          <img src="../resources/img/camara4.png" class="card-img-top" alt="Enemigo comun en Elden Ring, caballero">
           <div class="card-body">
             <p class="card-text">Commander O'Neil is a human who wields a halberd with a battle standard and summons
               aid from ghostly warriors. He can be found at the heart of the Swamp of Aeonia in eastern Caelid. This
-              is an optional boss as players are not required to defeat him in order to advance in Elden Ring, but he
+              is an optional top as players are not required to defeat him in order to advance in Elden Ring, but he
               provides useful items and Runes upon defeat.</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card h-100 card-border">
-          <a href="#malenia" data-toggle="modal"><img src="img/male.jpg" class="card-img-top" alt="Uno de los jefes mas dificiles, La espada de Miquella"></a>
+          <a href="#malenia" data-toggle="modal"><img src="../resources/img/microfono2.png" class="card-img-top" alt="Uno de los jefes mas dificiles, La espada de Miquella"></a>
           <div class="card-body">
             <p class="card-text">Malenia was born as a twin to Miquella, the most powerful of the Empyreans. She is
               renowned for her legendary battle against Starscourge Radahn during the Shattering, during which she
@@ -101,13 +101,13 @@
               Malenia is located in Elphael, Brace of the Haligtree.</p>
           </div>
           <div class="alert alert-warning">
-            <strong>Cuidado!</strong> Este boss es un abuso de personaje
+            <strong>Cuidado!</strong>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card h-100 card-border">
-          <img src="img/fin.jpg" class="card-img-top" alt="Chica misteriosa que te guia en Elden Ring">
+          <img src="../resources/img/camara2.png" class="card-img-top" alt="Chica misteriosa que te guia en Elden Ring">
           <div class="card-body">
             <p class="card-text">She is a mysterious young lady seen in an opening cutscene with Torrent, the Spirit
               Steed, and first met at the beginning of the Tarnished's journey. Melina wears a black robe and
