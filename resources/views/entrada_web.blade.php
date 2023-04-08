@@ -92,7 +92,7 @@
         <div class="card h-100 card-border">
           <a href="#malenia" data-toggle="modal"><img src="../resources/img/microfono2.png" class="card-img-top" alt="Microfono Shure"></a>
           <div class="card-body">
-            <p class="card-text">El Shure SM7B es un micrófono dinámico de bobina móvil con característica cardioide fija ideal para grabar locuciones y voces, aunque también hace muy buena figura en las tomas de instrumentos. Su rango de transmisión amplio y lineal proporciona una reproducción natural de voces e instrumentos. Un absorbente por amortiguación de aire contra las vibraciones y un blindaje sofisticado evitan que las interferencias electromagnéticas mecánicas y de banda ancha de cualquier tipo puedan afectar a las grabaciones. De manera que, ¡nada se interpone ante una grabación libre de problemas!</p>
+            <p class="card-text">El Shure SM7B es un micrófono dinámico de bobina móvil con característica cardioide fija ideal para grabar locuciones y voces, aunque también hace muy buena camara en las tomas de instrumentos. Su rango de transmisión amplio y lineal proporciona una reproducción natural de voces e instrumentos. Un absorbente por amortiguación de aire contra las vibraciones y un blindaje sofisticado evitan que las interferencias electromagnéticas mecánicas y de banda ancha de cualquier tipo puedan afectar a las grabaciones. De manera que, ¡nada se interpone ante una grabación libre de problemas!</p>
           </div>
           <div class="alert alert-warning">
             <strong>Cuidado!</strong>
@@ -111,31 +111,31 @@
   </div>
 </div>
 
-  <div id="separator-figuras">
+  <div id="separator-camaras">
     <div class="content bg-dark"></div>
   </div>
 
-  <div id="figuras">
+  <div id="camaras">
     <div class="container">
       <div class="row">
         <h2 class="text-center text-danger text-shadow h1">Nuestros productos:</h2>
       </div>
       <div class="row row-cols-1 row-cols-2 row-cols-sm-2 row-cols-md-4">
         <div class="col-sm">
-          <img src="img/figura2.png" alt="Figura de un guerrero" class="w-100 figura">
-          <div class="text-center"><span class="figura-name h5 p-2">Warrior</span></div>
+          <img src="../resources/img/camara2.png" alt="camara Nikon" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">Warrior</span></div>
         </div>
         <div class="col-sm">
-          <img src="img/figura3.png" alt="Figura de un healer" class="w-100 figura">
-          <div class="text-center"><span class="figura-name h5 p-2">Healer</span></div>
+          <img src="../resources/img/camara3.png" alt="camara Canon" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">Healer</span></div>
         </div>
         <div class="col-sm">
-          <img src="img/figura4.png" alt="Figura de un ladron" class="w-100 figura">
-          <div class="text-center"><span class="figura-name h5 p-2">Thief</span></div>
+          <img src="../resources/img/camara6.png" alt="camara Canon" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">Thief</span></div>
         </div>
         <div id="myButton" class="col-sm">
-          <img src="img/figura5.png" alt="Figura de un no-muerto" class="w-100 figura">
-          <div class="text-center"><span class="figura-name h5 p-2">Death</span></div>
+          <img src="../resources/img/camara8.png" alt="camara Logitect" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">Death</span></div>
         </div>
       </div>
       
@@ -151,7 +151,7 @@
 
   <div class="video-container">
   <video controls>
-    <source src="img/ELDEN RING - Official Gameplay Reveal.mp4" type="video/mp4">
+    <source src="../resources/img/ELDEN RING - Official Gameplay Reveal.mp4" type="video/mp4">
   </video>
 </div>
 

@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 button,
-.figura-name {
+.camara-name {
     font-family: 'Bitter', serif;
 
 }
@@ -94,14 +94,14 @@ button,
     text-shadow: 0 3px 3px rgba(0, 0, 0, 0.6);
 }
 
-#separator-figuras {
+#separator-camaras {
     width: 100%;
     overflow: hidden;
     position: relative;
     z-index: 2;
 }
 
-#separator-figuras .content {
+#separator-camaras .content {
     width: 110%;
     height: 100px;
     margin-left: -5%;
@@ -109,28 +109,28 @@ button,
     border-top-right-radius: 50%;
 }
 
-#separator-figuras-footer {
+#separator-camaras-footer {
     height: 20vw;
 }
 
 
-#figuras {
+#camaras {
     background: url(../img/fondo2.png);
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
 }
 
-.figura {
+.camara {
     cursor: pointer;
     transition: all ease-out 0.2s;
 }
 
-.figura:hover {
+.camara:hover {
     transform: scale(1.05);
 }
 
-.figura-name {
+.camara-name {
     background-color: rgba(0, 0, 0, 0.4);
     color: white;
     display: inline-block;
