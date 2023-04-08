@@ -70,13 +70,13 @@ button,
 
 #top {
     background: rgb(255, 255, 255);
-    background: url(../img/fondo.jpg);
+    background: url(../img/fondo1.jpg);
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
     margin-top: -20px;
     margin-bottom: -30px;
-
+    height: 100vh
 }
 
 .card-border {

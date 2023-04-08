@@ -55,7 +55,7 @@
   <div class="carousel slide" id="mainSlider" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../resources/img/camara1.jpg" alt="Portada de camara1" class="d-block w-100">
+        <img src="../resources/img/portada1.jpg" alt="Portada de portada1" class="d-block w-100">
       </div>
       <div class="carousel-item">
         <img src="../resources/img/camara2.jpg" alt="Portada de camara2" class="d-block w-100">
@@ -82,23 +82,17 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card h-100 card-border">
-          <img src="../resources/img/camara4.png" class="card-img-top" alt="Enemigo comun en Elden Ring, caballero">
+          <img src="../resources/img/camara4.png" class="card-img-top" alt="Camara Sony 4k">
           <div class="card-body">
-            <p class="card-text">Commander O'Neil is a human who wields a halberd with a battle standard and summons
-              aid from ghostly warriors. He can be found at the heart of the Swamp of Aeonia in eastern Caelid. This
-              is an optional top as players are not required to defeat him in order to advance in Elden Ring, but he
-              provides useful items and Runes upon defeat.</p>
+            <p class="card-text">Este excelente y completo camcorder es la elección perfecta para una amplia variedad de tomas con una sola cámara 4K y HD con un nuevo sensor 3CMOS de tipo 1/3. Un potente objetivo con zoom 25x con tres anillos de zoom independientes ofrece imágenes 4K de perfecta nitidez en prácticamente cualquier situación de grabación profesional. El AF con reconocimiento facial avanzado y el exclusivo filtro de densidad neutra variable electrónico de Sony permiten grabar contenidos excelentes sin complicaciones.</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card h-100 card-border">
-          <a href="#malenia" data-toggle="modal"><img src="../resources/img/microfono2.png" class="card-img-top" alt="Uno de los jefes mas dificiles, La espada de Miquella"></a>
+          <a href="#malenia" data-toggle="modal"><img src="../resources/img/microfono2.png" class="card-img-top" alt="Microfono Shure"></a>
           <div class="card-body">
-            <p class="card-text">Malenia was born as a twin to Miquella, the most powerful of the Empyreans. She is
-              renowned for her legendary battle against Starscourge Radahn during the Shattering, during which she
-              unleashed the power of the Scarlet Rot, reducing Caelid to ruins. Wielding a prosthetic arm and leg,
-              Malenia is located in Elphael, Brace of the Haligtree.</p>
+            <p class="card-text">El Shure SM7B es un micrófono dinámico de bobina móvil con característica cardioide fija ideal para grabar locuciones y voces, aunque también hace muy buena figura en las tomas de instrumentos. Su rango de transmisión amplio y lineal proporciona una reproducción natural de voces e instrumentos. Un absorbente por amortiguación de aire contra las vibraciones y un blindaje sofisticado evitan que las interferencias electromagnéticas mecánicas y de banda ancha de cualquier tipo puedan afectar a las grabaciones. De manera que, ¡nada se interpone ante una grabación libre de problemas!</p>
           </div>
           <div class="alert alert-warning">
             <strong>Cuidado!</strong>
@@ -107,13 +101,9 @@
       </div>
       <div class="col">
         <div class="card h-100 card-border">
-          <img src="../resources/img/camara2.png" class="card-img-top" alt="Chica misteriosa que te guia en Elden Ring">
+          <img src="../resources/img/camara2.png" class="card-img-top" alt="camara Nikon FULL HD">
           <div class="card-body">
-            <p class="card-text">She is a mysterious young lady seen in an opening cutscene with Torrent, the Spirit
-              Steed, and first met at the beginning of the Tarnished's journey. Melina wears a black robe and
-              approaches players while they are resting at different Sites of Grace. She offers guidance throughout
-              the game, grants the ability to level up and teleports you to certain key areas. She also later becomes
-              available as an NPC Summon.</p>
+            <p class="card-text">Camara Digital Reflex Nikon D3300+Af-S Dx 18-55mm 1:3.5-5.6g es un objeto de segunda mano que se ofrece en estado Muy bueno. Cómpralo al Mejor Precio Solo en Cash Converters en la tienda. El objeto funciona perfectamente, tiene garantía y te lo trasladamos por correo aproximadamente en 72 horas.</p>
           </div>
         </div>
       </div>
