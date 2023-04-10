@@ -14,33 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('entrada_web');
+    return view('welcome');
 });
 
-Route::group(['prefix' => 'usuarios', 'middleware' => ['auth', 'admin']], function () {
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-});
-Route::resource('usuario', 'UserController')->except([
-    'index', 'show'
-])->middleware('admin');
-
-Route::group(['prefix' => 'empleados', 'middleware' => ['auth', 'admin']], function () {
-
-});
-Route::resource('empleado', 'EmpleadoController')->except([
-    'show', 'edit', 'update'
-])->middleware('admin');
-
-Route::group(['prefix' => 'pedidos', 'middleware' => ['auth', 'admin']], function () {
-
-});
-Route::resource('pedido', 'PedidoController')->except([
-    'index', 'show'
-])->middleware('admin');
-
-Route::group(['prefix' => 'productos', 'middleware' => ['auth', 'admin']], function () {
-
-});
-Route::resource('producto', 'ProductoController')->except([
-    'index', 'show'
-])->middleware('admin');
+require __DIR__.'/auth.php';
