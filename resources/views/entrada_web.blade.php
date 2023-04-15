@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elden Ring</title>
+  <title>LiveStream</title>
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
   <link rel="stylesheet" href="../resources/css/main.css">
@@ -28,10 +28,10 @@
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#">Intro</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('pedido.create') }}">Intro</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
-    {{-- @if (Route::has('login'))
+     @if (Route::has('login'))
           <li class="nav-item">
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 @auth
@@ -44,7 +44,7 @@
                     @endif
                 @endauth
             </div>
-        @endif --}}</li>
+        @endif </li>
         </ul>
       </div>
 

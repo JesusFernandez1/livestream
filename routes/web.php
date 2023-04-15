@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\UserController;
 use App\Models\Provincia;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('entrada_web');
 });
 
 Route::get('/dashboard', function () {
@@ -25,34 +29,22 @@ Route::get('/dashboard', function () {
 Route::group(['prefix' => 'usuarios', 'middleware' => ['auth', 'admin']], function () {
 
 });
-Route::resource('usuario', 'UserController')->except([
-    'index', 'show'
-])->middleware('admin');
+Route::resource('usuario', UserController::class);
 
 Route::group(['prefix' => 'empleados', 'middleware' => ['auth', 'admin']], function () {
 
 });
-Route::resource('empleado', 'EmpleadoController')->except([
-    'show', 'edit', 'update'
-])->middleware('admin');
+Route::resource('empleado', EmpleadoController::class);
 
-Route::group(['prefix' => 'pedidos', 'middleware' => ['auth', 'admin']], function () {
-
+Route::group(['prefix' => 'pedidos', 'middleware' => 'auth'], function () {
+    
 });
-Route::resource('pedido', 'PedidoController')->except([
-    'index', 'show'
-])->middleware('admin');
+Route::get('provincias/{comunidad}', [PedidoController::class, 'provinciasDeComunidad']);
+Route::resource('pedido', PedidoController::class);
 
 Route::group(['prefix' => 'productos', 'middleware' => ['auth', 'admin']], function () {
 
 });
-Route::resource('producto', 'ProductoController')->except([
-    'index', 'show'
-])->middleware('admin');
-
-Route::get('/provincias/{comunidad_id}', function ($comunidad_id) {
-    $provincias = Provincia::where('comunidad_id', $comunidad_id)->get();
-    return response()->json($provincias);
-});
+Route::resource('producto', ProductoController::class);
 
 require __DIR__.'/auth.php';

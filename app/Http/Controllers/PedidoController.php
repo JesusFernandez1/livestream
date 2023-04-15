@@ -26,7 +26,13 @@ class PedidoController extends Controller
     public function create()
     {
         $comunidades = Comunidad::all();
-        return view('crear_pedido', compact('comunidades'));
+        return view('pedidos/crear_pedido', compact('comunidades'));
+    }
+
+    public function provinciasDeComunidad($comunidadId)
+    {
+        $provincias = Provincia::where('comunidad_id', $comunidadId)->get();
+        return response()->json($provincias);
     }
 
     /**
