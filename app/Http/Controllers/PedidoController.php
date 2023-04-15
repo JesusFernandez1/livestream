@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comunidad;
+use App\Models\Provincia;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -23,7 +25,8 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        $comunidades = Comunidad::all();
+        return view('crear_pedido', compact('comunidades'));
     }
 
     /**
