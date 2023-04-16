@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('usuarios/crear_usuario');
+    return view('entrada_web');
 });
 
 Route::get('/dashboard', function () {

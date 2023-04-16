@@ -72,7 +72,7 @@
             href="#"
             class="text-decoration-none text-info fw-semibold fst-italic"
             style="font-size: 0.9rem"
-            >Forgot your password?</a
+            >Olvidaste tu contraseña?</a
           >
         </div>
       </div>
@@ -81,9 +81,9 @@
     </x-button>
     </form>
       <div class="d-flex gap-1 justify-content-center mt-1">
-        <div>Don't have an account?</div>
-        <a href="#" class="text-decoration-none text-info fw-semibold"
-          >Register</a
+        <div>No tienes una cuenta?</div>
+        <a href="{{ route('register') }}" class="text-decoration-none text-info fw-semibold"
+          >Registrar</a
         >
       </div>
       <div class="p-3">
