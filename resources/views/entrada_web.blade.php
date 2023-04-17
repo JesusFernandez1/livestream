@@ -15,40 +15,40 @@
 
   <!-- NAVBAR-->
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-      {{-- <a class="navbar-brand" href="#">
-        <img src="img/logoFrom.png" alt="" width="200">
-      </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> --}}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toogle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="{{ route('pedido.create') }}">Intro</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
+        </ul>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
      @if (Route::has('login'))
           <li class="nav-item">
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <div>
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
                     <p>Bienvenido: </p>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                    <a href="{{ route('login') }}" class="nav-link">Log in</a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        <a href="{{ route('register') }}" class="nav-link">Register</a>
                     @endif
                 @endauth
             </div>
         @endif </li>
         </ul>
       </div>
-
     </div>
   </nav>
 
@@ -80,17 +80,17 @@
       <h3 class="text-center pb-5 pt-5 h1">Lo mas vendido!</h3>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card h-100 card-border">
+    <div class="row">
+      <div class="col-sm">
+        <div class="card w-100 card-border mb-5">
           <img src="../resources/img/camara4.png" class="card-img-top" alt="Camara Sony 4k">
           <div class="card-body">
             <p class="card-text">Este excelente y completo camcorder es la elección perfecta para una amplia variedad de tomas con una sola cámara 4K y HD con un nuevo sensor 3CMOS de tipo 1/3. Un potente objetivo con zoom 25x con tres anillos de zoom independientes ofrece imágenes 4K de perfecta nitidez en prácticamente cualquier situación de grabación profesional. El AF con reconocimiento facial avanzado y el exclusivo filtro de densidad neutra variable electrónico de Sony permiten grabar contenidos excelentes sin complicaciones.</p>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card h-100 card-border">
+      <div class="col-sm">
+        <div class="card w-100 card-border mb-5">
           <a href="#malenia" data-toggle="modal"><img src="../resources/img/microfono2.png" class="card-img-top" alt="Microfono Shure"></a>
           <div class="card-body">
             <p class="card-text">El Shure SM7B es un micrófono dinámico de bobina móvil con característica cardioide fija ideal para grabar locuciones y voces, aunque también hace muy buena camara en las tomas de instrumentos. Su rango de transmisión amplio y lineal proporciona una reproducción natural de voces e instrumentos. Un absorbente por amortiguación de aire contra las vibraciones y un blindaje sofisticado evitan que las interferencias electromagnéticas mecánicas y de banda ancha de cualquier tipo puedan afectar a las grabaciones. De manera que, ¡nada se interpone ante una grabación libre de problemas!</p>
@@ -100,8 +100,8 @@
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card h-100 card-border">
+      <div class="col-sm">
+        <div class="card w-100 card-border mb-5">
           <img src="../resources/img/camara2.png" class="card-img-top" alt="camara Nikon FULL HD">
           <div class="card-body">
             <p class="card-text">Camara Digital Reflex Nikon D3300+Af-S Dx 18-55mm 1:3.5-5.6g es un objeto de segunda mano que se ofrece en estado Muy bueno. Cómpralo al Mejor Precio Solo en Cash Converters en la tienda. El objeto funciona perfectamente, tiene garantía y te lo trasladamos por correo aproximadamente en 72 horas.</p>
