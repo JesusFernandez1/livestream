@@ -20,35 +20,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('usuarios.crear_usuario');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $datos = $request->validate([
-            'name' => ['regex:/^[a-z]+$/i'],
-            'email' => ['regex:#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i'],
-            'password' => ['required'],
-            'phone' => ['regex:/(\+34|0034|34)?[ -]*(6|7|8|9)[ -]*([0-9][ -]*){8}/'],
-        ]);
-        $datos['password'] = Hash::make($request->password);
-        User::insert($datos);
-        return redirect()->route('usuarios.index');
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id

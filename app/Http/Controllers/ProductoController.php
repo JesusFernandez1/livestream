@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -13,7 +14,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::paginate(2);
+        return view('productos.mostrar_productos', compact('productos'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('productos.crear_producto');
     }
 
     /**
@@ -34,7 +36,14 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => ['regex:/^[a-z]+$/i'],
+            'stock' => ['required'],
+            'descripcion' => ['required'],
+            'precio' => ['required'],
+        ]);
+        Producto::insert($datos);
+        return redirect()->route('productos.index');
     }
 
     /**
@@ -45,7 +54,8 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        //
+        $producto = Producto::find($id);
+        return view('productos.mostrarDetalles_producto', compact('producto'));
     }
 
     /**
@@ -56,7 +66,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto = Producto::find($id);
+        return view('productos.modificar_producto', compact('producto'));
     }
 
     /**
@@ -68,7 +79,14 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => ['regex:/^[a-z]+$/i'],
+            'stock' => ['required'],
+            'descripcion' => ['required'],
+            'precio' => ['required'],
+        ]);
+        Producto::where('id', $id)->update($datos);
+        return redirect()->route('productos.index');
     }
 
     /**
