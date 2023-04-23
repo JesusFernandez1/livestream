@@ -124,8 +124,16 @@ class PedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $fecha_creacion = Pedido::where('id', $id)->first()->fecha_creacion;
         $datos = $request->validate([
-            'fecha_entrega' => ['required'],
+            'fecha_entrega' => [
+                'nullable', 'date_format:Y-m-d\TH:i',
+                function ($atribute, $value, $fail) use ($fecha_creacion) {
+                    if (date("Y-m-d\TH", strtotime($value)) <= date("Y-m-d\TH", strtotime($fecha_creacion))) {
+                        $fail("La fecha de finalizacion no puede ser menor que la de creacion");
+                    }
+                }
+            ],
         ]);
 
         Pedido::where('id', $id)->update($datos);

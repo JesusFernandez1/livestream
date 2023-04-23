@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marca;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
@@ -13,7 +14,8 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        //
+        $marcas = Marca::paginate(2);
+        return view('marcas.mostrar_marcas', compact('marcas'));
     }
 
     /**
@@ -23,7 +25,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('marcas.crear_marca');
     }
 
     /**
@@ -34,7 +36,14 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => ['regex:/^[a-z]+$/i'],
+            'stock' => ['required'],
+            'descripcion' => ['required'],
+            'precio' => ['required'],
+        ]);
+        Marca::insert($datos);
+        return redirect()->route('marcas.index');
     }
 
     /**
@@ -45,7 +54,8 @@ class MarcaController extends Controller
      */
     public function show($id)
     {
-        //
+        $marca = Marca::find($id);
+        return view('marcas.mostrarDetalles_marca', compact('marca'));
     }
 
     /**
@@ -56,7 +66,8 @@ class MarcaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $marca = Marca::find($id);
+        return view('marcas.modificar_marca', compact('marca'));
     }
 
     /**
@@ -68,7 +79,14 @@ class MarcaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datos = $request->validate([
+            'nombre' => ['regex:/^[a-z]+$/i'],
+            'stock' => ['required'],
+            'descripcion' => ['required'],
+            'precio' => ['required'],
+        ]);
+        Marca::where('id', $id)->update($datos);
+        return redirect()->route('marcas.index');
     }
 
     /**
