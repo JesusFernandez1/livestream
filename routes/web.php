@@ -29,22 +29,22 @@ Route::get('/dashboard', function () {
 Route::group(['prefix' => 'usuarios', 'middleware' => ['auth', 'admin']], function () {
 
 });
-Route::resource('usuario', UserController::class);
+Route::resource('usuarios', UserController::class);
 
 Route::group(['prefix' => 'empleados', 'middleware' => ['auth', 'admin']], function () {
 
 });
-Route::resource('empleado', EmpleadoController::class);
+Route::resource('empleados', EmpleadoController::class);
 
 Route::group(['prefix' => 'pedidos', 'middleware' => 'auth'], function () {
     
 });
 Route::get('provincias/{comunidad}', [PedidoController::class, 'provinciasDeComunidad']);
-Route::resource('pedido', PedidoController::class);
+Route::resource('pedidos', PedidoController::class);
 
 Route::group(['prefix' => 'productos', 'middleware' => ['auth', 'admin']], function () {
 
 });
-Route::resource('producto', ProductoController::class);
+Route::resource('productos', ProductoController::class);
 
 require __DIR__.'/auth.php';
