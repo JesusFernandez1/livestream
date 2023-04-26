@@ -322,3 +322,8 @@ thead th.active,tbody td.active {
     width: 2rem;
     height: auto;
 }
+
+a.my-link {
+    text-decoration: none;
+    color: #333; /* o cualquier otro color que desees */
+}
