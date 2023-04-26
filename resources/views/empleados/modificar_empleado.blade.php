@@ -7,6 +7,7 @@
         <h1>Modificar empleado</h1>
     </section>
         <section class="table__body">
+          <table>
             <form action="{{ route('empleados.update', $empleado) }}" class="row g-3" method="POST">
                 @method('put')
               <div class="col-md-3">
@@ -59,6 +60,7 @@
                   <input type="submit" class="btn btn-primary" value="Insert">
                 </div>
               </form>
+            </table>
         </section>
     </main>
 @endsection
