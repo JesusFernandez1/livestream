@@ -27,10 +27,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th> Id <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> DNI <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> <a href="{{ route('empleados.orderBy', ['ordenar_por' => 'nombre', 'orden' => $ordenActual]) }}">Nombre <span class="icon-arrow">&UpArrow;</span></a></th>
-                        <th> Apellido <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> <a href="{{ route('empleados.index', ['ordenar_por' => 'id', 'orden' => $ordenActual]) }}">Id <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a href="{{ route('empleados.index', ['ordenar_por' => 'DNI', 'orden' => $ordenActual]) }}">DNI <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a href="{{ route('empleados.index', ['ordenar_por' => 'nombre', 'orden' => $ordenActual]) }}">Nombre <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a href="{{ route('empleados.index', ['ordenar_por' => 'apellido', 'orden' => $ordenActual]) }}">Apellido <span class="icon-arrow">&UpArrow;</span></a></th>
                         <th> Telefono <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Correo <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Acciones</th>

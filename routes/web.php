@@ -28,7 +28,7 @@ Route::get('/dashboard', function () {
 
 
 Route::controller(EmpleadoController::class)->group(function () {
-    Route::get('/empleados/mostrar_empleados', 'orderBy')->name('empleados.orderBy');
+   
 });
 
 Route::resource('empleados', EmpleadoController::class);

@@ -12,9 +12,17 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $empleados = Empleado::paginate(10);
+        if($request->has('ordenar_por')) {
+            $ordenPor = $request->input('ordenar_por');
+            $orden = $request->input('orden', 'asc');
+            $empleados = Empleado::orderBy($ordenPor, $orden)->paginate(10);
+            session(['orden' => $orden]);
+        } else {
+            session(['orden' => null]);
+        }
         return view('empleados.mostrar_empleados', compact('empleados'));
     }
 
@@ -111,21 +119,5 @@ class EmpleadoController extends Controller
         $empleado->delete();
 
         return redirect()->route('empleados.index');
-    }
-    
-    public function orderBy(Request $request)
-    {
-        $empleados = Empleado::paginate(10);
-
-        if($request->has('ordenar_por')) {
-            $ordenPor = $request->input('ordenar_por');
-            $orden = $request->input('orden', 'asc');
-            $empleados = Empleado::orderBy($ordenPor, $orden)->get();
-            session(['orden' => $orden]);
-        } else {
-            session(['orden' => null]);
-        }
-
-        return view('empleados.mostrar_empleados', compact('empleados'));
     }
 }
