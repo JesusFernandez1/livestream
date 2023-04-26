@@ -20,13 +20,16 @@
             </div>
         </div> --}}
     </section>
+    @php
+    $ordenActual = session('orden') == 'asc' ? 'desc' : 'asc';
+        @endphp
         <section class="table__body">
             <table>
                 <thead>
                     <tr>
                         <th> Id <span class="icon-arrow">&UpArrow;</span></th>
                         <th> DNI <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Nombre <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> <a href="{{ route('empleados.orderBy', ['ordenar_por' => 'nombre', 'orden' => $ordenActual]) }}">Nombre <span class="icon-arrow">&UpArrow;</span></a></th>
                         <th> Apellido <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Telefono <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Correo <span class="icon-arrow">&UpArrow;</span></th>
@@ -42,7 +45,8 @@
                        <td>{{$empleado->apellido}}</td>
                        <td>{{$empleado->telefono}}</td>
                        <td>{{$empleado->correo}}</td>
-                       <td><a href="{{ route('empleados.edit', $empleado) }}" role="button"><i class="bi bi-pencil-square"></i><i class="bi bi-trash3"></i></a> </td>
+                       <td><a class="btn btn-secondary" href="{{ route('empleados.edit', $empleado) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
+                        <a class="btn btn-secondary" href="{{ route('empleados.edit', $empleado) }}" role="button"><i class="bi bi-trash3"></i></a> </td>
                     </tr>
                     @endforeach
                 </tbody>

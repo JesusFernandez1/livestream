@@ -93,6 +93,12 @@ class EmpleadoController extends Controller
         return redirect()->route('empleados.index');
     }
 
+    public function confirmarBorrarEmpleado($id)
+    {
+        $empleado = Empleado::find($id);
+        return view('empleados.confirmarBorrar_empleado', compact('empleado'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -105,5 +111,21 @@ class EmpleadoController extends Controller
         $empleado->delete();
 
         return redirect()->route('empleados.index');
+    }
+    
+    public function orderBy(Request $request)
+    {
+        $empleados = Empleado::paginate(10);
+
+        if($request->has('ordenar_por')) {
+            $ordenPor = $request->input('ordenar_por');
+            $orden = $request->input('orden', 'asc');
+            $empleados = Empleado::orderBy($ordenPor, $orden)->get();
+            session(['orden' => $orden]);
+        } else {
+            session(['orden' => null]);
+        }
+
+        return view('empleados.mostrar_empleados', compact('empleados'));
     }
 }

@@ -26,23 +26,31 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::group(['prefix' => 'usuarios', 'middleware' => ['auth', 'admin']], function () {
+
+Route::controller(EmpleadoController::class)->group(function () {
+    Route::get('/empleados/mostrar_empleados', 'orderBy')->name('empleados.orderBy');
+});
+
+Route::resource('empleados', EmpleadoController::class);
+
+
+
+Route::controller(UserController::class)->group(function () {
 
 });
 Route::resource('usuarios', UserController::class);
 
-Route::group(['prefix' => 'empleados', 'middleware' => ['auth', 'admin']], function () {
 
-});
-Route::resource('empleados', EmpleadoController::class);
 
-Route::group(['prefix' => 'pedidos', 'middleware' => 'auth'], function () {
-    
+Route::controller(PedidoController::class)->group(function () {
+
 });
 Route::get('provincias/{comunidad}', [PedidoController::class, 'provinciasDeComunidad']);
 Route::resource('pedidos', PedidoController::class);
 
-Route::group(['prefix' => 'productos', 'middleware' => ['auth', 'admin']], function () {
+
+
+Route::controller(ProductoController::class)->group(function () {
 
 });
 Route::resource('productos', ProductoController::class);
