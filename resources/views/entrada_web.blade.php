@@ -43,8 +43,7 @@
           <li class="nav-item">
             <div>
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-                    <p>Bienvenido: </p>
+                    <h6>Bienvenido: {{Auth::user()->name}}</h6>
                 @else
                     <a href="{{ route('login') }}" class="nav-link">Log in</a>
 
