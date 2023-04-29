@@ -45,6 +45,27 @@
                       <small style="color: red">{{ $message }}</small>
                   @enderror
                 </div>
+                <div class="col-md-3">
+                    <label for="inputState" class="form-label">Comunidad</label>
+                    <select name="comunidad_id" id="comunidad_id">
+                      <option disabled value="">Selecciona una comunidad autónoma</option>
+                      @foreach ($comunidades as $comunidad)
+                          <option value="{{ $comunidad->id }}">{{ $comunidad->nombre }}</option>
+                      @endforeach
+                    </select>
+                    @error('estado')
+                    <small style="color: red">{{ $message }}</small>
+                      @enderror
+                  </div>
+                  <div class="col-md-3">
+                      <label for="inputState" class="form-label">Provincia</label>
+                      <select name="provincia_id" id="provincia_id">
+                          <option disabled value="">Selecciona una provincia</option>
+                      </select>
+                      @error('estado')
+                      <small style="color: red">{{ $message }}</small>
+                        @enderror
+                    </div>
                 <div class="col-2">
                   <label for="inputAddress2" class="form-label">Direccion</label>
                   <input type="text" class="form-control" name="direccion" value="{{ old("direccion")}}">
@@ -59,27 +80,6 @@
                       <small style="color: red">{{ $message }}</small>
                   @enderror
                 </div>
-                <div class="col-md-3">
-                  <label for="inputState" class="form-label">Comunidad</label>
-                  <select name="comunidad_id" id="comunidad_id">
-                    <option disabled value="">Selecciona una comunidad autónoma</option>
-                    @foreach ($comunidades as $comunidad)
-                        <option value="{{ $comunidad->id }}">{{ $comunidad->nombre }}</option>
-                    @endforeach
-                  </select>
-                  @error('estado')
-                  <small style="color: red">{{ $message }}</small>
-                    @enderror
-                </div>
-                <div class="col-md-3">
-                    <label for="inputState" class="form-label">Provincia</label>
-                    <select name="provincia_id" id="provincia_id">
-                        <option disabled value="">Selecciona una provincia</option>
-                    </select>
-                    @error('estado')
-                    <small style="color: red">{{ $message }}</small>
-                      @enderror
-                  </div>
                 <div class="col-2">
                   <label for="inputAddress2" class="form-label">Observaciones</label>
                   <input type="text" class="form-control" name="observaciones" value="{{ old("observaciones")}}">
@@ -112,28 +112,6 @@
                     <label for="inputAddress2" class="form-label">Importe total</label>
                     <input type="text" class="form-control" name="importe_total" value="{{ old("importe_total")}}">
                     @error('importe_total')
-                        <small style="color: red">{{ $message }}</small>
-                    @enderror
-                  </div>
-                  <div class="col-md-2">
-                    <label for="inputState" class="form-label">Cliente</label>
-                    <select id="inputState" class="form-select" name="users_id">
-                      @foreach ($clientes as $cliente)
-                      <option value="{{$cliente->id}}" @selected(old("users_id", $pedido->users_id)==$cliente->id)>{{$cliente->name}}</option>
-                      @endforeach
-                    </select>
-                    @error('users_id')
-                        <small style="color: red">{{ $message }}</small>
-                    @enderror
-                  </div>
-                  <div class="col-md-2">
-                    <label for="inputState" class="form-label">Empleado</label>
-                    <select id="inputState" class="form-select" name="users_id">
-                      @foreach ($empleados as $empleado)
-                      <option value="{{$empleado->id}}" @selected(old("users_id", $pedido->users_id)==$empleado->id)>{{$empleado->nombre}}</option>
-                      @endforeach
-                    </select>
-                    @error('users_id')
                         <small style="color: red">{{ $message }}</small>
                     @enderror
                   </div>
