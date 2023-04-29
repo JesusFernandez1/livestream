@@ -26,4 +26,21 @@
 
 
 </body>
+<script>
+  $(function() {
+      $('#comunidad').change(function() {
+          var comunidadId = $(this).val();
+          if (comunidadId) {
+              $.get('{{ url('provincias') }}/' + comunidadId, function(provincias) {
+                  $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
+                  $.each(provincias, function(key, provincia) {
+                      $('#provincia').append($('<option>').val(provincia.id).text(provincia.nombre));
+                  });
+              });
+          } else {
+              $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
+          }
+      });
+  });
+  </script>
 </html>

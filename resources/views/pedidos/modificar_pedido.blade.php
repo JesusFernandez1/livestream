@@ -91,7 +91,7 @@
                     <label for="inputState" class="form-label">Estado de la entrega</label>
                     <select id="inputState" class="form-select" name="estado">
                       <option selected>{{ old("estado", $pedido->estado)}}</option>
-                      <option>Pendiente</option>
+                      <option>Retraso</option>
                       <option>Aceptada</option>
                       <option>Cancelada</option>
                     </select>
@@ -106,17 +106,25 @@
                         <small style="color: red">{{ $message }}</small>
                     @enderror
                   </div>
-                  <div class="col-2">
-                    <label for="inputAddress2" class="form-label">Cliente</label>
-                    <input type="text" class="form-control"  name="users_id" value="{{ old("users_id", $pedido->users_id )}}">
+                  <div class="col-md-2">
+                    <label for="inputState" class="form-label">Cliente</label>
+                    <select id="inputState" class="form-select" name="users_id">
+                      @foreach ($clientes as $cliente)
+                      <option value="{{$cliente->id}}" @selected(old("users_id", $pedido->users_id)==$cliente->id)>{{$cliente->name}}</option>
+                      @endforeach
+                    </select>
                     @error('users_id')
                         <small style="color: red">{{ $message }}</small>
                     @enderror
                   </div>
-                  <div class="col-2">
-                    <label for="inputAddress2" class="form-label">Empleado</label>
-                    <input type="text" class="form-control"  name="empleado_id" value="{{ old("empleado_id", $pedido->empleado_id )}}">
-                    @error('empleado_id')
+                  <div class="col-md-2">
+                    <label for="inputState" class="form-label">Empleado</label>
+                    <select id="inputState" class="form-select" name="users_id">
+                      @foreach ($empleados as $empleado)
+                      <option value="{{$empleado->id}}" @selected(old("users_id", $pedido->users_id)==$empleado->id)>{{$empleado->nombre}}</option>
+                      @endforeach
+                    </select>
+                    @error('users_id')
                         <small style="color: red">{{ $message }}</small>
                     @enderror
                   </div>

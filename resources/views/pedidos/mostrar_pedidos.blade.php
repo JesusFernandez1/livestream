@@ -8,17 +8,6 @@
             <input type="search" placeholder="Search Data...">
             <img src="../resources/img/search.png" alt="">
         </div>
-        {{-- <div class="export__file">
-            <label for="export-file" class="export__file-btn" title="Export File"></label>
-            <input type="checkbox" id="export-file">
-            <div class="export__file-options">
-                <label>Export As &nbsp; &#10140;</label>
-                <label for="export-file" id="toPDF">PDF <img src="../resources/img/pdf.png" alt=""></label>
-                <label for="export-file" id="toJSON">JSON <img src="../resources/img/json.png" alt=""></label>
-                <label for="export-file" id="toCSV">CSV <img src="../resources/img/csv.png" alt=""></label>
-                <label for="export-file" id="toEXCEL">EXCEL <img src="../resources/img/excel.png" alt=""></label>
-            </div>
-        </div> --}}
     </section>
         <section class="table__body">
             <table>
@@ -34,7 +23,7 @@
                         <th> Fecha de entrega <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Estado <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Cliente <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Acciones</th>
+                        <th> Acciones </th>
                     </tr>
                 </thead>
                 <tbody>
