@@ -43,6 +43,9 @@
           <li class="nav-item">
             <div>
                 @auth
+                @if (auth()->user()->empleados_id)
+                <a href="{{ route('empleados.index') }}" class="nav-link">Zona administracion</a>
+                @endif
                     <h6>Bienvenido: {{Auth::user()->name}}</h6>
                 @else
                     <a href="{{ route('login') }}" class="nav-link">Log in</a>
@@ -88,7 +91,7 @@
 
     <div class="row">
       <div class="col-sm">
-        <div class="card w-100 card-border mb-5">
+        <div class="card w-100 card-border mb-5 product-card">
           <img src="../resources/img/camara4.png" class="card-img-top" alt="Camara Sony 4k">
           <div class="card-body">
             <p class="card-text">Este excelente y completo camcorder es la elección perfecta para una amplia variedad de tomas con una sola cámara 4K y HD con un nuevo sensor 3CMOS de tipo 1/3. Un potente objetivo con zoom 25x con tres anillos de zoom independientes ofrece imágenes 4K de perfecta nitidez en prácticamente cualquier situación de grabación profesional. El AF con reconocimiento facial avanzado y el exclusivo filtro de densidad neutra variable electrónico de Sony permiten grabar contenidos excelentes sin complicaciones.</p>
@@ -96,18 +99,18 @@
         </div>
       </div>
       <div class="col-sm">
-        <div class="card w-100 card-border mb-5">
+        <div class="card w-100 card-border mb-5 product-card">
           <a href="#malenia" data-toggle="modal"><img src="../resources/img/microfono2.png" class="card-img-top" alt="Microfono Shure"></a>
           <div class="card-body">
             <p class="card-text">El Shure SM7B es un micrófono dinámico de bobina móvil con característica cardioide fija ideal para grabar locuciones y voces, aunque también hace muy buena camara en las tomas de instrumentos. Su rango de transmisión amplio y lineal proporciona una reproducción natural de voces e instrumentos. Un absorbente por amortiguación de aire contra las vibraciones y un blindaje sofisticado evitan que las interferencias electromagnéticas mecánicas y de banda ancha de cualquier tipo puedan afectar a las grabaciones. De manera que, ¡nada se interpone ante una grabación libre de problemas!</p>
           </div>
-          <div class="alert alert-warning">
-            <strong>Cuidado!</strong>
+          <div style="text-align: center" class="alert alert-success">
+            <strong>De lo mejor!</strong>
           </div>
         </div>
       </div>
       <div class="col-sm">
-        <div class="card w-100 card-border mb-5">
+        <div class="card w-100 card-border mb-5 product-card">
           <img src="../resources/img/camara2.png" class="card-img-top" alt="camara Nikon FULL HD">
           <div class="card-body">
             <p class="card-text">Camara Digital Reflex Nikon D3300+Af-S Dx 18-55mm 1:3.5-5.6g es un objeto de segunda mano que se ofrece en estado Muy bueno. Cómpralo al Mejor Precio Solo en Cash Converters en la tienda. El objeto funciona perfectamente, tiene garantía y te lo trasladamos por correo aproximadamente en 72 horas.</p>
@@ -130,26 +133,42 @@
       <div class="row row-cols-1 row-cols-2 row-cols-sm-2 row-cols-md-4">
         <div class="col-sm">
           <img src="../resources/img/camara2.png" alt="camara Nikon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Warrior</span></div>
+          <div class="text-center"><span class="camara-name h5 p-2">Nicon</span></div>
         </div>
         <div class="col-sm">
           <img src="../resources/img/camara3.png" alt="camara Canon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Healer</span></div>
+          <div class="text-center"><span class="camara-name h5 p-2">Cannon</span></div>
         </div>
         <div class="col-sm">
           <img src="../resources/img/camara6.png" alt="camara Canon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Thief</span></div>
+          <div class="text-center"><span class="camara-name h5 p-2">Canno 4K</span></div>
         </div>
         <div id="myButton" class="col-sm">
           <img src="../resources/img/camara8.png" alt="camara Logitect" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Death</span></div>
+          <div class="text-center"><span class="camara-name h5 p-2">Logitect</span></div>
+        </div>
+        <div class="col-sm">
+          <img src="../resources/img/microfono1.png" alt="camara Nikon" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">Razer</span></div>
+        </div>
+        <div class="col-sm">
+          <img src="../resources/img/microfono2.png" alt="camara Canon" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">Shure</span></div>
+        </div>
+        <div class="col-sm">
+          <img src="../resources/img/microfono3.png" alt="camara Canon" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">ElGato</span></div>
+        </div>
+        <div id="myButton" class="col-sm">
+          <img src="../resources/img/microfono4.png" alt="camara Logitect" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">Blue Yeti</span></div>
         </div>
       </div>
       
       <div class="row py-5">
         <div class="col text-center">
           <a href="#" class="link-dark">
-            <button class="btn btn-dark btn-lg rounded-pill p-3 font-weight-bold">View Elden figures catalog</button>
+            <button class="btn btn-dark btn-lg rounded-pill p-3 font-weight-bold">Ver todos los productos</button>
           </a>
         </div>
       </div>

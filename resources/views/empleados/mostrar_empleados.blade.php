@@ -35,7 +35,32 @@
                        <td>{{$empleado->telefono}}</td>
                        <td>{{$empleado->correo}}</td>
                        <td><a class="btn btn-primary" href="{{ route('empleados.edit', $empleado) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
-                        <a class="btn btn-danger" href="{{ route('empleados.edit', $empleado) }}" role="button"><i class="bi bi-trash3"></i></a> </td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="deleteModalLabel">Eliminar empleado</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>¿Está seguro de eliminar al empleado?</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                  <form action="{{ route('empleados.destroy', $empleado) }}" method="POST">
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

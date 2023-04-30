@@ -80,7 +80,7 @@ button,
 }
 
 .card-border {
-    border: solid 10px rgb(69, 95, 34);
+    border: solid 10px rgb(255, 252, 87);
     border-radius: 20px;
     overflow: hidden;
     transition: all ease-out 0.2s;

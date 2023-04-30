@@ -16,6 +16,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.3/dist/esm/popper-lite" integrity="sha384-EaHdNfliZ8WwQ2rcvfn/07flFJmszLr0T3qMeX/SO1ePvZ5PfB5Q2O8K7WprSQvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-rq3VeXd5e5LkZjIYehPvHbVmJWf8+IyTkLy7V+UO2kGs7VhBdvlJk9XpU6H1UOus" crossorigin="anonymous"></script>
+
   </head>
 
 <body>
@@ -26,6 +27,11 @@
 
 </body>
 <script>
+    $(document).ready(function() {
+      $('.btn-danger').click(function() {
+        $('#deleteModal').modal('show');
+      });
+    });
   $(function() {
       $('#comunidad').change(function() {
           var comunidadId = $(this).val();
