@@ -34,8 +34,8 @@
                        <td>{{$empleado->apellido}}</td>
                        <td>{{$empleado->telefono}}</td>
                        <td>{{$empleado->correo}}</td>
-                       <td><a class="btn btn-primary" href="{{ route('empleados.edit', $empleado) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
-                        <a class="btn btn-danger" href="{{ route('empleados.edit', $empleado) }}" role="button"><i class="bi bi-trash3"></i></a> </td>
+                       <td><a class="btn btn-primary" href="{{ route('empleados.edit', $empleado) }}" role="button"> <i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal" data-empleado="{{ $empleado }}"> <i class="bi bi-trash3"></i></a></td>
                     </tr>
                     @endforeach
                 </tbody>

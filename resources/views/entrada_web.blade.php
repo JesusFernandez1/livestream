@@ -65,10 +65,10 @@
         <img src="../resources/img/portada1.jpg" alt="Portada de portada1" class="d-block w-100">
       </div>
       <div class="carousel-item">
-        <img src="../resources/img/camara2.jpg" alt="Portada de camara2" class="d-block w-100">
+        <img src="../resources/img/portada2.jpg" alt="Portada de camara2" class="d-block w-100">
       </div>
       <div class="carousel-item">
-        <img src="../resources/img/camara3.jpg" alt="Portada de camara3" class="d-block w-100">
+        <img src="../resources/img/portada3.jpg" alt="Portada de camara3" class="d-block w-100">
       </div>
     </div>
   </div>
@@ -156,28 +156,11 @@
     </div>
   </div>
 
-  <div class="video-container">
+  {{-- <div class="video-container">
   <video controls>
     <source src="../resources/img/ELDEN RING - Official Gameplay Reveal.mp4" type="video/mp4">
   </video>
-</div>
-
- <div id="malenia" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">YouTube Video</h5>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe id="cartoonVideo" class="embed-responsive-item" width="560" height="315"
-              src="https://www.youtube.com/embed/D_iqjI2p7F4" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div> --}}
 
   <script>
     $(document).ready(function(){

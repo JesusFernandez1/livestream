@@ -70,7 +70,7 @@ button,
 
 #top {
     background: rgb(255, 255, 255);
-    background: url(../img/fondo1.jpg);
+    background: url(../img/fondo2.jpg);
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
@@ -115,7 +115,7 @@ button,
 
 
 #camaras {
-    background: url(../img/fondo2.png);
+    background: url(../img/fondo1.jpg);
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;

@@ -4,12 +4,11 @@
 
    <main class="table">
     <section class="table__header">
-        <h1>Modificar pedido</h1>
+        <h1>Realizar pedido</h1>
     </section>
         <section class="table__body">
           <table>
-            <form action="{{ route('pedidos.update', $pedido) }}" class="row g-3" method="POST">
-                @method('put')
+            <form action="{{ route('pedidos.store') }}" class="row g-3" method="POST">
               <div class="col-md-3">
                 <label for="inputPassword4" class="form-label">DNI</label>
                 <input type="text" class="form-control" name="DNI" value="{{ old("DNI") }}">

@@ -4,7 +4,6 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;
-use App\Models\Provincia;
 use Illuminate\Support\Facades\Route;
 
 /*
