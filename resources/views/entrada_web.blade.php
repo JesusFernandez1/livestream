@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
   <link rel="stylesheet" href="../resources/css/main.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="../resources/img/logo.png">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -32,7 +32,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="{{ route('empleados.index') }}">Intro</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('empleados.create') }}">Intro</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
         </ul>
