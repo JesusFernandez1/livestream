@@ -1,4 +1,22 @@
 @extends('baseForm')
+@section('scripts')
+<script>
+  $(function() {
+      $('#comunidad').change(function() {
+          var comunidadId = $(this).val();
+          if (comunidadId) {
+              $.get('{{ url('provincias') }}/' + comunidadId, function(provincias) {
+                  $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
+                  $.each(provincias, function(key, provincia) {
+                      $('#provincia').append($('<option>').val(provincia.id).text(provincia.nombre));
+                  });
+              });
+          } else {
+              $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
+          }
+      });
+  });
+</script>
    @section('mostrarExtensionForm')
    <section class="d-flex justify-content-center align-items-center">
     <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
@@ -6,7 +24,7 @@
             <h4>  <i class="bi bi-chat-left-quote"></i> &nbsp; Contacto</h4>
         </div>
         <div class="mb-1">
-            <form id = "contacto" >
+            <form id = "contacto" action="{{ route('empleados.store') }}" method="POST">
               <div class="row">
                 <div class="col-12">
                   <label for="DNI"> DNI:</label>
@@ -45,12 +63,16 @@
                     @enderror
                 </div>
                 <div class="col-4 mt-4">
-                    <label for="Role"> <i class="bi bi-person-bounding-box"></i>Role:</label>
-                    <input type="text" class="form-control" name="Role" value="{{ old("Role") }}">
-                    @error('Role')
+                    <label for="inputState" class="form-label">Role</label>
+                    <select id="inputState" class="form-select" name="role">
+                      <option selected>{{ old("role")}}</option>
+                      <option>Admin</option>
+                      <option>Empleado</option>
+                    </select>
+                    @error('role')
                         <small style="color: red">{{ $message }}</small>
                     @enderror
-                </div>              
+                  </div>          
             </div>
               <div class="mb-2 mt-5">
                 <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">

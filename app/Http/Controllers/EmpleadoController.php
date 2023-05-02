@@ -115,6 +115,7 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
+        dd($id);
         $empleado = Empleado::find($id);
         $empleado->delete();
 

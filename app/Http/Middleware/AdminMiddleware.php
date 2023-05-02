@@ -17,10 +17,11 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && Empleado::where('id', auth()->user()->id)->where('role', 'Admin')->exists()) {
+        if (auth()->check() && auth()->user()->empleados_id) {
             return $next($request);
         }
 
         return redirect()->route('home')->with('error', 'Acceso denegado');
     }
 }
+// Empleado::where('id', auth()->user()->empleados_id)->where('role', 'Admin')

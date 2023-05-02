@@ -30,7 +30,7 @@ Route::controller(EmpleadoController::class)->group(function () {
    
 });
 
-Route::resource('empleados', EmpleadoController::class);
+Route::resource('empleados', EmpleadoController::class)->middleware('admin');
 
 
 
