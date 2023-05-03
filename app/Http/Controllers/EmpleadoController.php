@@ -101,12 +101,6 @@ class EmpleadoController extends Controller
         return redirect()->route('empleados.index');
     }
 
-    public function confirmarBorrarEmpleado($id)
-    {
-        $empleado = Empleado::find($id);
-        return view('empleados.confirmarBorrar_empleado', compact('empleado'));
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -115,7 +109,6 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $empleado = Empleado::find($id);
         $empleado->delete();
 

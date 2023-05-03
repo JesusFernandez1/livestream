@@ -2,14 +2,24 @@
 @section('scripts')
 
 <script>
-$(document).ready(function() {
-    $('#deleteModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var id = button.data('id');
-        var modal = $(this);
-        modal.find('.modal-footer input[name="id"]').val(id);
-        modal.find('#deleteForm').attr('action', '/empleados/' + id);
+ $(document).ready(function() {
+
+//Este evento se activa al abrir el modal de borrar y se encarga de cargar los datos del empleado.
+
+$('#borrarModal').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget);
+    var empleado = button.data('empleado');
+    $('#borrar-DNI').text(empleado.DNI);
+    $('#borrar-nombre').text(empleado.nombre);
+    $('#borrar-apellido').text(empleado.apellido);
+    $('#borrar-correo').text(empleado.correo);
+    $('#borrar-empleado-form').submit(function() {
+        var url = "{{ route('empleados.destroy', ['empleado' => ':empleado']) }}";
+        url = url.replace(':empleado', empleado.id);
+        $('#borrar-empleado-form').attr('action', url);
     });
+});
+
 });
 </script>
 @endsection
@@ -48,7 +58,7 @@ $(document).ready(function() {
                        <td>{{$empleado->telefono}}</td>
                        <td>{{$empleado->correo}}</td>
                        <td><a class="btn btn-primary" href="{{ route('empleados.edit', $empleado) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->id }}">
+                        <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#borrarModal" data-empleado="{{ $empleado }}">
                           <i class="bi bi-trash3"></i>
                       </button></td>
                     </tr>
@@ -58,26 +68,42 @@ $(document).ready(function() {
         </section>
     </main>
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Eliminar empleado</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="borrarModalLabel"><b>Eliminar empleado </b></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p>¿Estás seguro que deseas elminar este empleado?</p>
+              <table class="table">
+                  <tr>
+                      <th scope="row" class="bg-dark text-light">DNI</th>
+                      <td class="bg-light"><span id="borrar-DNI"></span></td>
+                  </tr>
+                  <tr>
+                      <th scope="row" class="bg-dark text-light">Nombre</th>
+                      <td><span id="borrar-nombre"></span></td>
+                  </tr>
+                  <tr>
+                      <th scope="row" class="bg-dark text-light">Apellido</th>
+                      <td><span id="borrar-apellido"></span></td>
+                  </tr>
+                  <tr>
+                      <th scope="row" class="bg-dark text-light">Correo</th>
+                      <td><span id="borrar-correo"></span></td>
+                  </tr>
+              </table>
+          </div>
+          <div class="modal-footer">
+              <form method="POST" id="borrar-empleado-form" action="">
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">Eliminar</button>
+              </form>
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
+          </div>
       </div>
-      <div class="modal-body">
-        <p>¿Está seguro de eliminar al empleado?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <form id="deleteForm" action="{{ route('empleados.destroy', $empleado->id) }}" method="POST">
-          @method('DELETE')
-          <button type="submit" class="btn btn-danger">Eliminar</button>
-        </form>
-      </div>
-    </div>
   </div>
 </div>
 @endsection

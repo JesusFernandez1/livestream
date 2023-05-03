@@ -27,9 +27,8 @@ Route::get('/dashboard', function () {
 
 
 Route::controller(EmpleadoController::class)->group(function () {
-   
+    
 });
-
 Route::resource('empleados', EmpleadoController::class)->middleware('admin');
 
 
