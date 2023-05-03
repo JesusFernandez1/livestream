@@ -2,24 +2,20 @@
 @section('scripts')
 
 <script>
- $(document).ready(function() {
-
-//Este evento se activa al abrir el modal de borrar y se encarga de cargar los datos del empleado.
-
-$('#borrarModal').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget);
-    var empleado = button.data('empleado');
-    $('#borrar-DNI').text(empleado.DNI);
-    $('#borrar-nombre').text(empleado.nombre);
-    $('#borrar-apellido').text(empleado.apellido);
-    $('#borrar-correo').text(empleado.correo);
-    $('#borrar-empleado-form').submit(function() {
-        var url = "{{ route('empleados.destroy', ['empleado' => ':empleado']) }}";
-        url = url.replace(':empleado', empleado.id);
-        $('#borrar-empleado-form').attr('action', url);
-    });
-});
-
+$(document).ready(function() {
+  $('#borrarModal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget);
+      var empleado = button.data('empleado');
+      $('#borrar-DNI').text(empleado.DNI);
+      $('#borrar-nombre').text(empleado.nombre);
+      $('#borrar-apellido').text(empleado.apellido);
+      $('#borrar-correo').text(empleado.correo);
+      $('#borrar-empleado-form').submit(function() {
+          var url = "{{ route('empleados.destroy', ['empleado' => ':empleado']) }}";
+          url = url.replace(':empleado', empleado.id);
+          $('#borrar-empleado-form').attr('action', url);
+      });
+  });
 });
 </script>
 @endsection

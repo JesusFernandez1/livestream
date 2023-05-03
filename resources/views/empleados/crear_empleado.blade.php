@@ -17,6 +17,7 @@
       });
   });
 </script>
+@endsection
    @section('mostrarExtensionForm')
    <section class="d-flex justify-content-center align-items-center">
     <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
@@ -73,7 +74,7 @@
                         <small style="color: red">{{ $message }}</small>
                     @enderror
                   </div>          
-            </div>
+                </div>
               <div class="mb-2 mt-5">
                 <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
                     <span> Enviar </span><i class="bi bi-check-square-fill"></i>

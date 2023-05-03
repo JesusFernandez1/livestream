@@ -66,4 +66,18 @@
         </div>
     </div>
 </section>
+<style>
+    *{
+    padding: 0;
+    margin: 0;
+}
+html, body, section {
+    height: 100%;
+    min-height: 100%;
+}
+body{
+    background-color: lightgray;
+    background: url(../../../resources/img/fondo1.jpg) center / cover !important
+}
+</style>
 @endsection
