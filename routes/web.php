@@ -25,7 +25,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-
 Route::controller(EmpleadoController::class)->group(function () {
     
 });
@@ -41,7 +40,7 @@ Route::resource('usuarios', UserController::class);
 
 
 Route::controller(PedidoController::class)->group(function () {
-
+    Route::get('/pedido/{id}', [PedidoController::class, 'verPedido'])->name('pedido.verPedido');
 });
 Route::get('provincias/{comunidad}', [PedidoController::class, 'provinciasDeComunidad']);
 Route::resource('pedidos', PedidoController::class);

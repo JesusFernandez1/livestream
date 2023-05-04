@@ -153,6 +153,20 @@ class PedidoController extends Controller
     {
         //
     }
+    
+    public function verPedido(Request $request, $id)
+    {
+        $pedidos = Pedido::where('users_id', $id);
+        if($request->has('ordenar_por')) {
+            $ordenPor = $request->input('ordenar_por');
+            $orden = $request->input('orden', 'asc');
+            $pedidos = Pedido::orderBy($ordenPor, $orden)->paginate(10);
+            session(['orden' => $orden]);
+        } else {
+            session(['orden' => null]);
+        }
+        return view('pedidos.mostrarPedidoUnico', compact('pedidos'));
+    }
 }
 
 function validarCodigoPostal($provincia, $codigoPostal) {

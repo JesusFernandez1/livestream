@@ -46,7 +46,21 @@
                 @if (auth()->user()->empleados_id)
                 <a href="{{ route('empleados.index') }}" class="nav-link">Zona administracion</a>
                 @endif
-                    <h6>Bienvenido: {{Auth::user()->name}}</h6>
+                <div class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{ Auth::user()->name }}
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                      <!-- Opciones de usuario -->
+                      <a class="dropdown-item" href="{{ route('pedido.verPedido', Auth::user()->id) }}">Mis pedidos</a>
+                      <a class="dropdown-item" href="#">Configuración</a>
+                      <div class="dropdown-divider"></div>
+                      <form method="POST" action="{{ route('logout') }}">
+                          @csrf
+                          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Cerrar sesión</a>
+                      </form>
+                  </div>
+              </div>
                 @else
                     <a href="{{ route('login') }}" class="nav-link">Log in</a>
 
@@ -162,13 +176,13 @@
         <div class="col-sm">
           <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
           data-item-id="Cannon 4K"
-          data-item-price="349.99"
+          data-item-price="4999.90"
           data-item-url="/paintings/starry-night"
           data-item-description="Camara Cannon 4K de maxima calidad."
           data-item-image="../resources/img/camara6.png"
           data-item-name="Cannon 4K"
           data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|Brown[+10.00]|Gold[+30.00]">
+          data-item-custom1-options="Black|V2[+100.00]|8k Version[+1200.00]">
           <img src="../resources/img/camara6.png" alt="camara Canon" class="w-100 camara">
           <div class="text-center"><span class="camara-name h5 p-2">Cannon 4K</span></div>
         </button>
@@ -254,17 +268,6 @@
       </div>
     </div>
   </div>
-<button class="snipcart-add-item"
-  data-item-id="starry-night"
-  data-item-price="79.99"
-  data-item-url="/paintings/starry-night"
-  data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh."
-  data-item-image="../resources/img/microfono4.png"
-  data-item-name="The Starry Night"
-  data-item-custom1-name="Frame color"
-  data-item-custom1-options="Black|Brown[+100.00]|Gold[+300.00]">
-  Add to cart
-</button>
 
   {{-- <div class="video-container">
   <video controls>

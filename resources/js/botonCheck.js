@@ -1,10 +1,13 @@
-document.addEventListener("DOMContentLoaded", function() {
-Snipcart.events.on('snipcart.ready', function() {
-    Snipcart.api.modal.events.on('shown', function() {
-      document.querySelector('.snipcart-cart-summary .snipcart-cart-bottom .snipcart-base-button--checkout').addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = '/mostrarEmpleados'; // Aquí debes cambiar '/mostrarEmpleados' por la URL a la que quieres redirigir al usuario.
-      });
-    });
+document.addEventListener('snipcart.ready', function() {
+  document.querySelector('.snipcart-checkout').addEventListener('click', function() {
+    handleCheckout();
   });
 });
+
+function handleCheckout() {
+  snipcart.api.modal.show();
+  // Redirige al usuario a tu vista después de que se complete la transacción
+  document.addEventListener('snipcart.complete', function() {
+    window.location.href = 'empleados';
+  });
+}
