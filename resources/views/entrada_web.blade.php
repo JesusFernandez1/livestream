@@ -273,6 +273,8 @@
   <video controls>
     <source src="../resources/img/ELDEN RING - Official Gameplay Reveal.mp4" type="video/mp4">
   </video>
+  <button class="snipcart-checkout">Click here to checkout</button>
+<span class="snipcart-total-price"></span>
 </div> --}}
 </body>
 <script>
