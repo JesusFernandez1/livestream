@@ -1,7 +1,7 @@
 @extends('base')
 
    @section('mostrarExtension')
-
+   <p>Total Price: {{ $total_price }}</p>
    <main class="table">
     <section class="table__header">
         <h1>Realizar pedido</h1>

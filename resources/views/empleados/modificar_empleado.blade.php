@@ -59,7 +59,7 @@
             </div>
               <div class="mb-2 mt-5">
                 <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
-                    <span> Enviar </span><i class="bi bi-check-square-fill"></i>
+                    <span> Confirmar </span><i class="bi bi-check-square-fill"></i>
                 </button>
               </div>    
             </form>

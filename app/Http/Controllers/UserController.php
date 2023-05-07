@@ -19,6 +19,12 @@ class UserController extends Controller
         return view('usuarios.mostrar_usuarios', compact('usuarios'));
     }
 
+    public function usuariosRegistrados()
+    {
+        $usuarios = User::where('DNI' != null);
+        return view('usuarios.mostrar_usuarios', compact('usuarios'));
+    }
+
     /**
      * Display the specified resource.
      *

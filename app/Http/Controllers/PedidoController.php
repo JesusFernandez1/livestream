@@ -35,7 +35,7 @@ class PedidoController extends Controller
     public function create()
     {
         $comunidades = Comunidad::all();
-        return view('pedidos/crear_pedido', compact('comunidades'));
+        return view('pedidos.crear_pedido', compact('comunidades'));
     }
 
     public function provinciasDeComunidad($comunidadId)
@@ -167,6 +167,18 @@ class PedidoController extends Controller
         }
         return view('pedidos.mostrarPedidoUnico', compact('pedidos'));
     }
+    public function getTotalPrice(Request $request)
+{
+    $totalPrice = $request->input('totalPrice');
+
+    return response()->json(['totalPrice' => $totalPrice]);
+}
+
+public function crearPedido($total_price)
+{
+    $comunidades = Comunidad::all();
+    return view('pedidos.crear_pedido', compact('comunidades','total_price'));
+}
 }
 
 function validarCodigoPostal($provincia, $codigoPostal) {

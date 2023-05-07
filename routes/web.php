@@ -33,14 +33,15 @@ Route::resource('empleados', EmpleadoController::class)->middleware('admin');
 
 
 Route::controller(UserController::class)->group(function () {
-
+    Route::get('usuarios/mostrar_usuarios', [UserController::class, 'usuariosRegistrados'])->name('usuarios.usuariosRegistrados');
 });
 Route::resource('usuarios', UserController::class);
 
 
 
 Route::controller(PedidoController::class)->group(function () {
-    Route::get('/pedido/{id}', [PedidoController::class, 'verPedido'])->name('pedido.verPedido');
+    Route::get('pedidos/mostrarPedidoUnico/{id}', [PedidoController::class, 'verPedido'])->name('pedidos.verPedido');
+    Route::get('pedidos/crear_pedido/{total_price}', [PedidoController::class, 'crearPedido'])->name('pedidos.crearPedido');
 });
 Route::get('provincias/{comunidad}', [PedidoController::class, 'provinciasDeComunidad']);
 Route::resource('pedidos', PedidoController::class);

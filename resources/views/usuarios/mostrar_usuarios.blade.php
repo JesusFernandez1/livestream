@@ -1,5 +1,25 @@
 @extends('base')
+@section('scripts')
 
+<script>
+$(document).ready(function() {
+  $('#borrarModal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget);
+      var usuario = button.data('usuario');
+      $('#borrar-DNI').text(usuario.DNI);
+      $('#borrar-name').text(usuario.name);
+      $('#borrar-lastname').text(usuario.lastname);
+      $('#borrar-email').text(usuario.email);
+      $('#borrar-usuario-form').submit(function() {
+          var url = "{{ route('usuarios.destroy', ['usuario' => ':usuario']) }}";
+          url = url.replace(':usuario', usuario.id);
+          $('#borrar-usuario-form').attr('action', url);
+      });
+  });
+});
+</script>
+@endsection
+<head><link rel="stylesheet" href="../../resources/css/style.css"> </head>
    @section('mostrarExtension')
    <main class="table">
     <section class="table__header">
@@ -8,43 +28,81 @@
             <input type="search" placeholder="Search Data...">
             <img src="../resources/img/search.png" alt="">
         </div>
-        {{-- <div class="export__file">
-            <label for="export-file" class="export__file-btn" title="Export File"></label>
-            <input type="checkbox" id="export-file">
-            <div class="export__file-options">
-                <label>Export As &nbsp; &#10140;</label>
-                <label for="export-file" id="toPDF">PDF <img src="../resources/img/pdf.png" alt=""></label>
-                <label for="export-file" id="toJSON">JSON <img src="../resources/img/json.png" alt=""></label>
-                <label for="export-file" id="toCSV">CSV <img src="../resources/img/csv.png" alt=""></label>
-                <label for="export-file" id="toEXCEL">EXCEL <img src="../resources/img/excel.png" alt=""></label>
-            </div>
-        </div> --}}
     </section>
+    @php
+    $ordenActual = session('orden') == 'asc' ? 'desc' : 'asc';
+        @endphp
         <section class="table__body">
             <table>
                 <thead>
                     <tr>
-                        <th> DNI <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Nombre <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Apellido <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Correo <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Telefono <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'id', 'orden' => $ordenActual]) }}">Id <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'DNI', 'orden' => $ordenActual]) }}">DNI <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'name', 'orden' => $ordenActual]) }}">Name <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'lastname', 'orden' => $ordenActual]) }}">Lastname <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> Phone <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Email <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($usuarios as $usuario)
                     <tr>
+                       <td>{{$usuario->id}}</td>
                        <td>{{$usuario->DNI}}</td>
                        <td>{{$usuario->name}}</td>
                        <td>{{$usuario->lastname}}</td>
-                       <td>{{$usuario->email}}</td>
                        <td>{{$usuario->phone}}</td>
-                       <td><a href="{{ route('usuarios.edit', $usuario) }}" role="button"><i class="bi bi-pencil-square"></i><i class="bi bi-trash3"></i></a> </td>
+                       <td>{{$usuario->email}}</td>
+                       <td><a class="btn btn-primary" href="{{ route('usuarios.edit', $usuario) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
+                        <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#borrarModal" data-usuario="{{ $usuario }}">
+                          <i class="bi bi-trash3"></i>
+                      </button></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </section>
     </main>
-    @endsection
+<!-- Modal -->
+<div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="borrarModalLabel"><b>Eliminar usuario</b></h5>
+          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="lead mb-4">¿Estás seguro que deseas eliminar este usuario?</p>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th class="bg-secondary text-white" scope="row" style="width: 30%">DNI</th>
+                <td style="width: 70%"><span id="borrar-DNI"></span></td>
+              </tr>
+              <tr>
+                <th class="bg-secondary text-white" scope="row">name</th>
+                <td><span id="borrar-name"></span></td>
+              </tr>
+              <tr>
+                <th class="bg-secondary text-white" scope="row">lastname</th>
+                <td><span id="borrar-lastname"></span></td>
+              </tr>
+              <tr>
+                <th class="bg-secondary text-white" scope="row">email</th>
+                <td><span id="borrar-email"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <form method="POST" id="borrar-usuario-form" action="">
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </form>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
