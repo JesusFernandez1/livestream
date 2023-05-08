@@ -12,9 +12,17 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::paginate(2);
+        $productos = Producto::paginate(10);
+        if($request->has('ordenar_por')) {
+            $ordenPor = $request->input('ordenar_por');
+            $orden = $request->input('orden', 'asc');
+            $productos = Producto::orderBy($ordenPor, $orden)->paginate(10);
+            session(['orden' => $orden]);
+        } else {
+            session(['orden' => null]);
+        }
         return view('productos.mostrar_productos', compact('productos'));
     }
 
@@ -41,6 +49,7 @@ class ProductoController extends Controller
             'stock' => ['required'],
             'descripcion' => ['required'],
             'precio' => ['required'],
+            'marcas_id' => ['required'],
         ]);
         Producto::insert($datos);
         return redirect()->route('productos.index');
@@ -84,6 +93,7 @@ class ProductoController extends Controller
             'stock' => ['required'],
             'descripcion' => ['required'],
             'precio' => ['required'],
+            'marcas_id' => ['required'],
         ]);
         Producto::where('id', $id)->update($datos);
         return redirect()->route('productos.index');

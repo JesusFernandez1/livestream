@@ -293,6 +293,10 @@ $('#snipcart-checkout').click(function() {
     var total_price = $('#snipcart-total-price').text();
     window.location.href = 'http://localhost/livestream/public/pedidos/crearPedido/' + encodeURIComponent(total_price);
 });
-
 </script>
+<style>
+  .snipcart-test-banner__message {
+    visibility: hidden;
+  }
+</style>
 </html>

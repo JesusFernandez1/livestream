@@ -124,7 +124,9 @@
           :value="old('lastname')" required autofocus
         />
       </div>
-
+      @error('lastname')
+      <small style="color: red">{{ $message }}</small>
+    @enderror
       <div class="input-group mt-4">
         <div class="input-group-text bg-info">
           <img
@@ -142,6 +144,9 @@
           :value="old('email')" required autofocus
         />
       </div>
+      @error('email')
+        <small style="color: red">{{ $message }}</small>
+      @enderror
       <div class="input-group mt-1">
         <div class="input-group-text bg-info">
           <img
@@ -160,6 +165,9 @@
           required autocomplete="new-password"
         />
       </div>
+      @error('password')
+        <small style="color: red">{{ $message }}</small>
+      @enderror
 
       <div class="input-group mt-1">
         <div class="input-group-text bg-info">

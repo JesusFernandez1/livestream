@@ -1,126 +1,71 @@
 @extends('base')
 
-   @section('mostrarExtension')
-   <p>Total Price: {{ $total_price }}</p>
-   <main class="table">
-    <section class="table__header">
-        <h1>Realizar pedido</h1>
-    </section>
-        <section class="table__body">
-          <table>
-            <form action="{{ route('pedidos.store') }}" class="row g-3" method="POST">
-              <div class="col-md-3">
-                <label for="inputPassword4" class="form-label">DNI</label>
-                <input type="text" class="form-control" name="DNI" value="{{ old("DNI") }}">
-                @error('DNI')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-              </div>
-                <div class="col-md-3">
-                  <label for="inputPassword4" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" name="nombre" value="{{ old("nombre") }}">
-                  @error('nombre')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-md-3">
-                  <label for="inputCity" class="form-label">Apellido</label>
-                  <input type="text" class="form-control" name="apellido" value="{{ old("apellido") }}">
-                  @error('apellido')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-3">
-                  <label for="inputAddress" class="form-label">Telefono</label>
-                  <input type="text" class="form-control" placeholder="telefono" name="telefono" value="{{ old("telefono") }}">
-                  @error('telefono')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-2">
-                  <label for="inputAddress2" class="form-label">Correo</label>
-                  <input type="text" class="form-control" placeholder="example@gamil.com" name="correo" value="{{ old("correo")}}">
-                  @error('correo')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-md-3">
-                    <label for="inputState" class="form-label">Comunidad</label>
-                    <select name="comunidad_id" id="comunidad_id">
-                      <option disabled value="">Selecciona una comunidad autónoma</option>
-                      @foreach ($comunidades as $comunidad)
-                          <option value="{{ $comunidad->id }}">{{ $comunidad->nombre }}</option>
-                      @endforeach
-                    </select>
-                    @error('estado')
-                    <small style="color: red">{{ $message }}</small>
-                      @enderror
-                  </div>
-                  <div class="col-md-3">
-                      <label for="inputState" class="form-label">Provincia</label>
-                      <select name="provincia_id" id="provincia_id">
-                          <option disabled value="">Selecciona una provincia</option>
-                      </select>
-                      @error('estado')
-                      <small style="color: red">{{ $message }}</small>
-                        @enderror
-                    </div>
-                <div class="col-2">
-                  <label for="inputAddress2" class="form-label">Direccion</label>
-                  <input type="text" class="form-control" name="direccion" value="{{ old("direccion")}}">
-                  @error('direccion')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-2">
-                  <label for="inputAddress2" class="form-label">Datos adicionales</label>
-                  <input type="text" class="form-control" name="datos_adicionales" value="{{ old("datos_adicionales")}}">
-                  @error('datos_adicionales')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-2">
-                  <label for="inputAddress2" class="form-label">Observaciones</label>
-                  <input type="text" class="form-control" name="observaciones" value="{{ old("observaciones")}}">
-                  @error('observaciones')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-2">
-                  <label for="inputAddress2" class="form-label">Codigo postal</label>
-                  <input type="text" class="form-control" name="codigo_postal" value="{{ old("codigo_postal")}}">
-                  @error('codigo_postal')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-2">
-                  <label for="inputAddress2" class="form-label">Fecha del pedido</label>
-                  <input type="text" class="form-control" name="fecha_pedido" value="{{ old("fecha_pedido")}}">
-                  @error('fecha_pedido')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                <div class="col-2">
-                  <label for="inputAddress2" class="form-label">Fecha de entrega</label>
-                  <input type="text" class="form-control" name="fecha_entrega" value="{{ old("fecha_entrega")}}">
-                  @error('fecha_entrega')
-                      <small style="color: red">{{ $message }}</small>
-                  @enderror
-                </div>
-                  <div class="col-2">
-                    <label for="inputAddress2" class="form-label">Importe total</label>
-                    <input type="text" class="form-control" name="importe_total" value="{{ old("importe_total")}}">
-                    @error('importe_total')
-                        <small style="color: red">{{ $message }}</small>
-                    @enderror
-                  </div>
-                <div class="col-12">
-                  <input type="submit" class="btn btn-primary" value="Insert">
-                </div>
-              </form>
-            </table>
-        </section>
-    </main>
+@section('mostrarExtensionForm')
+<section class="d-flex justify-content-center align-items-center">
+ <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
+     <div class="mb-4 d-flex justify-content-start align-items-center">
+         <h4>  <i class="bi bi-chat-left-quote"></i> &nbsp; Contacto</h4>
+     </div>
+     <div class="mb-1">
+         <form id = "contacto" action="{{ route('empleados.store') }}" method="POST">
+           <div class="row">
+             <div class="col-12">
+               <label for="DNI"> DNI:</label>
+               <input type="text" class="form-control" name="DNI" value="{{ old("DNI") }}">
+               @error('DNI')
+                   <small style="color: red">{{ $message }}</small>
+               @enderror
+           </div>
+             <div class="col-6 mt-5">
+                 <label for="nombre"> <i class="bi bi-person-fill"></i>Nombre:</label>
+                 <input type="text" class="form-control" name="nombre" value="{{ old("nombre") }}">
+                 @error('nombre')
+                     <small style="color: red">{{ $message }}</small>
+                 @enderror
+             </div>
+             <div class="col-6 mt-5">
+                 <label for="apellido"> <i class="bi bi-person-bounding-box"></i>Apellido:</label>
+                 <input type="text" class="form-control" name="apellido" value="{{ old("apellido") }}">
+                 @error('apellido')
+                     <small style="color: red">{{ $message }}</small>
+                 @enderror
+             </div>
+         
+             <div class="col-4 mt-5">
+               <label for="telefono"><i class="bi bi-telephone-fill"></i> Telefono:</label>
+               <input type="text" class="form-control" name="telefono" value="{{ old("telefono") }}">
+               @error('telefono')
+                   <small style="color: red">{{ $message }}</small>
+               @enderror
+           </div>
+             <div class="col-8 mt-5">
+                 <label for="correo"> <i class="bi bi-person-fill"></i>Correo:</label>
+                 <input type="text" class="form-control" name="correo" value="{{ old("correo") }}">
+                 @error('correo')
+                     <small style="color: red">{{ $message }}</small>
+                 @enderror
+             </div>
+             <div class="col-4 mt-4">
+                 <label for="inputState" class="form-label">Role</label>
+                 <select id="inputState" class="form-select" name="role">
+                   <option selected>{{ old("role")}}</option>
+                   <option>Admin</option>
+                   <option>Empleado</option>
+                 </select>
+                 @error('role')
+                     <small style="color: red">{{ $message }}</small>
+                 @enderror
+               </div>          
+             </div>
+           <div class="mb-2 mt-5">
+             <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
+                 <span> Enviar </span><i class="bi bi-check-square-fill"></i>
+             </button>
+           </div>    
+         </form>
+     </div>
+ </div>
+</section>
 @endsection
 
 
