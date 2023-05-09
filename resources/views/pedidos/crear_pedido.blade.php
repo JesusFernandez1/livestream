@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('mostrarExtensionForm')
+@section('mostrarExtension')
 <section class="d-flex justify-content-center align-items-center">
  <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
      <div class="mb-4 d-flex justify-content-start align-items-center">
@@ -15,7 +15,7 @@
                @error('DNI')
                    <small style="color: red">{{ $message }}</small>
                @enderror
-           </div>
+            </div>
              <div class="col-6 mt-5">
                  <label for="nombre"> <i class="bi bi-person-fill"></i>Nombre:</label>
                  <input type="text" class="form-control" name="nombre" value="{{ old("nombre") }}">
@@ -30,105 +30,91 @@
                      <small style="color: red">{{ $message }}</small>
                  @enderror
              </div>
-         
              <div class="col-4 mt-5">
                <label for="telefono"><i class="bi bi-telephone-fill"></i> Telefono:</label>
                <input type="text" class="form-control" name="telefono" value="{{ old("telefono") }}">
                @error('telefono')
                    <small style="color: red">{{ $message }}</small>
                @enderror
-           </div>
-             <div class="col-8 mt-5">
-                 <label for="correo"> <i class="bi bi-person-fill"></i>Correo:</label>
-                 <input type="text" class="form-control" name="correo" value="{{ old("correo") }}">
+            </div>
+            <div class="col-8 mt-5">
+                 <label for="correo"> <i class="bi bi-envelope-at-fill"></i> Correo:</label>
+                 <input type="text" class="form-control" name="correo" placeholder="ejemplo@gmail.com" value="{{ old("correo") }}">
                  @error('correo')
                      <small style="color: red">{{ $message }}</small>
                  @enderror
              </div>
+             <div class="col-6 mt-5">
+                <label for="inputState" class="form-label"><i class="bi bi-pin-map-fill"></i> Comunidad</label>
+                <select name="comunidad" id="comunidad" class="form-select">
+                    <option value="">Selecciona una comunidad autónoma</option>
+                    @foreach ($comunidades as $comunidad)
+                        <option value="{{ $comunidad->id }}">{{ $comunidad->nombre }}</option>
+                    @endforeach
+                </select>
+                @error('comunidades_id')
+                    <small style="color: red">{{ $message }}</small>
+                @enderror
+              </div>
+              <div class="col-6 mt-5">
+                <label for="inputState" class="form-label"><i class="bi bi-geo"></i> Provincia</label>
+                <select name="provincia" id="provincia" class="form-select">
+                    <option value="">Selecciona una provincia</option>
+                </select>
+                @error('provincias_cod')
+                    <small style="color: red">{{ $message }}</small>
+                @enderror
+              </div>
              <div class="col-8 mt-5">
-                <label for="direccion"> <i class="bi bi-person-fill"></i>Direccion:</label>
+                <label for="direccion"> <i class="bi bi-signpost-2-fill"></i> Direccion:</label>
                 <input type="text" class="form-control" name="direccion" value="{{ old("direccion") }}">
                 @error('direccion')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
             </div>
             <div class="col-8 mt-5">
-                <label for="datos_adicionales"> <i class="bi bi-person-fill"></i>Datos adicionales:</label>
-                <input type="text" class="form-control" name="datos_adicionales" value="{{ old("datos_adicionales") }}">
+                <label for="codigo_postal"> <i class="bi bi-mailbox2"></i> Codigo postal:</label>
+                <input type="text" class="form-control" name="codigo_postal" value="{{ old("codigo_postal") }}">
+                @error('codigo_postal')
+                    <small style="color: red">{{ $message }}</small>
+                @enderror
+            </div>  
+            <div class="col-8 mt-5">
+                <label for="datos_adicionales"> <i class="bi bi-card-heading"></i> Datos adicionales:</label>
+                <input type="text" class="form-control" placeholder="Puerta, piso, nª..." name="datos_adicionales" value="{{ old("datos_adicionales") }}">
                 @error('datos_adicionales')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
             </div>
             <div class="col-8 mt-5">
-                <label for="observaciones"> <i class="bi bi-person-fill"></i>Observaciones:</label>
+                <label for="observaciones"> <i class="bi bi-card-heading"></i> Observaciones:</label>
                 <input type="text" class="form-control" name="observaciones" value="{{ old("observaciones") }}">
                 @error('observaciones')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
             </div>
-            <div class="col-8 mt-5">
-                <label for="codigo_postal"> <i class="bi bi-person-fill"></i>Codigo postal:</label>
-                <input type="text" class="form-control" name="codigo_postal" value="{{ old("codigo_postal") }}">
-                @error('codigo_postal')
-                    <small style="color: red">{{ $message }}</small>
-                @enderror
-            </div>
-            <div class="col-8 mt-5">
-                <label for="fecha_pedido" class="form-label">Fecha del pedido</label>
-                <input type="datetime-local" class="form-control" name="fecha_pedido" value="<?php echo date("Y-m-d\TH:i") ?>">
+            <div class="col-6 mt-5">
+                <label for="fecha_pedido" class="form-label"><i class="bi bi-calendar-fill"></i> Fecha del pedido</label>
+                <input readonly type="datetime-local" class="form-control" name="fecha_pedido" value="<?php echo date("Y-m-d\TH:i") ?>">
                 @error('fecha_pedido')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
               </div>
-              <div class="col-8 mt-5">
-                <label for="fecha_entrega" class="form-label">Fecha de entrega</label>
+              <div class="col-6 mt-5">
+                <label for="fecha_entrega" class="form-label"><i class="bi bi-calendar-check-fill"></i> Fecha de entrega</label>
                 <input type="datetime-local" class="form-control" name="fecha_entrega" value="{{ old('fecha_entrega') }}">
                 @error('fecha_entrega')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
               </div>
-            <div class="col-8 mt-5">
-                <label for="importe_total"> <i class="bi bi-person-fill"></i>Importe:</label>
-                <input type="text" class="form-control" name="importe_total" value="{{ old("importe_total") }}">
+            <div class="col-2 mt-5">
+                <label for="importe_total"> <i class="bi bi-cash-coin"></i> Importe:</label>
+                <input readonly type="text" class="form-control" name="importe_total" value="{{ old("importe_total") }}">
                 @error('importe_total')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
-            </div>
-            <select name="comunidad" id="comunidad">
-                <option value="">Selecciona una comunidad autónoma</option>
-                @foreach ($comunidades as $comunidad)
-                    <option value="{{ $comunidad->id }}">{{ $comunidad->nombre }}</option>
-                @endforeach
-            </select>
-            <select name="provincia" id="provincia">
-                <option value="">Selecciona una provincia</option>
-            </select>
-            <div class="col-8 mt-5">
-                <label for="correo"> <i class="bi bi-person-fill"></i>Correo:</label>
-                <input type="text" class="form-control" name="correo" value="{{ old("correo") }}">
-                @error('correo')
-                    <small style="color: red">{{ $message }}</small>
-                @enderror
-            </div>
-            <div class="col-8 mt-5">
-                <label for="correo"> <i class="bi bi-person-fill"></i>Correo:</label>
-                <input type="text" class="form-control" name="correo" value="{{ old("correo") }}">
-                @error('correo')
-                    <small style="color: red">{{ $message }}</small>
-                @enderror
-            </div>
-             <div class="col-4 mt-4">
-                 <label for="inputState" class="form-label">Role</label>
-                 <select id="inputState" class="form-select" name="role">
-                   <option selected>{{ old("role")}}</option>
-                   <option>Admin</option>
-                   <option>Empleado</option>
-                 </select>
-                 @error('role')
-                     <small style="color: red">{{ $message }}</small>
-                 @enderror
-               </div>          
-             </div>
+            </div>      
+          </div>
            <div class="mb-2 mt-5">
              <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
                  <span> Enviar </span><i class="bi bi-check-square-fill"></i>
@@ -138,23 +124,6 @@
      </div>
  </div>
 </section>
-<script>
-    $(function() {
-        $('#comunidad').change(function() {
-            var comunidadId = $(this).val();
-            if (comunidadId) {
-                $.get('{{ url('provincias') }}/' + comunidadId, function(provincias) {
-                    $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
-                    $.each(provincias, function(key, provincia) {
-                        $('#provincia').append($('<option>').val(provincia.id).text(provincia.nombre));
-                    });
-                });
-            } else {
-                $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
-            }
-        });
-    });
-    </script>
 @endsection
 
 

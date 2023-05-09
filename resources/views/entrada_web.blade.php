@@ -294,6 +294,17 @@ $('#snipcart-checkout').click(function() {
     window.location.href = 'http://localhost/livestream/public/pedidos/crearPedido/' + encodeURIComponent(total_price);
 });
 </script>
+<script>
+  function myCustomFunction() {
+    // Personalizar el comportamiento del botón "Place Order"
+    Snipcart.events.on('payment.completed', function() {
+      console.log("hola");
+      // Redirigir a otra vista después de que se haya completado el pago
+      window.location.href = '/tu-otra-vista';
+    });
+  }
+  document.addEventListener('snipcart.ready', myCustomFunction);
+</script>
 <style>
   .snipcart-test-banner__message {
     visibility: hidden;
