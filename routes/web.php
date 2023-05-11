@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::controller(EmpleadoController::class)->group(function () {
-    
+    Route::get('base', [EmpleadoController::class, 'base'])->name('base');
 });
 Route::resource('empleados', EmpleadoController::class)->middleware('admin');
 

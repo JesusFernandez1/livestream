@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Password;
 
 class EmpleadoController extends Controller
 {
+
+    public function base()
+    {
+        return view('base');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,11 +23,11 @@ class EmpleadoController extends Controller
      */
     public function index(Request $request)
     {
-        $empleados = Empleado::paginate(10);
+        $empleados = Empleado::paginate(5);
         if($request->has('ordenar_por')) {
             $ordenPor = $request->input('ordenar_por');
             $orden = $request->input('orden', 'asc');
-            $empleados = Empleado::orderBy($ordenPor, $orden)->paginate(10);
+            $empleados = Empleado::orderBy($ordenPor, $orden)->paginate(5);
             session(['orden' => $orden]);
         } else {
             session(['orden' => null]);
@@ -107,7 +113,7 @@ class EmpleadoController extends Controller
             'DNI' => ['regex:/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/'],
             'nombre' => ['regex:/^[a-z]+$/i'],
             'apellido' => ['regex:/^[a-z]+$/i'],
-            'correo' => ['regex:#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i', 'unique:empleados'],
+            'correo' => ['regex:#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i'],
             'telefono' => ['regex:/(\+34|0034|34)?[ -]*(6|7|8|9)[ -]*([0-9][ -]*){8}/'],
             'role' => ['required'],
         ]);

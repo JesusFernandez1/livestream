@@ -44,7 +44,7 @@
             <div>
                 @auth
                 @if (auth()->user()->empleados_id)
-                <a href="{{ route('empleados.index') }}" class="nav-link">Zona administracion</a>
+                <a href="{{ route('base') }}" class="nav-link">Zona administracion</a>
                 @endif
                 <div class="dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -295,15 +295,15 @@ $('#snipcart-checkout').click(function() {
 });
 </script>
 <script>
-  function myCustomFunction() {
-    // Personalizar el comportamiento del botón "Place Order"
-    Snipcart.events.on('payment.completed', function() {
-      console.log("hola");
-      // Redirigir a otra vista después de que se haya completado el pago
-      window.location.href = '/tu-otra-vista';
-    });
-  }
-  document.addEventListener('snipcart.ready', myCustomFunction);
+// Espera a que Snipcart se cargue completamente en la página
+document.addEventListener('snipcart.ready', function() {
+  // Personalizar el comportamiento del botón "Place Order"
+  Snipcart.events.on('snipcart.cart.closed', function() {
+    // Redirigir a otra vista después de que se haya completado el pago
+    window.location.href = '/tu-otra-vista';
+  });
+});
+
 </script>
 <style>
   .snipcart-test-banner__message {
