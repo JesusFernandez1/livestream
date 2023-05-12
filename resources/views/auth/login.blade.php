@@ -101,6 +101,16 @@
         />
         <div class="fw-semibold text-secondary">Continue with Google</div>
       </div>
+      <div
+        class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm"
+      >
+        <img
+          src="../resources/img/github.png"
+          alt="google-icon"
+          style="height: 1.6rem"
+        />
+        <div><a href="{{ route('github.redirectGithub') }}" class="fw-semibold text-secondary">Continuar con Github</a></div>
+      </div>
     </div>
   </body>
 </html>

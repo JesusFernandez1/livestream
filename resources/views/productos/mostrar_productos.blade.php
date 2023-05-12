@@ -62,6 +62,30 @@ $(document).ready(function() {
                 </tbody>
             </table>
         </section>
+        <a class="btn btn-secondary custom-button" href="{{ route('base')}}" role="button"><i class="bi bi-arrow-left-square"></i> Volver</a>
+        <div id="centrar">
+          <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item {{ $productos->currentPage() == 1 ? 'disabled' : '' }}">
+                  <a class="page-link" href="{{ $productos->url(1) }}">Primera</a>
+                </li>
+                  <li class="page-item {{ $productos->currentPage() == 1 ? 'disabled' : '' }}">
+                      <a class="page-link" href="{{ $productos->previousPageUrl() }}">Anterior</a>
+                  </li>
+                  @for ($i = 1; $i <= $productos->lastPage(); $i++)
+                      <li class="page-item {{ $productos->currentPage() == $i ? 'active' : '' }}">
+                          <a class="page-link" href="{{ $productos->url($i) }}">{{ $i }}</a>
+                      </li>
+                  @endfor
+                  <li class="page-item {{ $productos->currentPage() == $productos->lastPage() ? 'disabled' : '' }}">
+                      <a class="page-link" href="{{ $productos->nextPageUrl() }}">Siguiente</a>
+                  </li>
+                  <li class="page-item {{ $productos->currentPage() == $productos->lastPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $productos->url($productos->lastPage()) }}">Última</a>
+                </li>
+              </ul>
+          </nav>
+      </div>
     </main>
 <!-- Modal -->
 <div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
@@ -104,4 +128,56 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
+  <style>
+  .custom-button {
+    position: absolute;
+    top: 1030px;
+    left: 30px;
+    }
+    #centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 1020px;
+    left: 720px;
+    }
+    .pagination {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    display: inline;
+}
+
+.pagination li a,
+.pagination li span {
+    color: #333;
+    display: inline-block;
+    padding: 6px 12px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin-left: -1px;
+}
+
+.pagination li a:hover {
+    background-color: #f5f5f5;
+}
+
+.pagination li.active span {
+    background-color: #337ab7;
+    color: #fff;
+    border-color: #337ab7;
+}
+
+.pagination li.disabled span,
+.pagination li.disabled a {
+    color: #777;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+  </style>
 @endsection

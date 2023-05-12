@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\githubController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;
@@ -24,6 +25,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::controller(GithubController::class)->group(function () {
+    Route::get('/auth/github/redirect', 'redirectGithub')->name('github.redirectGithub');
+    Route::get('/auth/github/callback', 'callbackGithub');
+});
 
 Route::controller(EmpleadoController::class)->group(function () {
     Route::get('base', [EmpleadoController::class, 'base'])->name('base');

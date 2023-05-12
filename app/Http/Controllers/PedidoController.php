@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PedidoActualizado;
 use App\Models\Comunidad;
 use App\Models\Pedido;
 use App\Models\Provincia;
-use App\Notifications\PedidoActualizado;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use DateInterval;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
@@ -136,11 +138,10 @@ class PedidoController extends Controller
                 }
             ],
         ]);
-
+        $usuario = Pedido::where('users_id', $request->users_id);
+        Mail::to($usuario->first()->email)->send(new PedidoActualizado());
         Pedido::where('id', $id)->update($datos);
-        $pedido = Pedido::where('id', $id);
-        $cliente = $pedido->user_id;
-        $cliente->notify(new PedidoActualizado($pedido));
+       
     }
 
     /**
