@@ -1,6 +1,6 @@
-@extends('base')
+@extends('baseForm')
 
-@section('mostrarExtension')
+@section('mostrarExtensionForm')
 <section class="d-flex justify-content-center align-items-center">
  <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
      <div class="mb-4 d-flex justify-content-start align-items-center">
@@ -9,7 +9,7 @@
      <div class="mb-1">
          <form id = "contacto" action="{{ route('empleados.store') }}" method="POST">
            <div class="row">
-             <div class="col-12">
+             <div class="col-9">
                <label for="DNI"> DNI:</label>
                <input type="text" class="form-control" name="DNI" value="{{ old("DNI") }}">
                @error('DNI')
@@ -65,28 +65,28 @@
                     <small style="color: red">{{ $message }}</small>
                 @enderror
               </div>
-             <div class="col-8 mt-5">
+             <div class="col-6 mt-5">
                 <label for="direccion"> <i class="bi bi-signpost-2-fill"></i> Direccion:</label>
                 <input type="text" class="form-control" name="direccion" value="{{ old("direccion") }}">
                 @error('direccion')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
             </div>
-            <div class="col-8 mt-5">
+            <div class="col-6 mt-5">
                 <label for="codigo_postal"> <i class="bi bi-mailbox2"></i> Codigo postal:</label>
                 <input type="text" class="form-control" name="codigo_postal" value="{{ old("codigo_postal") }}">
                 @error('codigo_postal')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
             </div>  
-            <div class="col-8 mt-5">
+            <div class="col-6 mt-5">
                 <label for="datos_adicionales"> <i class="bi bi-card-heading"></i> Datos adicionales:</label>
                 <input type="text" class="form-control" placeholder="Puerta, piso, nª..." name="datos_adicionales" value="{{ old("datos_adicionales") }}">
                 @error('datos_adicionales')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
             </div>
-            <div class="col-8 mt-5">
+            <div class="col-6 mt-5">
                 <label for="observaciones"> <i class="bi bi-card-heading"></i> Observaciones:</label>
                 <input type="text" class="form-control" name="observaciones" value="{{ old("observaciones") }}">
                 @error('observaciones')
@@ -124,6 +124,23 @@
      </div>
  </div>
 </section>
+<script>
+    $(function() {
+        $('#comunidad').change(function() {
+            var comunidadId = $(this).val();
+            if (comunidadId) {
+                $.get('{{ url('provincias') }}/' + comunidadId, function(provincias) {
+                    $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
+                    $.each(provincias, function(key, provincia) {
+                        $('#provincia').append($('<option>').val(provincia.id).text(provincia.nombre));
+                    });
+                });
+            } else {
+                $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
+            }
+        });
+    });
+    </script>
 @endsection
 
 
