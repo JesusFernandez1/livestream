@@ -303,7 +303,24 @@ document.addEventListener('snipcart.ready', function() {
     window.location.href = '/tu-otra-vista';
   });
 });
-
+</script>
+<script>
+  $(document).ready(function() {
+    $('.snipcart-add-item').click(function(e) {
+      e.preventDefault();
+      
+      // Verificar si el usuario está logueado
+      var isLoggedIn = {{ Auth::check() ? 'true' : 'false' }};
+      
+      if (isLoggedIn) {
+        // Si el usuario está logueado, agregar el producto normalmente
+        $('#product-form').submit();
+      } else {
+        // Si el usuario no está logueado, redirigir al formulario de inicio de sesión
+        window.location.href = 'http://localhost/livestream/public/login';
+      }
+    });
+  });
 </script>
 <style>
   .snipcart-test-banner__message {
