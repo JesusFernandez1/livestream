@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Marca extends Model
+class GrupoEmpleados extends Model
 {
     use HasFactory;
     protected $fillable = [
         'nombre',
-        'ganancia',
-        'deleted_at',
+        'grupo_empleados_id'
     ];
     public $timestamps = false;
-    protected $table = "marcas";
+    protected $table = "grupo_empleados";
 }

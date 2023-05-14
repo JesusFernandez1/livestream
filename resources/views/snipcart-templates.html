@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Templates</title></head>
+
+    <body>
+        <div id="snipcart-templates">
+            <item-line>
+                <li class="snipcart__item__line snipcart__box">
+                    <div class="snipcart__item__line__media">
+                        <div class="snipcart__item__line__thumbnail">
+                            <img class="snipcart__item__line__thumbnail__image" :src="item.image" :alt="item.name" style="max-width: 150px; max-height: 150px;" />
+                        </div>
+                    </div>
+                    <div class="snipcart__item__line__product">
+                        <div class="snipcart__item__line__header">
+                            <h2 class="snipcart__item__line__header__title">
+                                {{ item.name }}
+                            </h2>
+                            <div class="snipcart__item__line__header__meta">
+                                <div class="snipcart__item__line__header__meta__price">
+                                    {{ item.price | currency }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="snipcart__item__line__header__actions">
+                            <item-quantity class="snipcart__item__line__quantity" v-if="!adding"></item-quantity>
+                            <remove-item-action class="snipcart__button--icon">
+                                <icon name="trash" class="icon--red" alt="item.remove_item"></icon>
+                            </remove-item-action>
+                        </div>
+                    </div>
+                </li>
+            </item-line>
+        </div>            
+    </body>
+</html>

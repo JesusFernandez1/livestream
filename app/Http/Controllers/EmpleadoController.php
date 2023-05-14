@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmpleadoCreado;
 use App\Models\Empleado;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class EmpleadoController extends Controller
 {
@@ -67,11 +70,13 @@ class EmpleadoController extends Controller
             'name' => $request->nombre,
             'lastname' => $request->apellido,
             'email' => $request->correo,
-            'password' => Password::generate(['length' => 8]),
+            'password' => Hash::make(Str::random(8)),
             'phone' => $request->telefono,
             'empleados_id' => Empleado::where('DNI', $request->DNI)->first()->id
         ]);
 
+        $usuario = Empleado::where('correo', $request->correo);
+        Mail::to($usuario->first()->correo)->send(new EmpleadoCreado());
         event(new Registered($user));
         return redirect()->route('empleados.index');
     }

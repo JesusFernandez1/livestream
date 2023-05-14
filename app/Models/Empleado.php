@@ -15,6 +15,8 @@ class Empleado extends Model
         'telefono',
         'correo',
         'role',
+        'deleted_at',
+        'grupo_empleados_id'
     ];
     public $timestamps = false;
     protected $table = "empleados";

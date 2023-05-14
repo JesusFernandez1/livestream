@@ -13,7 +13,8 @@ class Producto extends Model
         'stock',
         'descripcion',
         'precio',
-        'marcas_id'
+        'marcas_id',
+        'deleted_at',
     ];
     public $timestamps = false;
     protected $table = "productos";

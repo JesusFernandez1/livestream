@@ -23,9 +23,11 @@ class Pedido extends Model
         'fecha_entrega',
         'estado',
         'importe_total',
+        'updated_at',
+        'autor_modificacion',
+        'deleted_at',
         'comunidades_id',
-        'provincias',
-        'clientes_id',
+        'provincias_cod',
         'users_id'
     ];
     public $timestamps = false;

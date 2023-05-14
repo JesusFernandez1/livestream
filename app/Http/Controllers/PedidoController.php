@@ -6,7 +6,6 @@ use App\Mail\PedidoActualizado;
 use App\Models\Comunidad;
 use App\Models\Pedido;
 use App\Models\Provincia;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
