@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use DateInterval;
 use DateTime;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
@@ -84,6 +85,7 @@ class PedidoController extends Controller
             $validator->errors()->add('codigo_postal', 'El código postal introducido no pertenece a la provincia seleccionada.');
             throw new ValidationException($validator);
         } else {
+            $datos['numero_pedido'] = Str::random(9);
             $datos['fecha_pedido'] = $fecha_pedido->format('Y-m-d');
             $datos['fecha_entrega'] = $fecha_entrega->format('Y-m-d');
             $datos['estado'] = "Pendiente";
@@ -137,6 +139,8 @@ class PedidoController extends Controller
                 }
             ],
         ]);
+        $datos['updated_at'] = date("Y-m-d\TH");
+        $datos['autor_modificacion'] = Auth::user()->name;
         $usuario = Pedido::where('users_id', $request->users_id);
         Mail::to($usuario->first()->email)->send(new PedidoActualizado());
         Pedido::where('id', $id)->update($datos);
