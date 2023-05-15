@@ -7,7 +7,7 @@
          <h4>  <i class="bi bi-chat-left-quote"></i> &nbsp; Contacto</h4>
      </div>
      <div class="mb-1">
-         <form id = "contacto" action="{{ route('empleados.store') }}" method="POST">
+         <form id = "contacto" action="{{ route('pedidos.store') }}" method="POST">
            <div class="row">
              <div class="col-9">
                <label for="DNI"> DNI:</label>
@@ -46,8 +46,8 @@
              </div>
              <div class="col-6 mt-5">
                 <label for="inputState" class="form-label"><i class="bi bi-pin-map-fill"></i> Comunidad</label>
-                <select name="comunidad" id="comunidad" class="form-select">
-                    <option value="">Selecciona una comunidad autónoma</option>
+                <select name="comunidades_id" id="comunidades_id" class="form-select">
+                    <option selected disabled value="">Selecciona una comunidad autónoma</option>
                     @foreach ($comunidades as $comunidad)
                         <option value="{{ $comunidad->id }}">{{ $comunidad->nombre }}</option>
                     @endforeach
@@ -58,7 +58,7 @@
               </div>
               <div class="col-6 mt-5">
                 <label for="inputState" class="form-label"><i class="bi bi-geo"></i> Provincia</label>
-                <select name="provincia" id="provincia" class="form-select">
+                <select name="provincias_cod" id="provincias_cod" class="form-select">
                     <option value="">Selecciona una provincia</option>
                 </select>
                 @error('provincias_cod')
@@ -69,8 +69,8 @@
                 <label for="direccion"> <i class="bi bi-signpost-2-fill"></i> Direccion:</label>
                 <input type="text" class="form-control" name="direccion" value="{{ old("direccion") }}">
                 @error('direccion')
-                    <small style="color: red">{{ $message }}</small>
-                @enderror
+                     <small style="color: red">{{ $message }}</small>
+                 @enderror
             </div>
             <div class="col-6 mt-5">
                 <label for="codigo_postal"> <i class="bi bi-mailbox2"></i> Codigo postal:</label>
@@ -109,7 +109,7 @@
               </div>
             <div class="col-2 mt-5">
                 <label for="importe_total"> <i class="bi bi-cash-coin"></i> Importe:</label>
-                <input readonly type="text" class="form-control" name="importe_total" value="{{ old("importe_total") }}">
+                <input type="text" class="form-control" name="importe_total" value="{{ old("importe_total") }}">
                 @error('importe_total')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
@@ -126,21 +126,21 @@
 </section>
 <script>
     $(function() {
-        $('#comunidad').change(function() {
+        $('#comunidades_id').change(function() {
             var comunidadId = $(this).val();
             if (comunidadId) {
                 $.get('{{ url('provincias') }}/' + comunidadId, function(provincias) {
-                    $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
+                    $('#provincias_cod').empty().append($('<option>').val('').text('Selecciona una provincia'));
                     $.each(provincias, function(key, provincia) {
-                        $('#provincia').append($('<option>').val(provincia.id).text(provincia.nombre));
+                        $('#provincias_cod').append($('<option>').val(provincia.cod).text(provincia.nombre));
                     });
                 });
             } else {
-                $('#provincia').empty().append($('<option>').val('').text('Selecciona una provincia'));
+                $('#provincias_cod').empty().append($('<option>').val('').text('Selecciona una provincia'));
             }
         });
     });
-    </script>
+</script>
 @endsection
 
 

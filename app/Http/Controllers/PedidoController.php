@@ -55,7 +55,8 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
         $fecha_pedido = new DateTime(); // fecha específica
-        $fecha_entrega =$fecha_pedido->add(new DateInterval('P2D')); // fecha + 2 días
+        $copia = new DateTime();
+        $fecha_entrega =$copia->add(new DateInterval('P2D')); // fecha + 2 días
         $datos = $request->validate([
             'DNI' => ['regex:/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/'],
             'nombre' => ['regex:/^[a-z]+$/i'],
@@ -63,36 +64,29 @@ class PedidoController extends Controller
             'telefono' => ['regex:/(\+34|0034|34)?[ -]*(6|7|8|9)[ -]*([0-9][ -]*){8}/'],
             'correo' => ['regex:#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i'],
             'direccion' => ['required'],
+            'datos_adicionales' => ['required'],
             'codigo_postal' => ['required'],
             'comunidades_id' => ['required'],
             'provincias_cod' => ['required'],
             'importe_total' => ['required'],
         ]);
 
-        $fecha_pedido = Carbon::parse($datos['fecha_pedido']);
-        $fecha_entrega = Carbon::parse($datos['fecha_entrega']);
-
+        $fecha_pedido = Carbon::parse($fecha_pedido);
+        $fecha_entrega = Carbon::parse($fecha_entrega);
+        
         if ($fecha_pedido->isThursday()) {
             $fecha_entrega = $fecha_pedido->copy()->next(Carbon::MONDAY);
         } elseif ($fecha_pedido->isFriday() || $fecha_pedido->isSaturday() || $fecha_pedido->isSunday()) {
             $fecha_entrega = $fecha_pedido->copy()->next(Carbon::TUESDAY);
-        } else {
-            $fecha_entrega->subDays(2);
         }
         
-        if (!validarCodigoPostal($request->provincia, $request->codigo_postal)) {
-            $validator = Validator::make([], []);
-            $validator->errors()->add('codigo_postal', 'El código postal introducido no pertenece a la provincia seleccionada.');
-            throw new ValidationException($validator);
-        } else {
-            $datos['numero_pedido'] = Str::random(9);
-            $datos['fecha_pedido'] = $fecha_pedido->format('Y-m-d');
-            $datos['fecha_entrega'] = $fecha_entrega->format('Y-m-d');
-            $datos['estado'] = "Pendiente";
-            $datos['users_id'] = Auth::user()->id;
-            Pedido::insert($datos);
-            return redirect()->route('Pedidos.index');
-        } 
+        $datos['numero_pedido'] = Str::random(9);
+        $datos['fecha_pedido'] = $fecha_pedido->format('Y-m-d');
+        $datos['fecha_entrega'] = $fecha_entrega->format('Y-m-d');
+        $datos['estado'] = "Pendiente";
+        $datos['users_id'] = Auth::user()->id;
+        Pedido::insert($datos);
+        return redirect()->route('pedidos.index');
     }
 
     /**
@@ -172,26 +166,15 @@ class PedidoController extends Controller
         return view('pedidos.mostrarPedidoUnico', compact('pedidos'));
     }
     public function getTotalPrice(Request $request)
-{
-    $totalPrice = $request->input('totalPrice');
+    {
+        $totalPrice = $request->input('totalPrice');
 
-    return response()->json(['totalPrice' => $totalPrice]);
-}
+        return response()->json(['totalPrice' => $totalPrice]);
+    }
 
-public function crearPedido($total_price)
-{
-    $comunidades = Comunidad::all();
-    return view('pedidos.crear_pedido', compact('comunidades','total_price'));
-}
-}
-
-function validarCodigoPostal($provincia, $codigoPostal) {
-    // Hacer una consulta a la API de Correos para obtener la provincia del código postal introducido
-    $url = 'https://api.correos.es/cpa/consultarCodigosPostalesAction.do?modo=provincia&cp=' . $codigoPostal;
-    $json = file_get_contents($url);
-    $datos = json_decode($json, true);
-    $provinciaCodigoPostal = $datos['provincia'];
-
-    // Comparar la provincia del código postal con la provincia seleccionada por el usuario
-    return $provincia == $provinciaCodigoPostal;
+    public function crearPedido($total_price)
+    {
+        $comunidades = Comunidad::all();
+        return view('pedidos.crear_pedido', compact('comunidades','total_price'));
+    }
 }

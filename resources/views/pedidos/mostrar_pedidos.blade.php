@@ -3,6 +3,15 @@
 
 <script>
 $(document).ready(function() {
+  $('#detallesModal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget);
+      var pedido = button.data('pedido');
+      $('#detalles-DNI').text(pedido.DNI);
+      $('#detalles-nombre').text(pedido.nombre);
+      $('#detalles-apellido').text(pedido.apellido);
+      $('#detalles-correo').text(pedido.correo);
+      $('#detalles-telefono').text(pedido.telefono);
+  });
   $('#borrarModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
       var pedido = button.data('pedido');
@@ -53,7 +62,10 @@ $(document).ready(function() {
                        <td>{{$pedido->apellido}}</td>
                        <td>{{$pedido->telefono}}</td>
                        <td>{{$pedido->correo}}</td>
-                       <td><a class="btn btn-primary" href="{{ route('pedidos.edit', $pedido) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
+                       <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-pedido="{{ $pedido }}">
+                        <i class="bi bi-eye"></i>
+                          </button>
+                          <a class="btn btn-primary" href="{{ route('pedidos.edit', $pedido) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
                         <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#borrarModal" data-pedido="{{ $pedido }}">
                           <i class="bi bi-trash3"></i>
                       </button></td>
@@ -88,6 +100,45 @@ $(document).ready(function() {
       </div>
     </main>
 <!-- Modal -->
+<div class="modal fade" id="detallesModal" tabindex="-1" aria-labelledby="detallesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title" id="detallesModalLabel"><b>Detalles del pedido</b></h5>
+        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th scope="row">DNI</th>
+              <td><span id="detalles-DNI"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Nombre</th>
+              <td><span id="detalles-nombre"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Apellido</th>
+              <td><span id="detalles-apellido"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Correo</th>
+              <td><span id="detalles-correo"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Teléfono</th>
+              <td><span id="detalles-telefono"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">

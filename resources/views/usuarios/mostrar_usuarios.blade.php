@@ -3,6 +3,14 @@
 
 <script>
 $(document).ready(function() {
+  $('#detallesModal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget);
+      var usuario = button.data('usuario');
+      $('#detalles-DNI').text(usuario.DNI);
+      $('#detalles-name').text(usuario.name);
+      $('#detalles-lastname').text(usuario.lastname);
+      $('#detalles-email').text(usuario.email);
+  });
   $('#borrarModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
       var usuario = button.data('usuario');
@@ -54,7 +62,10 @@ $(document).ready(function() {
                        <td>{{$usuario->lastname}}</td>
                        <td>{{$usuario->phone}}</td>
                        <td>{{$usuario->email}}</td>
-                       <td><a class="btn btn-primary" href="{{ route('usuarios.edit', $usuario) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
+                       <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-usuario="{{ $usuario }}">
+                        <i class="bi bi-eye"></i>
+                          </button>
+                          <a class="btn btn-primary" href="{{ route('usuarios.edit', $usuario) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
                         <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#borrarModal" data-usuario="{{ $usuario }}">
                           <i class="bi bi-trash3"></i>
                       </button></td>
@@ -89,6 +100,41 @@ $(document).ready(function() {
       </div>
     </main>
 <!-- Modal -->
+<div class="modal fade" id="detallesModal" tabindex="-1" aria-labelledby="detallesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title" id="detallesModalLabel"><b>Detalles del usuario</b></h5>
+        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th scope="row">DNI</th>
+              <td><span id="detalles-DNI"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Nombre</th>
+              <td><span id="detalles-name"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Apellido</th>
+              <td><span id="detalles-lastname"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Correo</th>
+              <td><span id="detalles-email"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
@@ -105,15 +151,15 @@ $(document).ready(function() {
                 <td style="width: 70%"><span id="borrar-DNI"></span></td>
               </tr>
               <tr>
-                <th class="bg-secondary text-white" scope="row">name</th>
+                <th class="bg-secondary text-white" scope="row">Nombre</th>
                 <td><span id="borrar-name"></span></td>
               </tr>
               <tr>
-                <th class="bg-secondary text-white" scope="row">lastname</th>
+                <th class="bg-secondary text-white" scope="row">Apellido</th>
                 <td><span id="borrar-lastname"></span></td>
               </tr>
               <tr>
-                <th class="bg-secondary text-white" scope="row">email</th>
+                <th class="bg-secondary text-white" scope="row">Correo</th>
                 <td><span id="borrar-email"></span></td>
               </tr>
             </tbody>
