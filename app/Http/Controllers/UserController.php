@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    public function entrada_web()
+    {
+        return view('entrada_web');
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -10,7 +10,10 @@ $(document).ready(function() {
       $('#detalles-nombre').text(pedido.nombre);
       $('#detalles-apellido').text(pedido.apellido);
       $('#detalles-correo').text(pedido.correo);
-      $('#detalles-telefono').text(pedido.telefono);
+      $('#detalles-estado').text(pedido.estado);
+      $('#detalles-importe_total').text(pedido.importe_total);
+      $('#detalles-updated_at').text(pedido.updated_at);
+      $('#detalles-autor_modificacion').text(pedido.autor_modificacion);
   });
   $('#borrarModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
@@ -19,6 +22,8 @@ $(document).ready(function() {
       $('#borrar-nombre').text(pedido.nombre);
       $('#borrar-apellido').text(pedido.apellido);
       $('#borrar-correo').text(pedido.correo);
+      $('#borrar-estado').text(pedido.estado);
+      $('#borrar-importe_total').text(pedido.importe_total);
       $('#borrar-pedido-form').submit(function() {
           var url = "{{ route('pedidos.destroy', ['pedido' => ':pedido']) }}";
           url = url.replace(':pedido', pedido.id);
@@ -50,6 +55,8 @@ $(document).ready(function() {
                         <th> <a class="my-link" href="{{ route('pedidos.index', ['ordenar_por' => 'apellido', 'orden' => $ordenActual]) }}">Apellido <span class="icon-arrow">&UpArrow;</span></a></th>
                         <th> Telefono <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Correo <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Estado <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Importe <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Acciones</th>
                     </tr>
                 </thead>
@@ -62,6 +69,8 @@ $(document).ready(function() {
                        <td>{{$pedido->apellido}}</td>
                        <td>{{$pedido->telefono}}</td>
                        <td>{{$pedido->correo}}</td>
+                       <td>{{$pedido->estado}}</td>
+                       <td>{{$pedido->importe_total}}</td>
                        <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-pedido="{{ $pedido }}">
                         <i class="bi bi-eye"></i>
                           </button>
@@ -74,7 +83,12 @@ $(document).ready(function() {
                 </tbody>
             </table>
         </section>
-        <a class="btn btn-secondary custom-button" href="{{ route('base')}}" role="button"><i class="bi bi-arrow-left-square"></i> Volver</a>
+        @if(auth()->user()->empleados_id){
+          <a class="btn btn-secondary custom-button" href="{{ route('base')}}" role="button"><i class="bi bi-arrow-left-square"></i> Volver</a>
+        } @else {
+        <a class="btn btn-secondary custom-button" href="{{ route('entrada_web')}}" role="button"><i class="bi bi-arrow-left-square"></i> Volver</a>
+        }
+        @endif
         <div id="centrar">
           <nav aria-label="Page navigation example">
               <ul class="pagination">
@@ -127,8 +141,20 @@ $(document).ready(function() {
               <td><span id="detalles-correo"></span></td>
             </tr>
             <tr>
-              <th scope="row">Teléfono</th>
-              <td><span id="detalles-telefono"></span></td>
+              <th scope="row">Estado</th>
+              <td><span id="detalles-estado"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Importe</th>
+              <td><span id="detalles-importe_total"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Ultima modificacion</th>
+              <td><span id="detalles-update_at"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Autor modificacion</th>
+              <td><span id="detalles-autor_modificacion"></span></td>
             </tr>
           </tbody>
         </table>
@@ -165,6 +191,14 @@ $(document).ready(function() {
               <tr>
                 <th class="bg-secondary text-white" scope="row">Correo</th>
                 <td><span id="borrar-correo"></span></td>
+              </tr>
+              <tr>
+                <th class="bg-secondary text-white" scope="row">Estado</th>
+                <td><span id="borrar-estado"></span></td>
+              </tr>
+              <tr>
+                <th class="bg-secondary text-white" scope="row">Importe</th>
+                <td><span id="borrar-importe_total"></span></td>
               </tr>
             </tbody>
           </table>

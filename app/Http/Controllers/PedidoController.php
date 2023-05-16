@@ -154,7 +154,7 @@ class PedidoController extends Controller
     
     public function verPedido(Request $request, $id)
     {
-        $pedidos = Pedido::where('users_id', $id);
+        $pedidos = Pedido::where('users_id', $id)->paginate(10);
         if($request->has('ordenar_por')) {
             $ordenPor = $request->input('ordenar_por');
             $orden = $request->input('orden', 'asc');
@@ -163,7 +163,7 @@ class PedidoController extends Controller
         } else {
             session(['orden' => null]);
         }
-        return view('pedidos.mostrarPedidoUnico', compact('pedidos'));
+        return view('pedidos.mostrar_pedidos', compact('pedidos'));
     }
     public function getTotalPrice(Request $request)
     {

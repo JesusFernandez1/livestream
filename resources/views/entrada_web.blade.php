@@ -50,7 +50,6 @@
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{ Auth::user()->name }}
                   </a>
-                  <button class="snipcart-checkout" id="snipcart-checkout">Click here to checkout</button><span class="snipcart-total-price" id="snipcart-total-price"></span>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                       <!-- Opciones de usuario -->
                       <a class="dropdown-item" href="{{ route('pedidos.verPedido', Auth::user()->id) }}">Mis pedidos</a>

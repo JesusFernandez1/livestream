@@ -10,6 +10,7 @@ $(document).ready(function() {
       $('#detalles-name').text(usuario.name);
       $('#detalles-lastname').text(usuario.lastname);
       $('#detalles-email').text(usuario.email);
+      $('#detalles-phone').text(usuario.phone);
   });
   $('#borrarModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
@@ -46,10 +47,9 @@ $(document).ready(function() {
                     <tr>
                         <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'id', 'orden' => $ordenActual]) }}">Id <span class="icon-arrow">&UpArrow;</span></a></th>
                         <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'DNI', 'orden' => $ordenActual]) }}">DNI <span class="icon-arrow">&UpArrow;</span></a></th>
-                        <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'name', 'orden' => $ordenActual]) }}">Name <span class="icon-arrow">&UpArrow;</span></a></th>
-                        <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'lastname', 'orden' => $ordenActual]) }}">Lastname <span class="icon-arrow">&UpArrow;</span></a></th>
-                        <th> Phone <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Email <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'name', 'orden' => $ordenActual]) }}">Nombre <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a class="my-link" href="{{ route('usuarios.index', ['ordenar_por' => 'lastname', 'orden' => $ordenActual]) }}">Apellido <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> Correo <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Acciones</th>
                     </tr>
                 </thead>
@@ -60,7 +60,6 @@ $(document).ready(function() {
                        <td>{{$usuario->DNI}}</td>
                        <td>{{$usuario->name}}</td>
                        <td>{{$usuario->lastname}}</td>
-                       <td>{{$usuario->phone}}</td>
                        <td>{{$usuario->email}}</td>
                        <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-usuario="{{ $usuario }}">
                         <i class="bi bi-eye"></i>
@@ -125,6 +124,10 @@ $(document).ready(function() {
             <tr>
               <th scope="row">Correo</th>
               <td><span id="detalles-email"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Telefono</th>
+              <td><span id="detalles-phone"></span></td>
             </tr>
           </tbody>
         </table>
