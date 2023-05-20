@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AtencionCliente;
 use App\Models\User;
+use App\Rules\MinLength;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -13,6 +14,12 @@ class UserController extends Controller
     {
         return view('entrada_web');
     }
+
+    public function configuracion()
+    {
+        return view('usuarios.configuracion');
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -83,5 +90,18 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function enviarComentario(Request $request)
+    {
+        $datos = $request->validate([
+            'nombre_usuario' => ['required', 'regex:/^[a-z]+$/i'],
+            'correo_usuario' => ['required', 'regex:#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i'],
+            'asunto' => ['nullable'],
+            'mensaje' => ['required', 'string', new MinLength(120)],
+        ]);
+        $datos['users_id'] = User::where('email', $request->correo_cliente);
+        AtencionCliente::insert($datos);
+        return view('entrada_web');
     }
 }

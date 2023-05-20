@@ -54,23 +54,9 @@ button,
     border-bottom-right-radius: 50%;
 }
 
-#birthday {
-    background-color: rgb(219, 26, 26);
-    position: relative;
-    margin-top: -20px;
-    z-index: 10;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-
-#birthday img {
-    position: relative;
-    margin-top: -30px;
-}
-
 #top {
     background: rgb(255, 255, 255);
-    background: url(../img/fondo2.jpg);
+    background: url(../img/fondoMicro.png);
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;
@@ -80,7 +66,7 @@ button,
 }
 
 .card-border {
-    border: solid 10px rgb(255, 252, 87);
+    border: solid 10px rgb(46, 31, 21);
     border-radius: 20px;
     overflow: hidden;
     transition: all ease-out 0.2s;
@@ -115,7 +101,7 @@ button,
 
 
 #camaras {
-    background: url(../img/fondo1.jpg);
+    background: url(../img/fondo2.jpg);
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: cover;

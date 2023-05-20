@@ -17,14 +17,14 @@
                @enderror
             </div>
              <div class="col-6 mt-5">
-                 <label for="nombre"> <i class="bi bi-person-fill"></i>Nombre:</label>
+                 <label for="nombre"> <i class="bi bi-person-fill"></i> Nombre:</label>
                  <input type="text" class="form-control" name="nombre" value="{{ old("nombre") }}">
                  @error('nombre')
                      <small style="color: red">{{ $message }}</small>
                  @enderror
              </div>
              <div class="col-6 mt-5">
-                 <label for="apellido"> <i class="bi bi-person-bounding-box"></i>Apellido:</label>
+                 <label for="apellido"> <i class="bi bi-person-bounding-box"></i> Apellido:</label>
                  <input type="text" class="form-control" name="apellido" value="{{ old("apellido") }}">
                  @error('apellido')
                      <small style="color: red">{{ $message }}</small>

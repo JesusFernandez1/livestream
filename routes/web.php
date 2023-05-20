@@ -40,6 +40,8 @@ Route::resource('empleados', EmpleadoController::class)->middleware('admin');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('entrada_web', [UserController::class, 'entrada_web'])->name('entrada_web');
+    Route::get('usuarios/configuracion', [UserController::class, 'configuracion'])->name('usuarios.configuracion');
+    Route::post('entrada_web', [UserController::class, 'enviarComentario'])->name('usuarios.enviarComentario');
     Route::get('usuarios/mostrar_usuarios', [UserController::class, 'usuariosRegistrados'])->name('usuarios.usuariosRegistrados');
 });
 Route::resource('usuarios', UserController::class);

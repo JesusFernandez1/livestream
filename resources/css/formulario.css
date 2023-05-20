@@ -8,5 +8,5 @@ html, body, section {
 }
 body{
     background-color: lightgray;
-    background: url(../img/fondo1.jpg) center / cover !important
+    background: url(../img/fondo1.jpg) center / cover /*!important */
 }
