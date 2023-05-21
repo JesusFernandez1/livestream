@@ -1,0 +1,92 @@
+  .snipcart-test-banner__message {
+    visibility: hidden;
+  }
+  .snipcart-form__label {
+    visibility: hidden;
+  }
+  .snipcart-form__label::before {
+    content: "Version";
+    visibility: visible;
+  }
+  .snipcart-item-quantity__label {
+    visibility: hidden;
+  }
+  .snipcart-item-quantity__label::before {
+    content: "Cantidad";
+    visibility: visible;
+  }
+
+  .snipcart-cart-header__title {
+    visibility: hidden;
+  }
+  .snipcart-cart-header__title::before {
+    content: "Tus productos";
+    visibility: visible;
+  }
+  .snipcart-cart__secondary-header-title {
+    visibility: hidden;
+  }
+
+  .snipcart-cart__secondary-header-title::before {
+    content: "Tus productos";
+    visibility: visible;
+  }
+
+  .snipcart-empty-cart__title {
+    visibility: hidden;
+  }
+
+  .snipcart-empty-cart__title::before {
+    content: "Tu carrito esta vacio";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: visible;
+  }
+
+  .snipcart-base-button__label {
+    font-size: 0;
+  }
+
+  .snipcart-base-button__label::after {
+    content: "Volver a la tienda";
+    font-size: 16px;
+  }
+
+  .snipcart-cart-header__close-button .snipcart-modal__close-title {
+    font-size: 0;
+  }
+
+  .snipcart-cart-header__close-button .snipcart-modal__close-title::after {
+    content: "Continuar comprando";
+    font-size: 16px;
+  }
+
+  .snipcart-button-primary .snipcart-base-button__label {
+    font-size: 0;
+  }
+
+  .snipcart-button-primary .snipcart-base-button__label::after {
+    content: "Realizar compra";
+    font-size: 16px;
+  }
+
+
+  .snipcart-button-link {
+    font-size: 0;
+  }
+
+  .snipcart-button-link::after {
+    content: "Ver detalles del carrito";
+    font-size: 16px;
+  }
+
+  .text-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    color: white;
+    cursor: pointer;
+  }

@@ -10,12 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
   <link rel="stylesheet" href="../resources/css/main.css">
+  <link rel="stylesheet" href="../resources/css/snipcart.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
   <link rel="icon" type="image/png" href="../resources/img/logo.png">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -46,10 +49,12 @@
                 @if (auth()->user()->empleados_id)
                 <a href="{{ route('base') }}" class="nav-link">Zona administracion</a>
                 @endif
-                <div class="dropdown">
+                <div class="dropdown d-flex ml-auto">
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{ Auth::user()->name }}
                   </a>
+                  <i class="bi bi-cart-fill" style="font-size: 24px;"></i>
+                  <button class="snipcart-checkout text-button ml-2">Mi cesta</button>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                       <!-- Opciones de usuario -->
                       <a class="dropdown-item" href="{{ route('pedidos.verPedido', Auth::user()->id) }}">Mis pedidos</a>
@@ -314,9 +319,4 @@ document.addEventListener('snipcart.ready', function() {
     });
   });
 </script>
-<style>
-  .snipcart-test-banner__message {
-    visibility: hidden;
-  }
-</style>
 </html>
