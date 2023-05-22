@@ -54,7 +54,7 @@
                       {{ Auth::user()->name }}
                   </a>
                   <i class="bi bi-cart-fill" style="font-size: 24px;"></i>
-                  <button class="snipcart-checkout text-button ml-2">Mi cesta</button>
+                  <button class="snipcart-checkout text-button ml-2">Mi cesta</button><span style="display: none;" class="snipcart-total-price" id="snipcart-total-price"></span>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                       <!-- Opciones de usuario -->
                       <a class="dropdown-item" href="{{ route('pedidos.verPedido', Auth::user()->id) }}">Mis pedidos</a>
@@ -284,23 +284,24 @@
 
   (function(){var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var m,g;(g=(m=window.SnipcartSettings).loadCSS)!=null||(m.loadCSS=!0);var y=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,f=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(f.forEach(function(t){return document.addEventListener(t,o)}),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],n=document.querySelector("#snipcart"),i=document.querySelector('src[src^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][src$="snipcart.js"]')),e=document.querySelector('link[href^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][href$="snipcart.css"]'));n||(n=document.createElement("div"),n.id="snipcart",n.setAttribute("hidden","true"),document.body.appendChild(n)),h(n),i||(i=document.createElement("script"),i.src="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.js"),i.async=!0,t.appendChild(i)),!e&&window.SnipcartSettings.loadCSS&&(e=document.createElement("link"),e.rel="stylesheet",e.type="text/css",e.href="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.css"),t.prepend(e)),f.forEach(function(v){return document.removeEventListener(v,o)})}function h(t){!y||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
 </script>
-{{-- <script src="../resources/js/botonCheck.js"></script> --}}
-{{-- <script>
-$('#snipcart-checkout').click(function() {
-    var total_price = $('#snipcart-total-price').text();
-    window.location.href = 'http://localhost/livestream/public/pedidos/crearPedido/' + encodeURIComponent(total_price);
-});
-</script> --}}
-{{-- <script>
-// Espera a que Snipcart se cargue completamente en la página
-document.addEventListener('snipcart.ready', function() {
-  // Personalizar el comportamiento del botón "Place Order"
-  Snipcart.events.on('snipcart.cart.closed', function() {
-    // Redirigir a otra vista después de que se haya completado el pago
-    window.location.href = '/tu-otra-vista';
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    setInterval(function() {
+      var spanElement = document.getElementById('snipcart-total-price');
+      var totalPrice = spanElement.innerText;
+
+      var linkElement = document.getElementById('comprar-link');
+
+      var baseHref = linkElement.href.split('?')[0];
+
+      var updatedHref = baseHref + '?total=' + encodeURIComponent(totalPrice);
+
+      linkElement.setAttribute('href', updatedHref);
+
+    }, 1000);
   });
-});
-</script> --}}
+</script>
 <script>
   $(document).ready(function() {
     $('.snipcart-add-item').click(function(e) {

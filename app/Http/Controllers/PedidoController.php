@@ -34,10 +34,11 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $comunidades = Comunidad::all();
-        return view('pedidos.crear_pedido', compact('comunidades'));
+        $totalPrice = $request->query('total');
+        return view('pedidos.crear_pedido', compact('comunidades', 'totalPrice'));
     }
 
     public function provinciasDeComunidad($comunidadId)

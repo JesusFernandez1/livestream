@@ -107,9 +107,9 @@
                     <small style="color: red">{{ $message }}</small>
                 @enderror
               </div>
-            <div class="col-2 mt-5">
+            <div class="col-4 mt-5">
                 <label for="importe_total"> <i class="bi bi-cash-coin"></i> Importe:</label>
-                <input type="text" class="form-control" name="importe_total" value="{{ old("importe_total") }}">
+                <input type="text" class="form-control" name="importe_total" value="{{$totalPrice}}">
                 @error('importe_total')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
