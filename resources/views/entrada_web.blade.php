@@ -150,118 +150,22 @@
         <h2 class="text-center text-danger text-shadow h1">Nuestros productos:</h2>
       </div>
       <div class="row row-cols-1 row-cols-2 row-cols-sm-2 row-cols-md-4">
+        @foreach($productos as $producto)
         <div class="col-sm">
           <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id="camara2"
-          data-item-price="349.99"
+          data-item-id={{$producto->id}}
+          data-item-price={{$producto->precio}}
           data-item-url="/paintings/starry-night"
-          data-item-description="Camara Nikon de maxima calidad."
-          data-item-image="../resources/img/camara2.png"
-          data-item-name="Nikon"
+          data-item-description={{$producto->descripcion}}
+          data-item-image={{$producto->imagen}}
+          data-item-name={{$producto->nombre}}
           data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|Brown[+9.00]|Grey[+12.00]">
-          <img src="../resources/img/camara2.png" alt="camara Nikon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Nicon</span></div>
+          data-item-custom1-options="Negro|Gris[+9.00]|Dorado[+12.00]">
+          <img src={{$producto->imagen}} alt="camara Nikon" class="w-100 camara">
+          <div class="text-center"><span class="camara-name h5 p-2">{{$producto->nombre}}</span></div>
           </button>
         </div>
-        <div class="col-sm">
-          <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id="camara3"
-          data-item-price="349.99"
-          data-item-url="/paintings/starry-night"
-          data-item-description="Camara Cannon de maxima calidad."
-          data-item-image="../resources/img/camara3.png"
-          data-item-name="Cannon"
-          data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|Brown[+10.00]|Platinum[+35.00]">
-          <img src="../resources/img/camara3.png" alt="camara Canon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Cannon</span></div>
-        </button>
-        </div>
-        <div class="col-sm">
-          <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id="Cannon 4K"
-          data-item-price="4999.90"
-          data-item-url="/paintings/starry-night"
-          data-item-description="Camara Cannon 4K de maxima calidad."
-          data-item-image="../resources/img/camara6.png"
-          data-item-name="Cannon 4K"
-          data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|V2[+100.00]|8k Version[+1200.00]">
-          <img src="../resources/img/camara6.png" alt="camara Canon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Cannon 4K</span></div>
-        </button>
-        </div>
-        <div class="col-sm">
-          <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id="Logitect"
-          data-item-price="349.99"
-          data-item-url="/paintings/starry-night"
-          data-item-description="Camara Logitect de maxima calidad."
-          data-item-image="../resources/img/camara8.png"
-          data-item-name="Logitect"
-          data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|Brown[+10.00]|Gold[+30.00]">
-          <img src="../resources/img/camara8.png" alt="camara Logitect" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Logitect</span></div>
-        </button>
-        </div>
-        <div class="col-sm">
-          <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id="Razer"
-          data-item-price="119.99"
-          data-item-url="/paintings/starry-night"
-          data-item-description="Microfono Razer de maxima calidad."
-          data-item-image="../resources/img/microfono1.png"
-          data-item-name="Razer"
-          data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|Brown[+10.00]|Gold[+30.00]">
-          <img src="../resources/img/microfono1.png" alt="camara Nikon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Razer</span></div>
-        </button>
-        </div>
-        <div class="col-sm">
-          <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id="Shure"
-          data-item-price="349.99"
-          data-item-url="/paintings/starry-night"
-          data-item-description="Microfono Shure de maxima calidad."
-          data-item-image="../resources/img/microfono2.png"
-          data-item-name="Shure"
-          data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|Brown[+10.00]|V2[+50.00]">
-          <img src="../resources/img/microfono2.png" alt="camara Canon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Shure</span></div>
-        </button>
-        </div>
-        <div class="col-sm">
-          <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id="ElGato"
-          data-item-price="99.99"
-          data-item-url="/paintings/starry-night"
-          data-item-description="Microfono ElGato de maxima calidad."
-          data-item-image="../resources/img/microfono3.png"
-          data-item-name="ElGato"
-          data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|V2[+10.00]|V3[+40.00]">
-          <img src="../resources/img/microfono3.png" alt="camara Canon" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">ElGato</span></div>
-        </button>
-        </div>
-        <div id="myButton" class="col-sm">
-          <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id="Blue-Yeti"
-          data-item-price="149.99"
-          data-item-url="/paintings/starry-night"
-          data-item-description="Microfono Blue Yeti de maxima calidad."
-          data-item-image="../resources/img/microfono4.png"
-          data-item-name="Blue Yeti"
-          data-item-custom1-name="Frame color"
-          data-item-custom1-options="Black|Brown[+10.00]|Gold[+15.00]">
-          <img src="../resources/img/microfono4.png" alt="camara Logitect" class="w-100 camara">
-          <div class="text-center"><span class="camara-name h5 p-2">Blue Yeti</span></div>
-        </button>
-        </div>
+        @endforeach
       </div>
       
       <div class="row py-5">
@@ -284,7 +188,31 @@
 
   (function(){var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var m,g;(g=(m=window.SnipcartSettings).loadCSS)!=null||(m.loadCSS=!0);var y=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,f=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(f.forEach(function(t){return document.addEventListener(t,o)}),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],n=document.querySelector("#snipcart"),i=document.querySelector('src[src^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][src$="snipcart.js"]')),e=document.querySelector('link[href^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][href$="snipcart.css"]'));n||(n=document.createElement("div"),n.id="snipcart",n.setAttribute("hidden","true"),document.body.appendChild(n)),h(n),i||(i=document.createElement("script"),i.src="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.js"),i.async=!0,t.appendChild(i)),!e&&window.SnipcartSettings.loadCSS&&(e=document.createElement("link"),e.rel="stylesheet",e.type="text/css",e.href="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.css"),t.prepend(e)),f.forEach(function(v){return document.removeEventListener(v,o)})}function h(t){!y||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
 </script>
-
+<style>
+  .visa {
+  font-size: 24px;
+  position: absolute;
+  width: 130px;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  }
+  .paypal {
+  font-size: 24px;
+  position: absolute;
+  width: 130px;
+  top: 50%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  }
+  .mensaje {
+        font-size: 28px; /* Cambia este valor según tus necesidades */
+        position: absolute;
+        top: 40%;
+        left: 49%;
+        transform: translate(-50%, -50%);
+    }
+  </style>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     setInterval(function() {

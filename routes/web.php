@@ -5,6 +5,7 @@ use App\Http\Controllers\githubController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;
+use App\Models\Producto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('entrada_web');
+    $productos = Producto::all();
+    return view('entrada_web', compact('productos'));
 });
 
 Route::get('/dashboard', function () {
