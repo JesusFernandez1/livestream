@@ -7,7 +7,7 @@
          <h4>  <i class="bi bi-chat-left-quote"></i> &nbsp; Contacto</h4>
      </div>
      <div class="mb-1">
-         <form id = "contacto" action="{{ route('pedidos.store') }}" method="POST">
+         <form id = "contacto" action="{{ route('pedidos.realizarPedido', $totalPrice) }}" method="POST">
            <div class="row">
              <div class="col-9">
                <label for="DNI"> DNI:</label>
@@ -100,21 +100,10 @@
                     <small style="color: red">{{ $message }}</small>
                 @enderror
               </div>
-              <div class="col-6 mt-5">
-                <label for="fecha_entrega" class="form-label"><i class="bi bi-calendar-check-fill"></i> Fecha de entrega</label>
-                <input type="datetime-local" class="form-control" name="fecha_entrega" value="{{ old('fecha_entrega') }}">
-                @error('fecha_entrega')
-                    <small style="color: red">{{ $message }}</small>
-                @enderror
-              </div>
-            <div class="col-4 mt-5">
-                <label for="importe_total"> <i class="bi bi-cash-coin"></i> Importe:</label>
-                <input type="text" class="form-control" name="importe_total" value="{{$totalPrice}}">
-                @error('importe_total')
-                    <small style="color: red">{{ $message }}</small>
-                @enderror
-            </div>      
           </div>
+            <div class="col-4 mt-5">
+                <label for="importe_total"> <i class="bi bi-cash-coin"></i> Importe: {{$totalPrice}}</label>
+            </div>
            <div class="mb-2 mt-5">
              <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
                  <span> Enviar </span><i class="bi bi-check-square-fill"></i>

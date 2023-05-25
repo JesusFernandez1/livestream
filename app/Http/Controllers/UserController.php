@@ -15,9 +15,9 @@ class UserController extends Controller
         return view('entrada_web');
     }
 
-    public function configuracion()
+    public function soporte()
     {
-        return view('usuarios.configuracion');
+        return view('usuarios.soporte');
     }
 
 

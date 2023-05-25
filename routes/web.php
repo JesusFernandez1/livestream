@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $productos = Producto::all();
     return view('entrada_web', compact('productos'));
-});
+})->name('/');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,8 +41,7 @@ Route::resource('empleados', EmpleadoController::class)->middleware('admin');
 
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('entrada_web', [UserController::class, 'entrada_web'])->name('entrada_web');
-    Route::get('usuarios/configuracion', [UserController::class, 'configuracion'])->name('usuarios.configuracion');
+    Route::get('usuarios/soporte', [UserController::class, 'soporte'])->name('usuarios.soporte');
     Route::post('entrada_web', [UserController::class, 'enviarComentario'])->name('usuarios.enviarComentario');
     Route::get('usuarios/mostrar_usuarios', [UserController::class, 'usuariosRegistrados'])->name('usuarios.usuariosRegistrados');
 });
@@ -52,7 +51,7 @@ Route::resource('usuarios', UserController::class);
 
 Route::controller(PedidoController::class)->group(function () {
     Route::get('pedidos/mostrarPedidoUnico/{id}', [PedidoController::class, 'verPedido'])->name('pedidos.verPedido');
-    Route::get('pedidos/crear_pedido/{total_price}', [PedidoController::class, 'crearPedido'])->name('pedidos.crearPedido');
+    Route::post('pedidos/crear_pedido/{total_price}', [PedidoController::class, 'realizarPedido'])->name('pedidos.realizarPedido');
 });
 Route::get('provincias/{comunidad}', [PedidoController::class, 'provinciasDeComunidad']);
 Route::resource('pedidos', PedidoController::class);

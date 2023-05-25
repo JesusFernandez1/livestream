@@ -18,13 +18,11 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
-
 </head>
 
 <body>
 
   <!-- NAVBAR-->
-
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
 
@@ -38,6 +36,7 @@
           <li class="nav-item"><a class="nav-link" href="{{ route('pedidos.create') }}">Intro</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('usuarios.soporte') }}">Soporte</a></li>
         </ul>
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -53,12 +52,11 @@
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{ Auth::user()->name }}
                   </a>
-                  <i class="bi bi-cart-fill" style="font-size: 24px;"></i>
-                  <button class="snipcart-checkout text-button ml-2">Mi cesta</button><span style="display: none;" class="snipcart-total-price" id="snipcart-total-price"></span>
+                  <button class="snipcart-checkout text-button ml-2"><i class="bi bi-cart2" style="font-size: 24px; color:white"></i> Mi cesta</button><span style="display: none;" class="snipcart-total-price" id="snipcart-total-price"></span>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                       <!-- Opciones de usuario -->
-                      <a class="dropdown-item" href="{{ route('pedidos.verPedido', Auth::user()->id) }}">Mis pedidos</a>
-                      <a class="dropdown-item" href="{{ route('usuarios.configuracion') }}">Configuración</a>
+                      <a class="dropdown-item" href="{{ route('pedidos.index') }}">Mis pedidos</a>
+                      <a class="dropdown-item" href="#">Configuración</a>
                       <div class="dropdown-divider"></div>
                       <form method="POST" action="{{ route('logout') }}">
                           @csrf

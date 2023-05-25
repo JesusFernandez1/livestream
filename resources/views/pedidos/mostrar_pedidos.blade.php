@@ -83,11 +83,11 @@ $(document).ready(function() {
                 </tbody>
             </table>
         </section>
-        @if(auth()->user()->empleados_id){
+        @if(auth()->user()->empleados_id) 
           <a class="btn btn-secondary custom-button" href="{{ route('base')}}" role="button"><i class="bi bi-arrow-left-square"></i> Volver</a>
-        } @else {
-        <a class="btn btn-secondary custom-button" href="{{ route('entrada_web')}}" role="button"><i class="bi bi-arrow-left-square"></i> Volver</a>
-        }
+         @else 
+        <a class="btn btn-secondary custom-button" href="{{ route('/')}}" role="button"><i class="bi bi-arrow-left-square"></i> Volver</a>
+        
         @endif
         <div id="centrar">
           <nav aria-label="Page navigation example">

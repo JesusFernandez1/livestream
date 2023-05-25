@@ -24,7 +24,6 @@
                         @enderror
                     </div>
                 </div>
-                
                 <div class="col-6 mt-4">
                     <label for="asunto"> <i class="bi bi-pen-fill"></i> Asunto:</label>
                     <input type="text" class="form-control" name="asunto" value="{{ old("asunto") }}">
@@ -40,17 +39,21 @@
                     @enderror
                 </div>
               </div>
-              <div class="mb-2 mt-5">
-                <button id="botton" class="col-12 btn btn-primary d-flex justify-content-between" style="margin-bottom: 10px;">
+              <div class="row">
+                <div class="col-1"></div> <!-- Columna vacía para crear espacio -->
+                <div class="col-5 mt-5">
+                  <a class="col-12 btn btn-danger d-flex justify-content-center" href="{{ route('/')}}" role="button">
+                    <span>Cancelar</span> <i class="bi bi-x-square-fill icono"></i>
+                  </a>                
+                </div>
+                <div class="col-5 mt-5">
+                  <button id="botton" class="col-12 btn btn-primary d-flex justify-content-center" style="margin-bottom: 10px;">
                     <span>Enviar</span>
-                    <i class="bi bi-check-square-fill"></i>
-                </button>
-                
-                <a class="col-12 btn btn-danger d-flex justify-content-between" href="{{ route('entrada_web')}}" role="button" style="margin-top: 10px;">
-                    <span>Cancelar</span>
-                    <i class="bi bi-x-square-fill"></i>
-                </a>                
-              </div>    
+                    <i class="bi bi-check-square-fill icono"></i>
+                  </button>   
+                </div>
+                <div class="col-1"></div> <!-- Columna vacía para crear espacio -->
+              </div>
             </form>
         </div>
     </div>
@@ -60,7 +63,11 @@
         background: url(../../resources/img/contacto.png) center / cover !important
     }
     .formulario-con-fondo {
-    background-color: #e2c286; /* Cambia el color de fondo según tus necesidades */
-}
+        background-color: #E08159;
+        backdrop-filter: blur(10px);
+    }
+    .icono {
+        margin-left: 7px;
+    }
 </style>
 @endsection

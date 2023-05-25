@@ -7,14 +7,12 @@ use App\Models\Comunidad;
 use App\Models\Pedido;
 use App\Models\Provincia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use DateInterval;
 use DateTime;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Validation\ValidationException;
 
 class PedidoController extends Controller
 {
@@ -25,8 +23,16 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::paginate(10);
-        return view('pedidos.mostrar_pedidos', compact('pedidos'));
+        $usuario = Auth::user()->id;
+
+        if (Auth::user()->empleados_id) {
+            $pedidos = Pedido::paginate(10);
+            return view('pedidos.mostrar_pedidos', compact('pedidos'));
+        } else {
+            $pedidos = Pedido::where('users_id', $usuario)->paginate(5);
+            return view('pedidos.mostrar_pedidos', compact('pedidos'));
+        }
+        
     }
 
     /**
@@ -53,8 +59,16 @@ class PedidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $precio)
     {
+       //
+    }
+
+    public function realizarPedido(Request $request, $precio)
+    {
+        $precio_final = substr($precio, 3);
+        floatval($precio_final);
+        
         $fecha_pedido = new DateTime(); // fecha específica
         $copia = new DateTime();
         $fecha_entrega =$copia->add(new DateInterval('P2D')); // fecha + 2 días
@@ -69,7 +83,6 @@ class PedidoController extends Controller
             'codigo_postal' => ['required'],
             'comunidades_id' => ['required'],
             'provincias_cod' => ['required'],
-            'importe_total' => ['required'],
         ]);
 
         $fecha_pedido = Carbon::parse($fecha_pedido);
@@ -85,6 +98,7 @@ class PedidoController extends Controller
         $datos['fecha_pedido'] = $fecha_pedido->format('Y-m-d');
         $datos['fecha_entrega'] = $fecha_entrega->format('Y-m-d');
         $datos['estado'] = "Pendiente";
+        $datos['importe_total'] =  $precio_final;
         $datos['users_id'] = Auth::user()->id;
         Pedido::insert($datos);
         return redirect()->route('pedidos.index');
@@ -98,8 +112,7 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        $pedido = Pedido::find($id);
-        return view('pedidos.mostrarDetalles_pedido', compact('pedido'));
+        //
     }
 
     /**
@@ -171,11 +184,5 @@ class PedidoController extends Controller
         $totalPrice = $request->input('totalPrice');
 
         return response()->json(['totalPrice' => $totalPrice]);
-    }
-
-    public function crearPedido($total_price)
-    {
-        $comunidades = Comunidad::all();
-        return view('pedidos.crear_pedido', compact('comunidades','total_price'));
     }
 }

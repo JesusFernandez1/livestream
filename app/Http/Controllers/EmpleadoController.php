@@ -26,7 +26,7 @@ class EmpleadoController extends Controller
      */
     public function index(Request $request)
     {
-        $empleados = Empleado::paginate(5);
+        $empleados = Empleado::paginate(12);
         if($request->has('ordenar_por')) {
             $ordenPor = $request->input('ordenar_por');
             $orden = $request->input('orden', 'asc');
