@@ -12,8 +12,6 @@ $(document).ready(function() {
       $('#detalles-correo').text(pedido.correo);
       $('#detalles-estado').text(pedido.estado);
       $('#detalles-importe_total').text(pedido.importe_total);
-      $('#detalles-updated_at').text(pedido.updated_at);
-      $('#detalles-autor_modificacion').text(pedido.autor_modificacion);
   });
   $('#borrarModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
@@ -41,6 +39,17 @@ $(document).ready(function() {
             <input type="search" placeholder="Search Data...">
             <img src="../resources/img/search.png" alt="">
         </div>
+        <div class="export__file">
+          <label for="export-file" class="export__file-btn" title="Export File"></label>
+          <input type="checkbox" id="export-file">
+          <div class="export__file-options">
+              <label>Export As &nbsp; &#10140;</label>
+              <label for="export-file" id="toPDF">PDF <img src="../resources/img/pdf.png" alt=""></label>
+              <label for="export-file" id="toJSON">JSON <img src="../resources/img/json.png" alt=""></label>
+              <label for="export-file" id="toCSV">CSV <img src="../resources/img/csv.png" alt=""></label>
+              <label for="export-file" id="toEXCEL">EXCEL <img src="../resources/img/excel.png" alt=""></label>
+          </div>
+      </div>
     </section>
     @php
     $ordenActual = session('orden') == 'asc' ? 'desc' : 'asc';
@@ -74,10 +83,10 @@ $(document).ready(function() {
                        <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-pedido="{{ $pedido }}">
                         <i class="bi bi-eye"></i>
                           </button>
-                          <a class="btn btn-primary" href="{{ route('pedidos.edit', $pedido) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
+                         @if($grupo == 'Gestor de pedidos' || $grupo == null) <a class="btn btn-primary" href="{{ route('pedidos.edit', $pedido) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
                         <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#borrarModal" data-pedido="{{ $pedido }}">
                           <i class="bi bi-trash3"></i>
-                      </button></td>
+                      </button> @endif</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -147,14 +156,6 @@ $(document).ready(function() {
             <tr>
               <th scope="row">Importe</th>
               <td><span id="detalles-importe_total"></span></td>
-            </tr>
-            <tr>
-              <th scope="row">Ultima modificacion</th>
-              <td><span id="detalles-update_at"></span></td>
-            </tr>
-            <tr>
-              <th scope="row">Autor modificacion</th>
-              <td><span id="detalles-autor_modificacion"></span></td>
             </tr>
           </tbody>
         </table>

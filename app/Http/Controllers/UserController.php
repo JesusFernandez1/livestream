@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\AtencionCliente;
+use App\Models\Empleado;
+use App\Models\GrupoEmpleados;
 use App\Models\User;
 use App\Rules\MinLength;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -28,8 +31,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $usuarios = User::paginate(2);
-        return view('usuarios.mostrar_usuarios', compact('usuarios'));
+        $usuario = Empleado::where('id', Auth::user()->empleados_id)->first()->grupo_empleados_id;
+            if ($usuario == null) {
+                $grupo = null;
+                $usuarios = User::paginate(11);
+                return view('usuarios.mostrar_usuarios', compact('usuarios', 'grupo'));
+            }
+        $grupo = GrupoEmpleados::where('id', $usuario)->first()->nombre;
+        $usuarios = User::paginate(11);
+        return view('usuarios.mostrar_usuarios', compact('usuarios', 'grupo'));
     }
 
     public function usuariosRegistrados()

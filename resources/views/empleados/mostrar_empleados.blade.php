@@ -31,7 +31,7 @@ $(document).ready(function() {
    @section('mostrarExtension')
    <main class="table">
     <section class="table__header">
-        <h1>Lista de empleados</h1>
+        <h1>Lista de empleados</h1><a class="btn btn-success create-button" href="{{ route('empleados.create')}}" role="button">Crear <i class="bi bi-plus-circle"></i></a>
         <div class="input-group">
             <input type="search" placeholder="Search Data...">
             <img src="../resources/img/search.png" alt="">
@@ -184,6 +184,11 @@ $(document).ready(function() {
     position: absolute;
     top: 1030px;
     left: 30px;
+    }
+    .create-button {
+    position: absolute;
+    left: 390px;
+    font-size: 21px;
     }
     #centrar {
     display: flex;

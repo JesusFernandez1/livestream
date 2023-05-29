@@ -26,11 +26,11 @@ class EmpleadoController extends Controller
      */
     public function index(Request $request)
     {
-        $empleados = Empleado::paginate(12);
+        $empleados = Empleado::paginate(11);
         if($request->has('ordenar_por')) {
             $ordenPor = $request->input('ordenar_por');
             $orden = $request->input('orden', 'asc');
-            $empleados = Empleado::orderBy($ordenPor, $orden)->paginate(5);
+            $empleados = Empleado::orderBy($ordenPor, $orden)->paginate(11);
             session(['orden' => $orden]);
         } else {
             session(['orden' => null]);

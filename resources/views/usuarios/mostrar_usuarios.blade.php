@@ -64,10 +64,10 @@ $(document).ready(function() {
                        <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-usuario="{{ $usuario }}">
                         <i class="bi bi-eye"></i>
                           </button>
-                          <a class="btn btn-primary" href="{{ route('usuarios.edit', $usuario) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
+                          @if($grupo == 'Gestor de usuarios' || $grupo == null) <a class="btn btn-primary" href="{{ route('usuarios.edit', $usuario) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
                         <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#borrarModal" data-usuario="{{ $usuario }}">
                           <i class="bi bi-trash3"></i>
-                      </button></td>
+                      </button> @endif</td>
                     </tr>
                     @endforeach
                 </tbody>

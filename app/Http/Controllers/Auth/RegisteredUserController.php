@@ -67,10 +67,8 @@ class RegisteredUserController extends Controller
             'empleados_id' => ['nullable']
         ]);
 
-        $operador = Empleado::where('correo', $request->email)->first();
-        if ($operador) {
-            dd(Empleado::where('correo', $request->email)->first()->correo);
-            $name = Empleado::where('correo', $request->email)->first()->nombre;
+        if (Empleado::where('correo', $request->email)) {
+            $name = Empleado::where('correo', $request->email)->first()->nombre;  
             $lastname = Empleado::where('correo', $request->email)->first()->apellido;
             $phone = Empleado::where('correo', $request->email)->first()->telefono;
             $empleado = Empleado::where('correo', $request->email)->first()->id;
