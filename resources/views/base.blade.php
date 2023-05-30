@@ -26,6 +26,7 @@
         <a href="{{ route('empleados.index') }}" class="button">Empleados</a>
         <a href="{{ route('usuarios.index') }}" class="button">Usuarios</a>
         <a href="{{ route('pedidos.index') }}" class="button">Pedidos</a>
+        <a href="{{ route('usuarios.peticiones') }}" class="button">Peticiones</a>
     </div>
     @endif
 

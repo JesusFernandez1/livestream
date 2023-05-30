@@ -44,6 +44,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('usuarios/soporte', [UserController::class, 'soporte'])->name('usuarios.soporte');
     Route::post('entrada_web', [UserController::class, 'enviarComentario'])->name('usuarios.enviarComentario');
     Route::get('usuarios/mostrar_usuarios', [UserController::class, 'usuariosRegistrados'])->name('usuarios.usuariosRegistrados');
+    Route::get('usuarios/mostrar_peticiones', [UserController::class, 'peticiones'])->name('usuarios.peticiones');
 });
 Route::resource('usuarios', UserController::class);
 

@@ -114,4 +114,17 @@ class UserController extends Controller
         AtencionCliente::insert($datos);
         return view('entrada_web');
     }
+
+    public function peticiones()
+    {
+        $usuario = Empleado::where('id', Auth::user()->empleados_id)->first()->grupo_empleados_id;
+            if ($usuario == null) {
+                $grupo = null;
+                $peticiones = AtencionCliente::paginate(11);
+                return view('usuarios.mostrar_peticiones', compact('peticiones', 'grupo'));
+            }
+        $grupo = GrupoEmpleados::where('id', $usuario)->first()->nombre;
+        $peticiones = AtencionCliente::paginate(11);
+        return view('usuarios.mostrar_peticiones', compact('peticiones', 'grupo'));
+    }
 }

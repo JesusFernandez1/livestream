@@ -11,29 +11,29 @@
   <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
   <link rel="stylesheet" href="../resources/css/main.css">
   <link rel="stylesheet" href="../resources/css/snipcart.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
   <link rel="icon" type="image/png" href="../resources/img/logo.png">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+  <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 
-<body>
-
+<body>  
   <!-- NAVBAR-->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toogle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="{{ route('pedidos.create') }}">Intro</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Intro</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('usuarios.soporte') }}">Soporte</a></li>
@@ -82,10 +82,10 @@
   <div class="carousel slide" id="mainSlider" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../resources/img/portada1.jpg" alt="Portada de portada1" class="d-block w-100">
+        <img src="../resources/img/portada.jpg" alt="Portada de portada1" class="d-block w-100">
       </div>
       <div class="carousel-item">
-        <img src="../resources/img/portada2.jpg" alt="Portada de camara2" class="d-block w-100">
+        <img src="../resources/img/portada1.jpg" alt="Portada de camara2" class="d-block w-100">
       </div>
       <div class="carousel-item">
         <img src="../resources/img/portada3.jpg" alt="Portada de camara3" class="d-block w-100">
@@ -150,22 +150,13 @@
       <div class="row row-cols-1 row-cols-2 row-cols-sm-2 row-cols-md-4">
         @foreach($productos as $producto)
         <div class="col-sm">
-          <button class="snipcart-add-item btn btn-dark btn-lg rounded-pill p-3 font-weight-bold"
-          data-item-id={{$producto->id}}
-          data-item-price={{$producto->precio}}
-          data-item-url="/paintings/starry-night"
-          data-item-description={{$producto->descripcion}}
-          data-item-image={{$producto->imagen}}
-          data-item-name={{$producto->nombre}}
-          data-item-custom1-name="Frame color"
-          data-item-custom1-options="Negro|Gris[+9.00]|Dorado[+12.00]">
+          <button type="button" class="btn btn-dark btn-lg rounded-pill p-3 font-weight-bold" data-bs-toggle="modal" data-bs-target="#detallesModal" data-producto="{{ $producto }}">
           <img src={{$producto->imagen}} alt="camara Nikon" class="w-100 camara">
           <div class="text-center"><span class="camara-name h5 p-2">{{$producto->nombre}}</span></div>
           </button>
         </div>
         @endforeach
       </div>
-      
       <div class="row py-5">
         <div class="col text-center">
           <a href="#" class="link-dark">
@@ -175,6 +166,45 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="detallesModal" tabindex="-1" aria-labelledby="detallesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable custom-modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-secondary text-light">
+          <h5 class="modal-title" id="detallesModalLabel"><b>Detalles del producto</b></h5>
+          <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center">
+            <div class="col-md-6">
+              <img id="detalles-imagen" src="" alt="Imagen del producto" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+              <div>
+                <h4 id="detalles-nombre"></h4>
+                <p id="detalles-descripcion"></p>
+                <h5>Precio: <span id="detalles-precio"></span></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="snipcart-add-item btn btn-success snipcart-btn"
+            data-item-id="{{$producto->id}}"
+            data-item-price="{{$producto->precio}}"
+            data-item-url="/paintings/starry-night"
+            data-item-description="{{$producto->descripcion}}"
+            data-item-image="{{$producto->imagen}}"
+            data-item-name="{{$producto->nombre}}"
+            data-item-custom1-name="Frame color"
+            data-item-custom1-options="Negro|Gris[+9.00]|Dorado[+12.00]">
+            Añadir a cesta
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>  
 </body>
 <script>
   window.SnipcartSettings = {
@@ -186,7 +216,32 @@
 
   (function(){var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var m,g;(g=(m=window.SnipcartSettings).loadCSS)!=null||(m.loadCSS=!0);var y=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,f=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(f.forEach(function(t){return document.addEventListener(t,o)}),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],n=document.querySelector("#snipcart"),i=document.querySelector('src[src^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][src$="snipcart.js"]')),e=document.querySelector('link[href^="'.concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,'"][href$="snipcart.css"]'));n||(n=document.createElement("div"),n.id="snipcart",n.setAttribute("hidden","true"),document.body.appendChild(n)),h(n),i||(i=document.createElement("script"),i.src="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.js"),i.async=!0,t.appendChild(i)),!e&&window.SnipcartSettings.loadCSS&&(e=document.createElement("link"),e.rel="stylesheet",e.type="text/css",e.href="".concat(window.SnipcartSettings.protocol,"://").concat(window.SnipcartSettings.domain,"/themes/v").concat(window.SnipcartSettings.version,"/default/snipcart.css"),t.prepend(e)),f.forEach(function(v){return document.removeEventListener(v,o)})}function h(t){!y||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
 </script>
+<script>
+  $(document).ready(function() {
+    $('#detallesModal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget);
+      var producto = button.data('producto');
+      
+      // Asignar los datos del producto al botón de Snipcart dentro del modal
+      var snipcartBtn = $('#detallesModal').find('.snipcart-btn');
+      snipcartBtn.attr('data-item-id', producto.id);
+      snipcartBtn.attr('data-item-price', producto.precio);
+      snipcartBtn.attr('data-item-url', '/paintings/starry-night');
+      snipcartBtn.attr('data-item-description', producto.descripcion);
+      snipcartBtn.attr('data-item-image', producto.imagen);
+      snipcartBtn.attr('data-item-name', producto.nombre);
+      
+      $('#detalles-imagen').attr('src', producto.imagen); // Asignar la URL de la imagen al atributo src
+      $('#detalles-nombre').text(producto.nombre);
+      $('#detalles-descripcion').text(producto.descripcion);
+      $('#detalles-precio').text(producto.precio);
+    });
+  });
+</script>
 <style>
+  .custom-modal-dialog {
+    max-width: 700px; /* Ajusta el ancho máximo según tus necesidades */
+  }
   .visa {
   font-size: 24px;
   position: absolute;
@@ -217,13 +272,19 @@
       var spanElement = document.getElementById('snipcart-total-price');
       var totalPrice = spanElement.innerText;
 
-      var linkElement = document.getElementById('comprar-link');
+      if (document.getElementById('comprar-link') != null) {
+        var linkElement = document.getElementById('comprar-link');
 
-      var baseHref = linkElement.href.split('?')[0];
+        var baseHref = linkElement.href.split('?')[0];
 
-      var updatedHref = baseHref + '?total=' + encodeURIComponent(totalPrice);
+        var updatedHref = baseHref + '?total=' + encodeURIComponent(totalPrice);
 
-      linkElement.setAttribute('href', updatedHref);
+        linkElement.setAttribute('href', updatedHref);
+
+        console.log(linkElement)
+      }
+
+      
 
     }, 1000);
   });
