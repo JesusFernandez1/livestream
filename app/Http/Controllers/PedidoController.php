@@ -8,6 +8,7 @@ use App\Models\Empleado;
 use App\Models\GrupoEmpleados;
 use App\Models\Pedido;
 use App\Models\Provincia;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DateInterval;
@@ -156,12 +157,16 @@ class PedidoController extends Controller
                     }
                 }
             ],
+            'estado' => ['nullable']
         ]);
         $datos['updated_at'] = date("Y-m-d\TH");
         $datos['autor_modificacion'] = Auth::user()->name;
-        $usuario = Pedido::where('users_id', $request->users_id);
-        Mail::to($usuario->first()->email)->send(new PedidoActualizado());
+        
+        $correo = User::where('id', Pedido::where('id', $id)->first()->users_id)->first()->email;
+        Mail::to(User::where('id', $correo))->send(new PedidoActualizado());
         Pedido::where('id', $id)->update($datos);
+
+        return redirect()->route('pedidos.index');
        
     }
 

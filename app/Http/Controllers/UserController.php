@@ -29,16 +29,42 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('ordenar_por')) {
+            $ordenPor = $request->input('ordenar_por');
+            $orden = $request->input('orden', 'asc');
+            $usuarios = User::orderBy($ordenPor, $orden)->paginate(11);
+            session(['orden' => $orden]);
+        } else {
+            session(['orden' => null]);
+        }
+
         $usuario = Empleado::where('id', Auth::user()->empleados_id)->first()->grupo_empleados_id;
             if ($usuario == null) {
                 $grupo = null;
                 $usuarios = User::paginate(11);
+
+                if($request->has('ordenar_por')) {
+                    $ordenPor = $request->input('ordenar_por');
+                    $orden = $request->input('orden', 'asc');
+                    $usuarios = User::orderBy($ordenPor, $orden)->paginate(11);
+                    session(['orden' => $orden]);
+                } else {
+                    session(['orden' => null]);
+                }
                 return view('usuarios.mostrar_usuarios', compact('usuarios', 'grupo'));
             }
         $grupo = GrupoEmpleados::where('id', $usuario)->first()->nombre;
         $usuarios = User::paginate(11);
+        if($request->has('ordenar_por')) {
+                    $ordenPor = $request->input('ordenar_por');
+                    $orden = $request->input('orden', 'asc');
+                    $usuarios = User::orderBy($ordenPor, $orden)->paginate(11);
+                    session(['orden' => $orden]);
+                } else {
+                    session(['orden' => null]);
+                }
         return view('usuarios.mostrar_usuarios', compact('usuarios', 'grupo'));
     }
 
@@ -99,7 +125,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Empleado::where('correo', User::where('id', $id)->first()->correo)) {
+            Empleado::where('correo', User::where('id', $id)->first()->correo)->delete();
+        }
+        User::find($id)->delete();
+
+        return redirect()->route('usuarios.index');
     }
 
     public function enviarComentario(Request $request)

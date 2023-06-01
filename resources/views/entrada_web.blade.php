@@ -78,21 +78,9 @@
     </div>
   </nav>
 
-  <!-- CAROUSEL-->
-  <div class="carousel slide" id="mainSlider" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="../resources/img/portada.jpg" alt="Portada de portada1" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="../resources/img/portada1.jpg" alt="Portada de camara2" class="d-block w-100">
-      </div>
-      <div class="carousel-item">
-        <img src="../resources/img/portada3.jpg" alt="Portada de camara3" class="d-block w-100">
-      </div>
-    </div>
+  <div>
+    <img src="../resources/img/portada.jpg" alt="Portada de portada1" class="d-block w-100">
   </div>
-  <!-- CAROUSEL-->
 
   <div id="separator-ribbon">
     <div class="content bg-dark"></div>
@@ -108,7 +96,7 @@
 
     <div class="row">
       <div class="col-sm">
-        <div class="card w-100 card-border mb-5 product-card">
+        <div class="card w-100 card-border mb-5">
           <img src="../resources/img/camara4.png" class="card-img-top" alt="Camara Sony 4k">
           <div class="card-body">
             <p class="card-text">Este excelente y completo camcorder es la elección perfecta para una amplia variedad de tomas con una sola cámara 4K y HD con un nuevo sensor 3CMOS de tipo 1/3. Un potente objetivo con zoom 25x con tres anillos de zoom independientes ofrece imágenes 4K de perfecta nitidez en prácticamente cualquier situación de grabación profesional. El AF con reconocimiento facial avanzado y el exclusivo filtro de densidad neutra variable electrónico de Sony permiten grabar contenidos excelentes sin complicaciones.</p>
@@ -116,8 +104,8 @@
         </div>
       </div>
       <div class="col-sm">
-        <div class="card w-100 card-border mb-5 product-card">
-          <a href="#malenia" data-toggle="modal"><img src="../resources/img/microfono2.png" class="card-img-top" alt="Microfono Shure"></a>
+        <div class="card w-100 card-border mb-5">
+          <img src="../resources/img/microfono2.png" class="card-img-top" alt="Microfono Shure"></a>
           <div class="card-body">
             <p class="card-text">El Shure SM7B es un micrófono dinámico de bobina móvil con característica cardioide fija ideal para grabar locuciones y voces, aunque también hace muy buena camara en las tomas de instrumentos. Su rango de transmisión amplio y lineal proporciona una reproducción natural de voces e instrumentos. Un absorbente por amortiguación de aire contra las vibraciones y un blindaje sofisticado evitan que las interferencias electromagnéticas mecánicas y de banda ancha de cualquier tipo puedan afectar a las grabaciones. De manera que, ¡nada se interpone ante una grabación libre de problemas!</p>
           </div>
@@ -127,7 +115,7 @@
         </div>
       </div>
       <div class="col-sm">
-        <div class="card w-100 card-border mb-5 product-card">
+        <div class="card w-100 card-border mb-5">
           <img src="../resources/img/camara2.png" class="card-img-top" alt="camara Nikon FULL HD">
           <div class="card-body">
             <p class="card-text">Camara Digital Reflex Nikon D3300+Af-S Dx 18-55mm 1:3.5-5.6g es un objeto de segunda mano que se ofrece en estado Muy bueno. Cómpralo al Mejor Precio Solo en Cash Converters en la tienda. El objeto funciona perfectamente, tiene garantía y te lo trasladamos por correo aproximadamente en 72 horas.</p>

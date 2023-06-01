@@ -28,6 +28,6 @@ class EmpleadoCreado extends Mailable
      */
     public function build()
     {
-        return $this->view('empleados.empleado_creado');
+        return $this->view('emails.empleado_creado');
     }
 }

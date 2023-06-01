@@ -75,13 +75,28 @@
                     @enderror
                   </div>          
                 </div>
-              <div class="mb-2 mt-5">
-                <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
-                    <span> Enviar </span><i class="bi bi-check-square-fill"></i>
-                </button>
-              </div>    
+                <div class="row">
+                    <div class="col-1"></div> <!-- Columna vacía para crear espacio -->
+                    <div class="col-5 mt-5">
+                      <a class="col-12 btn btn-danger d-flex justify-content-center" href="{{ route('empleados.index')}}" role="button">
+                        <span>Cancelar</span> <i class="bi bi-x-square-fill icono"></i>
+                      </a>                
+                    </div>
+                    <div class="col-5 mt-5">
+                      <button id="botton" class="col-12 btn btn-primary d-flex justify-content-center" style="margin-bottom: 10px;">
+                        <span>Enviar</span>
+                        <i class="bi bi-check-square-fill icono"></i>
+                      </button>   
+                    </div>
+                    <div class="col-1"></div> <!-- Columna vacía para crear espacio -->
+                  </div>  
             </form>
         </div>
     </div>
 </section>
+<style>
+    .icono {
+        margin-left: 7px;
+    }
+</style>
 @endsection

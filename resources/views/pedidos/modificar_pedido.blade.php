@@ -7,6 +7,7 @@
         </div>
         <div class="mb-1">
             <form id = "contacto" action="{{ route('pedidos.update', $pedido) }}" method="POST">
+            @method('put')
               <div class="row">
                 <div class="col-12">
                   <label for="DNI"> DNI:</label>
@@ -102,7 +103,7 @@
                  <div class="col-4 mt-5">
                     <label for="estado"> <i class="bi bi-envelope-at-fill"></i> Estado:</label>
                     <select name="estado" id="estado" class="form-select">
-                        <option selected>{{ old('estado_tarea') }}</option>
+                        <option selected>{{ old('estado', $pedido->estado) }}</option>
                         <option>Pendiente</option>
                         <option>Listo</option>
                         <option>Cancelado</option>
