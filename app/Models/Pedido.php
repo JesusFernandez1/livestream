@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pedido extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $fillable = [
         'DNI',
         'nombre',
@@ -25,7 +27,6 @@ class Pedido extends Model
         'importe_total',
         'updated_at',
         'autor_modificacion',
-        'deleted_at',
         'comunidades_id',
         'provincias_cod',
         'users_id'

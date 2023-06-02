@@ -235,5 +235,49 @@ $(document).ready(function() {
     pointer-events: none;
     cursor: not-allowed;
 }
+/* @media (max-width: 768px) {
+    main.table {
+        padding: 10px;
+    }
+
+    section.table__header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    section.table__header h1 {
+        margin-bottom: 10px;
+    }
+
+    section.table__header .btn {
+        margin-bottom: 10px;
+    }
+
+    section.table__header .input-group {
+        display: none;
+    }
+
+    section.table__body table {
+        font-size: 14px;
+    }
+
+    section.table__body table thead th:nth-child(n+4),
+    section.table__body table tbody td:nth-child(n+4) {
+        display: none;
+    }
+
+    .pagination {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .custom-button {
+        display: block;
+        margin: 20px auto;
+    }
+} */
+
   </style>
 @endsection

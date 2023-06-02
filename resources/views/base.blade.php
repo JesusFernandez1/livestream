@@ -22,12 +22,23 @@
 
 <body>
     @if(Route::currentRouteName() == 'base')
+    <div class="imagen">
+
+    </div> 
     <div class="button-container">
-        <a href="{{ route('empleados.index') }}" class="button">Empleados</a>
-        <a href="{{ route('usuarios.index') }}" class="button">Usuarios</a>
-        <a href="{{ route('pedidos.index') }}" class="button">Pedidos</a>
-        <a href="{{ route('usuarios.peticiones') }}" class="button">Peticiones</a>
-    </div>
+        <a href="{{ route('empleados.index') }}" class="button">
+            <i class="bi bi-people-fill"></i> Empleados
+        </a>
+        <a href="{{ route('usuarios.index') }}" class="button">
+            <i class="bi bi-person-fill"></i> Usuarios
+        </a>
+        <a href="{{ route('pedidos.index') }}" class="button">
+            <i class="bi bi-cart-fill"></i> Pedidos
+        </a>
+        <a href="{{ route('usuarios.peticiones') }}" class="button">
+            <i class="bi bi-envelope-fill"></i> Peticiones
+        </a>
+    </div> 
     @endif
 
 @yield('mostrarExtension')
@@ -44,21 +55,37 @@
         background-color: #f4f4f4;
     }
 
+    .imagen {
+        position: fixed;
+        top: 20px;
+        right: 820px;
+        width: 700px; /* Ajusta el ancho de la imagen según tus necesidades */
+        height: 400px; /* Ajusta la altura de la imagen según tus necesidades */
+        background: url(../resources/img/logoEmpresa.png) no-repeat;
+        background-size: cover;
+    }
     .button-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0 20px;
+        margin-left: 40px;
     }
 
     .button {
-        display: inline-block;
+        display: inline-flex; /* Cambiamos a inline-flex para alinear el icono verticalmente */
+        align-items: center;
+        justify-content: flex-start;
         padding: 15px 30px;
         margin: 10px;
         background-color: #ccc;
+        padding: 50px 90px;
+        font-size: 50px;
         color: #333;
         border: none;
         border-radius: 5px;
-        font-size: 18px;
+        font-size: 30px;
         text-decoration: none;
         transition: background-color 0.3s ease;
     }
@@ -68,6 +95,25 @@
         color: #fff;
         cursor: pointer;
     }
+
+    /* Agregamos estilos para los iconos */
+    .button i {
+        margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .imagen {
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            height: 200px;
+        }
+
+        .button-container {
+            justify-content: center;
+        }
+    }
 </style>
+
 @endif
 </html>
