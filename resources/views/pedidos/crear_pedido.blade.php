@@ -100,6 +100,13 @@
                     <small style="color: red">{{ $message }}</small>
                 @enderror
               </div>
+              <div class="col-6 mt-5">
+                <label for="fecha_entrega" class="form-label"><i class="bi bi-calendar-fill"></i> Fecha estimada de la entrega</label>
+                <input readonly type="datetime-local" class="form-control" name="fecha_entrega" value="{{ $fecha_estimada }}">
+                @error('fecha_entrega')
+                    <small style="color: red">{{ $message }}</small>
+                @enderror
+              </div> 
           </div>
             <div class="col-4 mt-5">
                 <label for="importe_total"> <i class="bi bi-cash-coin"></i> Importe: {{$totalPrice}}</label>

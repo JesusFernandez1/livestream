@@ -58,7 +58,10 @@ class PedidoController extends Controller
         $totalPrice = $request->query('total');
         $usuario = User::where('id', Auth::user()->id);
         $fecha_actual = fecha_actual();
-        return view('pedidos.crear_pedido', compact('comunidades', 'totalPrice', 'usuario', 'fecha_actual'));
+        $copia = new DateTime('now', new DateTimeZone('Europe/Madrid'));
+        $fecha_entrega = $copia->add(new DateInterval('P2D'));
+        $fecha_estimada = cambio_fecha($fecha_actual, $fecha_entrega);
+        return view('pedidos.crear_pedido', compact('comunidades', 'totalPrice', 'usuario', 'fecha_actual', 'fecha_estimada'));
     }
 
     public function provinciasDeComunidad($comunidadId)
@@ -86,7 +89,7 @@ class PedidoController extends Controller
         $precio_final = floatval($precio_final);
         $fecha_pedido = fecha_actual(); // fecha específica
         $copia = new DateTime('now', new DateTimeZone('Europe/Madrid'));
-        $fecha_entrega =$copia->add(new DateInterval('P2D'))->format("Y-m-d\TH:i"); // fecha + 2 días
+        $fecha_entrega = $copia->add(new DateInterval('P2D')); // fecha + 2 días
         $datos = $request->validate([
             'DNI' => ['regex:/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/'],
             'nombre' => ['regex:/^[a-z]+$/i'],
@@ -100,18 +103,12 @@ class PedidoController extends Controller
             'provincias_cod' => ['required'],
         ]);
 
+        $fecha_entrega = cambio_fecha($fecha_pedido, $fecha_entrega);
         $fecha_pedido = Carbon::parse($fecha_pedido);
-        $fecha_entrega = Carbon::parse($fecha_entrega);
-        
-        if ($fecha_pedido->isThursday()) {
-            $fecha_entrega = $fecha_pedido->copy()->next(Carbon::MONDAY);
-        } elseif ($fecha_pedido->isFriday() || $fecha_pedido->isSaturday() || $fecha_pedido->isSunday()) {
-            $fecha_entrega = $fecha_pedido->copy()->next(Carbon::TUESDAY);
-        }
-        
+
         $datos['numero_pedido'] = Str::random(9);
-        $datos['fecha_pedido'] = $fecha_pedido->format('Y-m-d');
-        $datos['fecha_entrega'] = $fecha_entrega->format('Y-m-d');
+        $datos['fecha_pedido'] = $fecha_pedido->format("Y-m-d\TH:i");
+        $datos['fecha_entrega'] = $fecha_entrega->format("Y-m-d\TH:i");
         $datos['estado'] = "Pendiente";
         $datos['importe_total'] =  $precio_final;
         $datos['users_id'] = Auth::user()->id;
@@ -204,6 +201,19 @@ class PedidoController extends Controller
 
         return response()->json(['totalPrice' => $totalPrice]);
     }
+}
+
+function cambio_fecha($fecha_pedido, $fecha_entrega)
+{
+    $fecha_pedido = Carbon::parse($fecha_pedido);
+    $fecha_entrega = Carbon::parse($fecha_entrega);
+
+        if ($fecha_pedido->isThursday()) {
+            $fecha_entrega->modify('next monday');
+        } elseif ($fecha_pedido->isFriday() || $fecha_pedido->isSaturday() || $fecha_pedido->isSunday()) {
+            $fecha_entrega->modify('next tuesday');
+        }
+        return $fecha_entrega->setTime(9, 0, 0);
 }
 
 function fecha_actual()
