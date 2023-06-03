@@ -57,11 +57,12 @@ class PedidoController extends Controller
         $comunidades = Comunidad::all();
         $totalPrice = $request->query('total');
         $usuario = User::where('id', Auth::user()->id);
+        $pedido = Pedido::where('users_id', $usuario->first()->id)->first(); // Ejecuta la consulta y obtén el primer pedido
         $fecha_actual = fecha_actual();
         $copia = new DateTime('now', new DateTimeZone('Europe/Madrid'));
         $fecha_entrega = $copia->add(new DateInterval('P2D'));
         $fecha_estimada = cambio_fecha($fecha_actual, $fecha_entrega);
-        return view('pedidos.crear_pedido', compact('comunidades', 'totalPrice', 'usuario', 'fecha_actual', 'fecha_estimada'));
+        return view('pedidos.crear_pedido', compact('comunidades', 'totalPrice', 'usuario', 'pedido', 'fecha_actual', 'fecha_estimada'));
     }
 
     public function provinciasDeComunidad($comunidadId)
@@ -160,7 +161,7 @@ class PedidoController extends Controller
             ],
             'estado' => ['nullable']
         ]);
-        $datos['updated_at'] = date("Y-m-d\TH");
+        $datos['updated_at'] = fecha_actual();
         $datos['autor_modificacion'] = Auth::user()->name;
         
         $correo = User::where('id', Pedido::where('id', $id)->first()->users_id)->first()->email;

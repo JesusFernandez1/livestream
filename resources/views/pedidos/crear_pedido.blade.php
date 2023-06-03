@@ -67,32 +67,32 @@
               </div>
              <div class="col-6 mt-5">
                 <label for="direccion"> <i class="bi bi-signpost-2-fill"></i> Direccion:</label>
-                <input type="text" class="form-control" name="direccion" value="{{ old("direccion") }}">
+                <input type="text" class="form-control" name="direccion" value="{{ $pedido ? $pedido->direccion : old('direccion') }}">
                 @error('direccion')
                      <small style="color: red">{{ $message }}</small>
                  @enderror
             </div>
             <div class="col-6 mt-5">
                 <label for="codigo_postal"> <i class="bi bi-mailbox2"></i> Codigo postal:</label>
-                <input type="text" class="form-control" name="codigo_postal" value="{{ old("codigo_postal") }}">
+                <input type="text" class="form-control" name="codigo_postal" value="{{ $pedido ? $pedido->codigo_postal : old('codigo_postal') }}">
                 @error('codigo_postal')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
             </div>  
             <div class="col-6 mt-5">
                 <label for="datos_adicionales"> <i class="bi bi-card-heading"></i> Datos adicionales:</label>
-                <input type="text" class="form-control" placeholder="Puerta, piso, nª..." name="datos_adicionales" value="{{ old("datos_adicionales") }}">
+                <input type="text" class="form-control" placeholder="Puerta, piso, nª..." name="datos_adicionales" value="{{ $pedido ? $pedido->datos_adicionales : old('datos_adicionales') }}">
                 @error('datos_adicionales')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
             </div>
             <div class="col-6 mt-5">
                 <label for="observaciones"> <i class="bi bi-card-heading"></i> Observaciones:</label>
-                <input type="text" class="form-control" name="observaciones" value="{{ old("observaciones") }}">
+                <input type="text" class="form-control" name="observaciones" value="{{ $pedido ? $pedido->observaciones : old('observaciones') }}">
                 @error('observaciones')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
-            </div>
+            </div>          
             <div class="col-6 mt-5">
                 <label for="fecha_pedido" class="form-label"><i class="bi bi-calendar-fill"></i> Fecha del pedido</label>
                 <input readonly type="datetime-local" class="form-control" name="fecha_pedido" value="{{ $fecha_actual }}">
