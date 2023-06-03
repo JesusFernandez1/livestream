@@ -58,7 +58,7 @@
     .imagen {
         position: fixed;
         top: 20px;
-        right: 820px;
+        right: 620px;
         width: 700px; /* Ajusta el ancho de la imagen según tus necesidades */
         height: 400px; /* Ajusta la altura de la imagen según tus necesidades */
         background: url(../resources/img/logoEmpresa.png) no-repeat;

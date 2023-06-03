@@ -79,7 +79,7 @@ $(document).ready(function() {
                        <td>{{$pedido->telefono}}</td>
                        <td>{{$pedido->correo}}</td>
                        <td>{{$pedido->estado}}</td>
-                       <td>{{$pedido->importe_total}}</td>
+                       <td>{{$pedido->importe_total}}€</td>
                        <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-pedido="{{ $pedido }}">
                         <i class="bi bi-eye"></i>
                           </button>
@@ -155,7 +155,7 @@ $(document).ready(function() {
             </tr>
             <tr>
               <th scope="row">Importe</th>
-              <td><span id="detalles-importe_total"></span></td>
+              <td><span id="detalles-importe_total"></span>€</td>
             </tr>
           </tbody>
         </table>
@@ -217,7 +217,7 @@ $(document).ready(function() {
   <style>
   .custom-button {
     position: absolute;
-    top: 1030px;
+    top: 820px;
     left: 30px;
     }
     #centrar {
@@ -225,8 +225,8 @@ $(document).ready(function() {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 1020px;
-    left: 720px;
+    top: 820px;
+    left: 660px;
     }
     .pagination {
     display: inline-block;

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DateInterval;
 use DateTime;
+use DateTimeZone;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -55,7 +56,9 @@ class PedidoController extends Controller
     {
         $comunidades = Comunidad::all();
         $totalPrice = $request->query('total');
-        return view('pedidos.crear_pedido', compact('comunidades', 'totalPrice'));
+        $usuario = User::where('id', Auth::user()->id);
+        $fecha_actual = fecha_actual();
+        return view('pedidos.crear_pedido', compact('comunidades', 'totalPrice', 'usuario', 'fecha_actual'));
     }
 
     public function provinciasDeComunidad($comunidadId)
@@ -78,11 +81,12 @@ class PedidoController extends Controller
     public function realizarPedido(Request $request, $precio)
     {
         $precio_final = substr($precio, 3);
-        floatval($precio_final);
-        
-        $fecha_pedido = new DateTime(); // fecha específica
-        $copia = new DateTime();
-        $fecha_entrega =$copia->add(new DateInterval('P2D')); // fecha + 2 días
+        $precio_final = str_replace(",", "", $precio_final);
+        $precio_final = str_replace(".", ".", $precio_final);
+        $precio_final = floatval($precio_final);
+        $fecha_pedido = fecha_actual(); // fecha específica
+        $copia = new DateTime('now', new DateTimeZone('Europe/Madrid'));
+        $fecha_entrega =$copia->add(new DateInterval('P2D'))->format("Y-m-d\TH:i"); // fecha + 2 días
         $datos = $request->validate([
             'DNI' => ['regex:/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/'],
             'nombre' => ['regex:/^[a-z]+$/i'],
@@ -200,4 +204,13 @@ class PedidoController extends Controller
 
         return response()->json(['totalPrice' => $totalPrice]);
     }
+}
+
+function fecha_actual()
+{
+    $timezone = new DateTimeZone('Europe/Madrid');
+    $datetime = new DateTime('now', $timezone);
+    $fecha_actual = $datetime->format("Y-m-d\TH:i");
+
+    return $fecha_actual;
 }

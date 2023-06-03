@@ -181,7 +181,7 @@ $(document).ready(function() {
   <style>
   .custom-button {
     position: absolute;
-    top: 1030px;
+    top: 820px;
     left: 30px;
     }
     #centrar {
@@ -189,8 +189,8 @@ $(document).ready(function() {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 1020px;
-    left: 720px;
+    top: 820px;
+    left: 660px;
     }
     .pagination {
     display: inline-block;

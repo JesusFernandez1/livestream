@@ -11,35 +11,35 @@
            <div class="row">
              <div class="col-9">
                <label for="DNI"> DNI:</label>
-               <input type="text" class="form-control" name="DNI" value="{{ old("DNI") }}">
+               <input type="text" class="form-control" name="DNI" value="{{ old("DNI", $usuario->first()->DNI) }}">
                @error('DNI')
                    <small style="color: red">{{ $message }}</small>
                @enderror
             </div>
              <div class="col-6 mt-5">
                  <label for="nombre"> <i class="bi bi-person-fill"></i> Nombre:</label>
-                 <input type="text" class="form-control" name="nombre" value="{{ old("nombre") }}">
+                 <input type="text" class="form-control" name="nombre" value="{{ old("nombre", $usuario->first()->name) }}">
                  @error('nombre')
                      <small style="color: red">{{ $message }}</small>
                  @enderror
              </div>
              <div class="col-6 mt-5">
                  <label for="apellido"> <i class="bi bi-person-bounding-box"></i> Apellido:</label>
-                 <input type="text" class="form-control" name="apellido" value="{{ old("apellido") }}">
+                 <input type="text" class="form-control" name="apellido" value="{{ old("apellido", $usuario->first()->lastname) }}">
                  @error('apellido')
                      <small style="color: red">{{ $message }}</small>
                  @enderror
              </div>
              <div class="col-4 mt-5">
                <label for="telefono"><i class="bi bi-telephone-fill"></i> Telefono:</label>
-               <input type="text" class="form-control" name="telefono" value="{{ old("telefono") }}">
+               <input type="text" class="form-control" name="telefono" value="{{ old("telefono", $usuario->first()->phone) }}">
                @error('telefono')
                    <small style="color: red">{{ $message }}</small>
                @enderror
             </div>
             <div class="col-8 mt-5">
                  <label for="correo"> <i class="bi bi-envelope-at-fill"></i> Correo:</label>
-                 <input type="text" class="form-control" name="correo" placeholder="ejemplo@gmail.com" value="{{ old("correo") }}">
+                 <input type="text" class="form-control" name="correo" placeholder="ejemplo@gmail.com" value="{{ old("correo", $usuario->first()->email) }}">
                  @error('correo')
                      <small style="color: red">{{ $message }}</small>
                  @enderror
@@ -95,7 +95,7 @@
             </div>
             <div class="col-6 mt-5">
                 <label for="fecha_pedido" class="form-label"><i class="bi bi-calendar-fill"></i> Fecha del pedido</label>
-                <input readonly type="datetime-local" class="form-control" name="fecha_pedido" value="<?php echo date("Y-m-d\TH:i") ?>">
+                <input readonly type="datetime-local" class="form-control" name="fecha_pedido" value="{{ $fecha_actual }}">
                 @error('fecha_pedido')
                     <small style="color: red">{{ $message }}</small>
                 @enderror
