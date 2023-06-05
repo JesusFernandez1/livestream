@@ -52,6 +52,7 @@ Route::resource('usuarios', UserController::class);
 
 Route::controller(PedidoController::class)->group(function () {
     Route::get('pedidos/mostrarPedidoUnico/{id}', [PedidoController::class, 'verPedido'])->name('pedidos.verPedido');
+    Route::get('pedidos/pedido_cancelado/{id}', [PedidoController::class, 'cancelarPedido'])->name('pedidos.cancelarPedido');
     Route::post('pedidos/crear_pedido/{total_price}', [PedidoController::class, 'realizarPedido'])->name('pedidos.realizarPedido');
 });
 Route::get('provincias/{comunidad}', [PedidoController::class, 'provinciasDeComunidad']);

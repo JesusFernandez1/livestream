@@ -151,25 +151,27 @@ class PedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $fecha_creacion = Pedido::where('id', $id)->first()->fecha_creacion;
+        $fecha_pedido = Pedido::where('id', $id)->first()->fecha_pedido;
         $datos = $request->validate([
             'fecha_entrega' => [
                 'nullable', 'date_format:Y-m-d\TH:i',
-                function ($atribute, $value, $fail) use ($fecha_creacion) {
-                    if (date("Y-m-d\TH", strtotime($value)) <= date("Y-m-d\TH", strtotime($fecha_creacion))) {
-                        $fail("La fecha de finalizacion no puede ser menor que la de creacion");
+                function ($atribute, $value, $fail) use ($fecha_pedido) {
+                    if (date("Y-m-d\TH", strtotime($value)) <= date("Y-m-d\TH", strtotime($fecha_pedido))) {
+                        $fail("La fecha de entrega no puede ser menor que la de creacion");
                     }
                 }
             ],
-            'estado' => ['nullable']
+            'estado' => ['required']
         ]);
         $datos['updated_at'] = fecha_actual();
         $datos['autor_modificacion'] = Auth::user()->name;
         
         $correo = User::where('id', Pedido::where('id', $id)->first()->users_id)->first()->email;
-        Mail::to(User::where('id', $correo))->send(new PedidoActualizado());
-        Pedido::where('id', $id)->update($datos);
 
+        if (Pedido::where('id', $id)->first()->estado != $request->estado) {
+            Mail::to(User::where('id', $correo))->send(new PedidoActualizado());
+        }
+        Pedido::where('id', $id)->update($datos);
         return redirect()->route('pedidos.index');
        
     }
@@ -183,6 +185,12 @@ class PedidoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cancelarPedido($id)
+    {
+        Pedido::where('id', $id)->update(['estado' => 'Cancelado' ]);
+        return redirect()->route('pedidos.index');
     }
     
     public function verPedido(Request $request, $id)

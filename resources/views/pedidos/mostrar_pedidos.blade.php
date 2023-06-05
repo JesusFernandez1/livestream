@@ -6,12 +6,29 @@ $(document).ready(function() {
   $('#detallesModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
       var pedido = button.data('pedido');
+      $('#detalles-numero_pedido').text(pedido.numero_pedido);
       $('#detalles-DNI').text(pedido.DNI);
       $('#detalles-nombre').text(pedido.nombre);
       $('#detalles-apellido').text(pedido.apellido);
       $('#detalles-correo').text(pedido.correo);
+      $('#detalles-direccion').text(pedido.direccion);
+      $('#detalles-codigo_postal').text(pedido.codigo_postal);
+      $('#detalles-datos_adicionales').text(pedido.apellido);
+      $('#detalles-fecha_pedido').text(pedido.fecha_pedido);
+      $('#detalles-fecha_entrega').text(pedido.fecha_entrega);
       $('#detalles-estado').text(pedido.estado);
       $('#detalles-importe_total').text(pedido.importe_total);
+  });
+  $('#detallesDevolucion').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget);
+      var pedido = button.data('pedido');
+      $('#detallesDevolucion-numero_pedido').text(pedido.numero_pedido);
+      $('#detallesDevolucion-DNI').text(pedido.DNI);
+      $('#detallesDevolucion-nombre').text(pedido.nombre);
+      $('#detallesDevolucion-apellido').text(pedido.apellido);
+      $('#detallesDevolucion-correo').text(pedido.correo);
+      $('#detallesDevolucion-estado').text(pedido.estado);
+      $('#detallesDevolucion-importe_total').text(pedido.importe_total);
   });
   $('#borrarModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
@@ -80,13 +97,16 @@ $(document).ready(function() {
                        <td>{{$pedido->correo}}</td>
                        <td>{{$pedido->estado}}</td>
                        <td>{{$pedido->importe_total}}€</td>
-                       <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-pedido="{{ $pedido }}">
+                       <td><button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#detallesModal" data-pedido="{{ $pedido }}">
                         <i class="bi bi-eye"></i>
                           </button>
-                         @if($grupo == 'Gestor de pedidos' || $grupo == null) <a class="btn btn-primary" href="{{ route('pedidos.edit', $pedido) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
-                        <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#borrarModal" data-pedido="{{ $pedido }}">
-                          <i class="bi bi-trash3"></i>
-                      </button> @endif</td>
+                          @if($pedido->estado != 'Cancelado' && $pedido->users_id == Auth::user()->id) <button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesDevolucion" data-pedido="{{ $pedido }}">
+                            <i class="bi bi-box-seam-fill"></i>
+                          </button> @endif
+                         @if($pedido->estado != 'Cancelado' && ($grupo == 'Gestor de pedidos' || $grupo == null)) 
+                         <a class="btn btn-secondary" href="{{ route('pedidos.edit', $pedido) }}" role="button"> <i class="bi bi-pencil-square"></a></i>
+                        <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#borrarModal" data-pedido="{{ $pedido }}"><i class="bi bi-trash3"></i>
+                      </button> @endif </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -134,6 +154,10 @@ $(document).ready(function() {
         <table class="table table-striped">
           <tbody>
             <tr>
+              <th scope="row">Nº pedido</th>
+              <td><span id="detalles-numero_pedido"></span></td>
+            </tr>
+            <tr>
               <th scope="row">DNI</th>
               <td><span id="detalles-DNI"></span></td>
             </tr>
@@ -148,6 +172,27 @@ $(document).ready(function() {
             <tr>
               <th scope="row">Correo</th>
               <td><span id="detalles-correo"></span></td>
+            </tr>
+            <tr>
+            <tr>
+              <th scope="row">Direccion</th>
+              <td><span id="detalles-direccion"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Codigo postal</th>
+              <td><span id="detalles-codigo_postal"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Datos adicionales</th>
+              <td><span id="detalles-datos_adicionales"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Fecha del pedido</th>
+              <td><span id="detalles-fecha_pedido"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Fecha de entrega</th>
+              <td><span id="detalles-fecha_entrega"></span></td>
             </tr>
             <tr>
               <th scope="row">Estado</th>
@@ -166,15 +211,63 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
+<div class="modal fade" id="detallesDevolucion" tabindex="-1" aria-labelledby="detallesDevolucionLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title" id="detallesDevolucionLabel"><b>¿Estas seguro/a de realizar la devolucion?</b></h5>
+        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th scope="row">Nº pedido</th>
+              <td><span id="detallesDevolucion-numero_pedido"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">DNI</th>
+              <td><span id="detallesDevolucion-DNI"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Nombre</th>
+              <td><span id="detallesDevolucion-nombre"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Apellido</th>
+              <td><span id="detallesDevolucion-apellido"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Correo</th>
+              <td><span id="detallesDevolucion-correo"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Estado</th>
+              <td><span id="detallesDevolucion-estado"></span></td>
+            </tr>
+            <tr>
+              <th scope="row">Importe</th>
+              <td><span id="detallesDevolucion-importe_total"></span>€</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Si</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title" id="borrarModalLabel"><b>Eliminar pedido</b></h5>
+          <h5 class="modal-title" id="borrarModalLabel"><b>Cancelar pedido</b></h5>
           <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p class="lead mb-4">¿Estás seguro que deseas eliminar este pedido?</p>
+          <p class="lead mb-4">¿Estás seguro que deseas cancelar este pedido?</p>
           <table class="table table-bordered">
             <tbody>
               <tr>
@@ -205,10 +298,7 @@ $(document).ready(function() {
           </table>
         </div>
         <div class="modal-footer">
-          <form method="POST" id="borrar-pedido-form" action="">
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-          </form>
+          <a href="{{ route('pedidos.cancelarPedido', $pedido)}}" class="btn btn-danger">Aceptar</a>
           <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
         </div>
       </div>
