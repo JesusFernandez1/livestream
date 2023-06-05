@@ -8,14 +8,28 @@
      </div>
      <div class="mb-1">
          <form id = "contacto" action="{{ route('pedidos.realizarPedido', $totalPrice) }}" method="POST">
-           <div class="row">
-             <div class="col-9">
-               <label for="DNI"> DNI:</label>
-               <input type="text" class="form-control" name="DNI" value="{{ old("DNI", $usuario->first()->DNI) }}">
-               @error('DNI')
-                   <small style="color: red">{{ $message }}</small>
-               @enderror
-            </div>
+            <div class="row">
+                <div class="col-3">
+                  <label for="DNI"> DNI:</label>
+                  <input type="text" class="form-control" name="DNI" value="{{ old("DNI", $usuario->first()->DNI) }}">
+                  @error('DNI')
+                      <small style="color: red">{{ $message }}</small>
+                  @enderror
+               </div>
+               <div class="col-7">
+                  <label for="numero_tarjeta"> Nº de tarjeta:</label>
+                  <input type="text" class="form-control" name="numero_tarjeta" value="{{ $pedido ? $pedido->numero_tarjeta : old('numero_tarjeta') }}">
+                  @error('numero_tarjeta')
+                      <small style="color: red">{{ $message }}</small>
+                  @enderror
+               </div>
+               <div class="col-2">
+                  <label for="cv"> CV:</label>
+                  <input type="text" class="form-control" name="cv" value="{{ $pedido ? $pedido->cv : old('cv') }}">
+                  @error('cv')
+                      <small style="color: red">{{ $message }}</small>
+                  @enderror
+               </div>
              <div class="col-6 mt-5">
                  <label for="nombre"> <i class="bi bi-person-fill"></i> Nombre:</label>
                  <input type="text" class="form-control" name="nombre" value="{{ old("nombre", $usuario->first()->name) }}">
@@ -38,7 +52,7 @@
                @enderror
             </div>
             <div class="col-8 mt-5">
-                 <label for="correo"> <i class="bi bi-envelope-at-fill"></i> Correo:</label>
+                 <label for="correo"> <i class="bi bi-envelope-fill"></i> Correo:</label>
                  <input type="text" class="form-control" name="correo" placeholder="ejemplo@gmail.com" value="{{ old("correo", $usuario->first()->email) }}">
                  @error('correo')
                      <small style="color: red">{{ $message }}</small>

@@ -93,6 +93,8 @@ class PedidoController extends Controller
         $fecha_entrega = $copia->add(new DateInterval('P2D')); // fecha + 2 días
         $datos = $request->validate([
             'DNI' => ['regex:/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/'],
+            'numero_tarjeta' => ['required'],
+            'cv' => ['required'],
             'nombre' => ['regex:/^[a-z]+$/i'],
             'apellido' => ['regex:/^[a-z]+$/i'],
             'telefono' => ['regex:/(\+34|0034|34)?[ -]*(6|7|8|9)[ -]*([0-9][ -]*){8}/'],
