@@ -1,0 +1,50 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+button,
+.camara-name {
+    font-family: 'Bitter', serif;
+
+}
+
+#navbar {
+    z-index: 1;
+}
+
+#separator-ribbon {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+#top {
+    background: rgb(255, 255, 255);
+    background: url(../img/fondoDeseados.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+    margin-top: -20px;
+    margin-bottom: -30px;
+    min-height: 100vh; /* Ajusta la altura mínima a 100% del alto de la ventana */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.card-border {
+    border: solid 10px rgb(46, 31, 21);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all ease-out 0.2s;
+}
+
+.card-border:hover {
+    transform: scale(1.05);
+}
+
+.text-shadow {
+    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.6);
+}

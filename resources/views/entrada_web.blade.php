@@ -56,6 +56,7 @@
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                       <!-- Opciones de usuario -->
                       <a class="dropdown-item" href="{{ route('pedidos.index') }}">Mis pedidos</a>
+                      <a class="dropdown-item" href="{{ route('usuarios.verLista') }}">Lista deseados</a>
                       <a class="dropdown-item" href="#">Configuración</a>
                       <div class="dropdown-divider"></div>
                       <form method="POST" action="{{ route('logout') }}">
@@ -177,7 +178,9 @@
           </div>
         </div>
         <div class="modal-footer">
+          <h4 style="visibility: hidden" id="detalles-id"></h4>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="heart-icon"></button>
           <button class="snipcart-add-item btn btn-success snipcart-btn"
             data-item-id="{{$producto->id}}"
             data-item-price="{{$producto->precio}}"
@@ -219,6 +222,7 @@
       snipcartBtn.attr('data-item-image', producto.imagen);
       snipcartBtn.attr('data-item-name', producto.nombre);
       
+      $('#detalles-id').text(producto.id);
       $('#detalles-imagen').attr('src', producto.imagen); // Asignar la URL de la imagen al atributo src
       $('#detalles-nombre').text(producto.nombre);
       $('#detalles-descripcion').text(producto.descripcion);
@@ -226,9 +230,30 @@
     });
   });
 </script>
+<script>
+$(document).ready(function() {
+  $('.heart-icon').click(function() {
+    var productId = $('#detalles-id').text();
+    $(this).toggleClass('is-active');
+
+    $.ajax({
+      url: 'http://localhost/livestream/public/agregarListaDeseados?productId=' + encodeURIComponent(productId),
+      method: 'GET',
+      success: function(response) {
+        console.log('Producto agregado a la lista de deseados');
+        // Puedes mostrar una notificación o realizar otras acciones después de agregar el producto a la lista de deseados
+      },
+      error: function(xhr, status, error) {
+        console.error(error);
+        // Manejar el error en caso de que no se pueda agregar el producto a la lista de deseados
+      }
+    });
+  });
+});
+</script>
 <style>
   .custom-modal-dialog {
-    max-width: 700px; /* Ajusta el ancho máximo según tus necesidades */
+    max-width: 700px;
   }
   .visa {
   font-size: 24px;
@@ -247,13 +272,53 @@
   transform: translate(-50%, -50%);
   }
   .mensaje {
-        font-size: 28px; /* Cambia este valor según tus necesidades */
-        position: absolute;
-        top: 40%;
-        left: 49%;
-        transform: translate(-50%, -50%);
-    }
+  font-size: 28px;
+  position: absolute;
+  top: 40%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  }
+  .heart-icon {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  background-image: url('../resources/img/corazon.png');
+  background-size: cover;
+  transition: background-image 0.3s ease-in-out;
+  }
+
+.heart-icon.is-active {
+  background-image: url('../resources/img/corazon.png');
+  animation: heartBeat 0.8s ease-in-out;
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
   </style>
+{{-- <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    setInterval(function() {
+      var itemList = document.getElementsByClassName('snipcart-item-line');
+      console.log(itemList);
+      for (var i = 0; i < itemList.length; i++) {
+        var item = itemList[i];
+        var productId = item.getAttribute('data-item-id');
+        console.log(productId);
+      }
+      }, 1000);
+        });
+</script> --}}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     setInterval(function() {
@@ -268,12 +333,8 @@
         var updatedHref = baseHref + '?total=' + encodeURIComponent(totalPrice);
 
         linkElement.setAttribute('href', updatedHref);
-
-        console.log(linkElement)
+        console.log(updatedHref)
       }
-
-      
-
     }, 1000);
   });
 </script>

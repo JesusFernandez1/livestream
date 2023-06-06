@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AtencionCliente;
 use App\Models\Empleado;
 use App\Models\GrupoEmpleados;
+use App\Models\ListaDeseados;
+use App\Models\Producto;
 use App\Models\User;
 use App\Rules\MinLength;
 use Illuminate\Http\Request;
@@ -157,5 +159,33 @@ class UserController extends Controller
         $grupo = GrupoEmpleados::where('id', $usuario)->first()->nombre;
         $peticiones = AtencionCliente::paginate(11);
         return view('usuarios.mostrar_peticiones', compact('peticiones', 'grupo'));
+    }
+
+    public function agregarListaDeseados(Request $request)
+    {
+        $productId = $request->query('productId');
+        $productId = intval($productId);
+        $productId = Producto::where('id', $productId)->first()->id;
+        $nombre_producto = Producto::where('id', $productId)->first()->nombre;
+        $precio_producto = Producto::where('id', $productId)->first()->precio;
+        $imagen_producto = Producto::where('id', $productId)->first()->imagen;
+        $descripcion_producto = Producto::where('id', $productId)->first()->descripcion;
+        if (!ListaDeseados::where('users_id', Auth::user()->id)->where('productos_id', $productId)->exists()) {
+            ListaDeseados::create([
+                'nombre_producto' => $nombre_producto,
+                'precio_producto' => $precio_producto,
+                'imagen_producto' => $imagen_producto,
+                'descripcion_producto' => $descripcion_producto,
+                'users_id' => Auth::user()->id,
+                'productos_id' => $productId
+            ]);
+        }
+        return response()->json(['message' => 'Producto agregado a la lista de deseos']);
+    }
+
+    public function verLista()
+    {
+        $productos = ListaDeseados::where('users_id', Auth::user()->id)->get();
+        return view('usuarios.lista_deseados', compact('productos'));
     }
 }
