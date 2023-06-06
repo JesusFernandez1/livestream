@@ -169,6 +169,7 @@ class UserController extends Controller
         $nombre_producto = Producto::where('id', $productId)->first()->nombre;
         $precio_producto = Producto::where('id', $productId)->first()->precio;
         $imagen_producto = Producto::where('id', $productId)->first()->imagen;
+        $imagen_producto = '../' . $imagen_producto;
         $descripcion_producto = Producto::where('id', $productId)->first()->descripcion;
         if (!ListaDeseados::where('users_id', Auth::user()->id)->where('productos_id', $productId)->exists()) {
             ListaDeseados::create([

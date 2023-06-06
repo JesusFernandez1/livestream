@@ -85,12 +85,11 @@
             @foreach($productos as $producto)
             <div class="col-md-4">
               <div class="card card-border mb-5">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#detallesModal" data-producto="{{ $producto->productos_id }}">
-                <img src="../{{$producto->imagen_producto}}" class="card-img-top custom-image" alt="" style="object-fit: cover; height: 200px; width: 100%; height: auto;">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#detallesModal" data-producto="{{ $producto }}">
+                <img src="{{$producto->imagen_producto}}" class="card-img-top custom-image" alt="" style="object-fit: cover; height: 200px; width: 100%; height: auto;">
                 <div class="card-body">
                   <h5 class="card-title">{{$producto->nombre_producto}}</h5>
                   <p class="card-text">Precio: {{$producto->precio_producto}}</p>
-                  <a href="#" class="btn btn-primary">Agregar al carrito</a>
                 </div>
                 </button>
               </div>
@@ -164,7 +163,7 @@
         snipcartBtn.attr('data-item-image', producto.imagen_producto);
         snipcartBtn.attr('data-item-name', producto.nombre_producto);
 
-        console.log(snipcartBtn.attr('data-item-id'))
+        console.log(snipcartBtn.attr('data-item-image'))
         
         $('#detalles-productos_id').text(producto.productos_id);
         $('#detalles-imagen_producto').attr('src', producto.imagen_producto); // Asignar la URL de la imagen al atributo src
