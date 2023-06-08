@@ -45,6 +45,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('entrada_web', [UserController::class, 'enviarComentario'])->name('usuarios.enviarComentario');
     Route::get('usuarios/mostrar_usuarios', [UserController::class, 'usuariosRegistrados'])->name('usuarios.usuariosRegistrados');
     Route::get('usuarios/lista_deseados', [UserController::class, 'verLista'])->name('usuarios.verLista');
+    Route::get('usuarios/lista_deseados/{id}', [UserController::class, 'eliminarDeseados'])->name('usuarios.eliminarDeseados');
     Route::get('usuarios/mostrar_peticiones', [UserController::class, 'peticiones'])->name('usuarios.peticiones');
 });
 Route::resource('usuarios', UserController::class);

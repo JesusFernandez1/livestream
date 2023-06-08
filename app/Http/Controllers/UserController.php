@@ -145,7 +145,7 @@ class UserController extends Controller
         ]);
         $datos['users_id'] = User::where('email', $request->correo_cliente);
         AtencionCliente::insert($datos);
-        return view('entrada_web');
+        return redirect()->route('entrada_web');
     }
 
     public function peticiones()
@@ -188,5 +188,11 @@ class UserController extends Controller
     {
         $productos = ListaDeseados::where('users_id', Auth::user()->id)->get();
         return view('usuarios.lista_deseados', compact('productos'));
+    }
+
+    public function eliminarDeseados($id)
+    {
+        $producto = ListaDeseados::find($id)->delete();
+        return redirect()->route('usuarios.verLista');
     }
 }

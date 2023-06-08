@@ -22,59 +22,59 @@
   <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toogle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" href="#">Intro</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ route('usuarios.soporte') }}">Soporte</a></li>
-            </ul>
-          </div>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-         @if (Route::has('login'))
-              <li class="nav-item">
-                <div>
-                    @auth
-                    @if (auth()->user()->empleados_id)
-                    <a href="{{ route('base') }}" class="nav-link">Zona administracion</a>
-                    @endif
-                    <div class="dropdown d-flex ml-auto">
-                      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          {{ Auth::user()->name }}
-                      </a>
-                      <button class="snipcart-checkout text-button ml-2"><i class="bi bi-cart2" style="font-size: 24px; color:white"></i> Mi cesta</button><span style="display: none;" class="snipcart-total-price" id="snipcart-total-price"></span>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                          <!-- Opciones de usuario -->
-                          <a class="dropdown-item" href="{{ route('pedidos.index') }}">Mis pedidos</a>
-                          <a class="dropdown-item" href="{{ route('usuarios.verLista') }}">Lista deseados</a>
-                          <a class="dropdown-item" href="#">Configuración</a>
-                          <div class="dropdown-divider"></div>
-                          <form method="POST" action="{{ route('logout') }}">
-                              @csrf
-                              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Cerrar sesión</a>
-                          </form>
-                      </div>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ route('/')}}">Intro</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('usuarios.soporte') }}">Soporte</a></li>
+        </ul>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+     @if (Route::has('login'))
+          <li class="nav-item">
+            <div>
+                <div class="dropdown d-flex ml-auto">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{ Auth::user()->name }}
+                  </a>
+                  <button class="snipcart-checkout text-button ml-2"><i class="bi bi-cart2" style="font-size: 24px; color:white"></i> Mi cesta</button><span style="display: none;" class="snipcart-total-price" id="snipcart-total-price"></span>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                      <!-- Opciones de usuario -->
+                      @auth
+                      @if (auth()->user()->empleados_id)
+                      <a class="dropdown-item" href="{{ route('base') }}" class="nav-link">Zona administracion</a>
+                      @endif
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{{ route('pedidos.index') }}">Mis pedidos</a>
+                      <a class="dropdown-item" href="{{ route('usuarios.verLista') }}">Lista deseados</a>
+                      <a class="dropdown-item" href="#">Configuración</a>
+                      <div class="dropdown-divider"></div>
+                      <form method="POST" action="{{ route('logout') }}">
+                          @csrf
+                          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Cerrar sesión</a>
+                      </form>
                   </div>
-                    @else
-                        <a href="{{ route('login') }}" class="nav-link">Log in</a>
-    
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="nav-link">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+              </div>
+                @else
+                    <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="nav-link">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
       <div id="top">
         <div class="container-md p-5">
           <div class="row pt-5">
@@ -98,6 +98,7 @@
           </div>
         </div>
       </div>
+      @isset($producto)
       <div class="modal fade" id="detallesModal" tabindex="-1" aria-labelledby="detallesModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable custom-modal-dialog">
           <div class="modal-content">
@@ -121,7 +122,7 @@
             </div>
             <div class="modal-footer">
               <h4 style="visibility: hidden" id="detalles-productos_id"></h4>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <a class="x-icon" href="{{ route('usuarios.eliminarDeseados', $producto)}}" role="button"></a>
               <button class="snipcart-add-item btn btn-success snipcart-btn"
                 data-item-id="{{$producto->productos_id}}"
                 data-item-price="{{$producto->precio_producto}}"
@@ -131,12 +132,13 @@
                 data-item-name="{{$producto->nombre_producto}}"
                 data-item-custom1-name="Frame color"
                 data-item-custom1-options="Negro|Gris[+9.00]|Dorado[+12.00]">
-                Añadir a cesta
+                <i class="bi bi-cart-plus-fill" style="font-size: 20px;"></i>
               </button>
             </div>
           </div>
         </div>
-      </div>               
+      </div>
+      @endisset               
 </body>
 <script>
     window.SnipcartSettings = {
@@ -163,8 +165,11 @@
         snipcartBtn.attr('data-item-image', producto.imagen_producto);
         snipcartBtn.attr('data-item-name', producto.nombre_producto);
 
-        console.log(snipcartBtn.attr('data-item-image'))
-        
+        var eliminarDeseadosLink = $('#detallesModal').find('.x-icon');
+        var eliminarDeseadosRoute = eliminarDeseadosLink.attr('href');
+        eliminarDeseadosRoute = eliminarDeseadosRoute.replace(/(\d+)/, producto.id);
+        eliminarDeseadosLink.attr('href', eliminarDeseadosRoute);
+
         $('#detalles-productos_id').text(producto.productos_id);
         $('#detalles-imagen_producto').attr('src', producto.imagen_producto); // Asignar la URL de la imagen al atributo src
         $('#detalles-nombre_producto').text(producto.nombre_producto);

@@ -28,12 +28,12 @@
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toogle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#">Intro</a></li>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ route('/')}}">Intro</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('usuarios.soporte') }}">Soporte</a></li>
@@ -44,10 +44,6 @@
      @if (Route::has('login'))
           <li class="nav-item">
             <div>
-                @auth
-                @if (auth()->user()->empleados_id)
-                <a href="{{ route('base') }}" class="nav-link">Zona administracion</a>
-                @endif
                 <div class="dropdown d-flex ml-auto">
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{ Auth::user()->name }}
@@ -55,6 +51,11 @@
                   <button class="snipcart-checkout text-button ml-2"><i class="bi bi-cart2" style="font-size: 24px; color:white"></i> Mi cesta</button><span style="display: none;" class="snipcart-total-price" id="snipcart-total-price"></span>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                       <!-- Opciones de usuario -->
+                      @auth
+                      @if (auth()->user()->empleados_id)
+                      <a class="dropdown-item" href="{{ route('base') }}" class="nav-link">Zona administracion</a>
+                      @endif
+                      <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('pedidos.index') }}">Mis pedidos</a>
                       <a class="dropdown-item" href="{{ route('usuarios.verLista') }}">Lista deseados</a>
                       <a class="dropdown-item" href="#">Configuración</a>
@@ -67,7 +68,6 @@
               </div>
                 @else
                     <a href="{{ route('login') }}" class="nav-link">Log in</a>
-
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="nav-link">Register</a>
                     @endif
