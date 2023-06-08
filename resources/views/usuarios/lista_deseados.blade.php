@@ -38,21 +38,19 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-     @if (Route::has('login'))
+          @if (Route::has('login'))
           <li class="nav-item">
             <div>
+                @auth
+                @if (auth()->user()->empleados_id)
+                <a href="{{ route('base') }}" class="nav-link">Zona administracion</a>
+                @endif
                 <div class="dropdown d-flex ml-auto">
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {{ Auth::user()->name }}
                   </a>
                   <button class="snipcart-checkout text-button ml-2"><i class="bi bi-cart2" style="font-size: 24px; color:white"></i> Mi cesta</button><span style="display: none;" class="snipcart-total-price" id="snipcart-total-price"></span>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                      <!-- Opciones de usuario -->
-                      @auth
-                      @if (auth()->user()->empleados_id)
-                      <a class="dropdown-item" href="{{ route('base') }}" class="nav-link">Zona administracion</a>
-                      @endif
-                      <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('pedidos.index') }}">Mis pedidos</a>
                       <a class="dropdown-item" href="{{ route('usuarios.verLista') }}">Lista deseados</a>
                       <a class="dropdown-item" href="#">Configuración</a>
