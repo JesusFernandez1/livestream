@@ -9,7 +9,7 @@
 <body>
 Le informamos que su pedido ha sido actualizado!
 
-Para mas informacion pulse aqui: <a href="{{route('pedidos.mostrar_pedidos')}}">Mi pedido</a>
+Para mas informacion pulse aqui: <a href="{{route('pedidos.index')}}">Mi pedido</a>
 
 Gracias por tu confianza.
 

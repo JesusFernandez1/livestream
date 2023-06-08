@@ -297,10 +297,12 @@ $(document).ready(function() {
             </tbody>
           </table>
         </div>
+        @isset($producto)
         <div class="modal-footer">
           <a href="{{ route('pedidos.cancelarPedido', $pedido)}}" class="btn btn-danger">Aceptar</a>
           <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
         </div>
+        @endisset
       </div>
     </div>
   </div>

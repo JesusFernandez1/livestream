@@ -34,8 +34,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="{{ route('/')}}">Intro</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#masVendidos">Mas vendidos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nuestrosProductos">Nuestros productos</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('usuarios.soporte') }}">Soporte</a></li>
         </ul>
       </div>
@@ -87,7 +87,7 @@
   <!-- top-->
 
   <div id="top">
-  <div class="container-md p-5">
+  <div id="masVendidos" class="container-md p-5">
 
     <div class="row pt-5">
       <h3 class="text-center pb-5 pt-5 h1">Lo mas vendido!</h3>
@@ -130,7 +130,7 @@
   </div>
 
   <div id="camaras">
-    <div class="container">
+    <div id="nuestrosProductos" class="container">
       <div class="row">
         <h2 class="text-center text-danger text-shadow h1">Nuestros productos:</h2>
       </div>
@@ -177,8 +177,7 @@
         </div>
         <div class="modal-footer">
           <h4 style="visibility: hidden" id="detalles-id"></h4>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button class="heart-icon"></button>
+          <button class="heart-icon mr-3"></button>
           <button class="snipcart-add-item btn btn-success snipcart-btn"
             data-item-id="{{$producto->id}}"
             data-item-price="{{$producto->precio}}"
@@ -188,7 +187,7 @@
             data-item-name="{{$producto->nombre}}"
             data-item-custom1-name="Frame color"
             data-item-custom1-options="Negro|Gris[+9.00]|Dorado[+12.00]">
-            Añadir a cesta
+            <i class="bi bi-cart-plus-fill" style="font-size: 20px;"></i>
           </button>
         </div>
       </div>

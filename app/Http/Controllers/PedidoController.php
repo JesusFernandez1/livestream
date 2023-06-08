@@ -165,11 +165,13 @@ class PedidoController extends Controller
         ]);
         $datos['updated_at'] = fecha_actual();
         $datos['autor_modificacion'] = Auth::user()->name;
-        
-        $correo = User::where('id', Pedido::where('id', $id)->first()->users_id)->first()->email;
 
-        if (Pedido::where('id', $id)->first()->estado != $request->estado) {
-            Mail::to(User::where('id', $correo))->send(new PedidoActualizado());
+        $pedido = Pedido::where('id', $id)->first();
+        $user = User::where('id', $pedido->users_id)->first();
+        $correo = $user->email;
+
+        if ($pedido->estado != $request->estado) {
+            Mail::to($correo)->send(new PedidoActualizado());
         }
         Pedido::where('id', $id)->update($datos);
         return redirect()->route('pedidos.index');

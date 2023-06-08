@@ -74,9 +74,9 @@ class EmpleadoController extends Controller
             'phone' => $request->telefono,
             'empleados_id' => Empleado::where('DNI', $request->DNI)->first()->id
         ]);
-
-        $usuario = Empleado::where('correo', $request->correo);
-        Mail::to($usuario->first()->correo)->send(new EmpleadoCreado());
+        $usuario = Empleado::where('correo', $request->correo)->first();
+        $correo = $usuario->email;
+        Mail::to($correo)->send(new EmpleadoCreado());
         event(new Registered($user));
         return redirect()->route('empleados.index');
     }
