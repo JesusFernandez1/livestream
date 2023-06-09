@@ -47,6 +47,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('usuarios/lista_deseados', [UserController::class, 'verLista'])->name('usuarios.verLista');
     Route::get('usuarios/lista_deseados/{id}', [UserController::class, 'eliminarDeseados'])->name('usuarios.eliminarDeseados');
     Route::get('usuarios/mostrar_peticiones', [UserController::class, 'peticiones'])->name('usuarios.peticiones');
+    Route::get('usuarios/modificar_datos', [UserController::class, 'modificarDatos'])->name('usuarios.modificarDatos');
+    Route::post('usuarios/cambios_realizados', [UserController::class, 'cambiarDatos'])->name('usuarios.cambiarDatos');
+    Route::get('usuarios/cambiar_pass', [UserController::class, 'verCambiarPass'])->name('usuarios.verCambiarPass');
+    Route::post('usuarios/pass_cambiada', [UserController::class, 'cambiarPass'])->name('usuarios.cambiarPass');
 });
 Route::resource('usuarios', UserController::class);
 

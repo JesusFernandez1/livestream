@@ -31,8 +31,6 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="{{ route('/')}}">Intro</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Mas vendidos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Nuestros productos</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('usuarios.soporte') }}">Soporte</a></li>
         </ul>
       </div>
@@ -53,7 +51,7 @@
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                       <a class="dropdown-item" href="{{ route('pedidos.index') }}">Mis pedidos</a>
                       <a class="dropdown-item" href="{{ route('usuarios.verLista') }}">Lista deseados</a>
-                      <a class="dropdown-item" href="#">Configuración</a>
+                      <a class="dropdown-item" href="{{ route('usuarios.modificarDatos') }}">Configuración</a>
                       <div class="dropdown-divider"></div>
                       <form method="POST" action="{{ route('logout') }}">
                           @csrf

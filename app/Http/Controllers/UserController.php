@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PassActualizada;
 use App\Models\AtencionCliente;
 use App\Models\Empleado;
 use App\Models\GrupoEmpleados;
@@ -11,6 +12,8 @@ use App\Models\User;
 use App\Rules\MinLength;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -192,7 +195,42 @@ class UserController extends Controller
 
     public function eliminarDeseados($id)
     {
-        $producto = ListaDeseados::find($id)->delete();
+        ListaDeseados::find($id)->delete();
         return redirect()->route('usuarios.verLista');
+    }
+
+    public function modificarDatos()
+    {
+        $usuario = Auth::user();
+        return view('usuarios.modificar_datos', compact('usuario'));
+    }
+
+    public function cambiarDatos(Request $request)
+    {
+        $datos = $request->validate([
+            'name' => ['regex:/^[a-z]+$/i'],
+            'lastname' => ['nullable', 'regex:/^[a-z]+$/i'],
+            'email' => ['regex:#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i'],
+            'phone' => ['nullable', 'regex:/(\+34|0034|34)?[ -]*(6|7|8|9)[ -]*([0-9][ -]*){8}/'],
+        ]);
+        User::where('id', Auth::user()->id)->update($datos);
+        return redirect()->route('usuarios.modificarDatos');
+    }
+
+    public function verCambiarPass()
+    {
+        return view('usuarios.cambiar_pass');
+    }
+
+    public function cambiarPass(Request $request)
+    {
+        $datos = $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        User::where('id', Auth::user()->id)->update($datos);
+        $user = User::where('id', Auth::user()->id)->first();
+        $correo = $user->email;
+        Mail::to($correo)->send(new PassActualizada());
+        return redirect()->route('usuarios.modificarDatos');
     }
 }
