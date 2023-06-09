@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Rules\MinLength;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 
@@ -25,7 +26,8 @@ class UserController extends Controller
 
     public function soporte()
     {
-        return view('usuarios.soporte');
+        $usuario = User::where('id', Auth::user()->id)->first();
+        return view('usuarios.soporte', compact('usuario'));
     }
 
 
@@ -146,9 +148,10 @@ class UserController extends Controller
             'asunto' => ['nullable'],
             'mensaje' => ['required', 'string', new MinLength(120)],
         ]);
-        $datos['users_id'] = User::where('email', $request->correo_cliente);
+        $user = User::where('email', $request->correo_usuario)->first();
+        $datos['users_id'] = $user->id;
         AtencionCliente::insert($datos);
-        return redirect()->route('entrada_web');
+        return redirect()->route('/');
     }
 
     public function peticiones()
@@ -227,6 +230,7 @@ class UserController extends Controller
         $datos = $request->validate([
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        $datos['password'] = Hash::make($request->password);
         User::where('id', Auth::user()->id)->update($datos);
         $user = User::where('id', Auth::user()->id)->first();
         $correo = $user->email;

@@ -57,7 +57,7 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         $datos = $request->validate([
-            'DNI' => ['regex:/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/'],
+            'DNI' => ['regex:/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/', 'unique:empleados'],
             'nombre' => ['regex:/^[a-z]+$/i'],
             'apellido' => ['regex:/^[a-z]+$/i'],
             'correo' => ['regex:#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i', 'unique:empleados'],

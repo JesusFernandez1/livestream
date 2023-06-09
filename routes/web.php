@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmpleadoController;
-use App\Http\Controllers\githubController;
+use App\Http\Controllers\GithubController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;

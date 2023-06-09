@@ -10,7 +10,7 @@
               <div class="row">
                 <div class="col-3">
                     <label for="nombre_usuario"> <i class="bi bi-person-fill"></i> Nombre:</label>
-                    <input type="text" class="form-control" name="nombre_usuario" value="{{ old("nombre_usuario") }}">
+                    <input readonly type="text" class="form-control" name="nombre_usuario" value="{{ $usuario->name }}">
                     @error('nombre_usuario')
                         <small style="color: red">{{ $message }}</small>
                     @enderror
@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-6 mt-4">
                         <label for="correo_usuario"><i class="bi bi-envelope-fill"></i> Correo:</label>
-                        <input type="text" class="form-control" name="correo_usuario" value="{{ old("correo_usuario") }}">
+                        <input readonly type="text" class="form-control" name="correo_usuario" value="{{ $usuario->email }}">
                         @error('correo_usuario')
                             <small style="color: red">{{ $message }}</small>
                         @enderror

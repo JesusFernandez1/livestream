@@ -6,8 +6,8 @@ $(document).ready(function() {
   $('#detallesModal').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget);
       var peticione = button.data('peticione');
-      $('#detalles-nombre_cliente').text(peticione.nombre_cliente);
-      $('#detalles-correo_cliente').text(peticione.correo_cliente);
+      $('#detalles-nombre_usuario').text(peticione.nombre_usuario);
+      $('#detalles-correo_usuario').text(peticione.correo_usuario);
       $('#detalles-asunto').text(peticione.asunto);
       $('#detalles-mensaje').text(peticione.mensaje);
   });
@@ -32,8 +32,8 @@ $(document).ready(function() {
                 <thead>
                     <tr>
                         <th> <a class="my-link" href="{{ route('usuarios.peticiones', ['ordenar_por' => 'id', 'orden' => $ordenActual]) }}">Id <span class="icon-arrow">&UpArrow;</span></a></th>
-                        <th> <a class="my-link" href="{{ route('usuarios.peticiones', ['ordenar_por' => 'nombre_cliente', 'orden' => $ordenActual]) }}">Nombre cliente <span class="icon-arrow">&UpArrow;</span></a></th>
-                        <th> <a class="my-link" href="{{ route('usuarios.peticiones', ['ordenar_por' => 'correo_cliente', 'orden' => $ordenActual]) }}">Correo cliente <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a class="my-link" href="{{ route('usuarios.peticiones', ['ordenar_por' => 'nombre_usuario', 'orden' => $ordenActual]) }}">Nombre usuario <span class="icon-arrow">&UpArrow;</span></a></th>
+                        <th> <a class="my-link" href="{{ route('usuarios.peticiones', ['ordenar_por' => 'correo_usuario', 'orden' => $ordenActual]) }}">Correo usuario <span class="icon-arrow">&UpArrow;</span></a></th>
                         <th> <a class="my-link" href="{{ route('usuarios.peticiones', ['ordenar_por' => 'asunto', 'orden' => $ordenActual]) }}">Asunto <span class="icon-arrow">&UpArrow;</span></a></th>
                         <th> Acciones</th>
                     </tr>
@@ -42,8 +42,8 @@ $(document).ready(function() {
                     @foreach ($peticiones as $peticione)
                     <tr>
                        <td>{{$peticione->id}}</td>
-                       <td>{{$peticione->nombre_cliente}}</td>
-                       <td>{{$peticione->correo_cliente}}</td>
+                       <td>{{$peticione->nombre_usuario}}</td>
+                       <td>{{$peticione->correo_usuario}}</td>
                        <td>{{$peticione->asunto}}</td>
                        <td><button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#detallesModal" data-peticione="{{ $peticione }}">
                         <i class="bi bi-eye"></i>
@@ -91,11 +91,11 @@ $(document).ready(function() {
           <tbody>
             <tr>
               <th scope="row">Nombre</th>
-              <td><span id="detalles-nombre_cliente"></span></td>
+              <td><span id="detalles-nombre_usuario"></span></td>
             </tr>
             <tr>
               <th scope="row">Correo</th>
-              <td><span id="detalles-correo_cliente"></span></td>
+              <td><span id="detalles-correo_usuario"></span></td>
             </tr>
             <tr>
               <th scope="row">Asunto</th>
