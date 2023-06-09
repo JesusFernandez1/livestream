@@ -163,8 +163,10 @@
 
         var eliminarDeseadosLink = $('#detallesModal').find('.x-icon');
         var eliminarDeseadosRoute = eliminarDeseadosLink.attr('href');
-        eliminarDeseadosRoute = eliminarDeseadosRoute.replace(/(\d+)/, producto.id);
-        eliminarDeseadosLink.attr('href', eliminarDeseadosRoute);
+        var segments = eliminarDeseadosRoute.split('/');
+        segments[segments.length - 1] = producto.id.toString();
+        var eliminarDeseadosRouteFinal = segments.join('/');
+        eliminarDeseadosLink.attr('href', eliminarDeseadosRouteFinal);
 
         $('#detalles-productos_id').text(producto.productos_id);
         $('#detalles-imagen_producto').attr('src', producto.imagen_producto); // Asignar la URL de la imagen al atributo src
