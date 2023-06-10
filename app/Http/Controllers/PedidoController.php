@@ -65,6 +65,19 @@ class PedidoController extends Controller
         return view('pedidos.crear_pedido', compact('comunidades', 'totalPrice', 'usuario', 'pedido', 'fecha_actual', 'fecha_estimada'));
     }
 
+    public function pagarPaypal(Request $request)
+    {
+        $comunidades = Comunidad::all();
+        $totalPrice = $request->query('total');
+        $usuario = User::where('id', Auth::user()->id);
+        $pedido = Pedido::where('users_id', $usuario->first()->id)->first(); // Ejecuta la consulta y obtén el primer pedido
+        $fecha_actual = fecha_actual();
+        $copia = new DateTime('now', new DateTimeZone('Europe/Madrid'));
+        $fecha_entrega = $copia->add(new DateInterval('P2D'));
+        $fecha_estimada = cambio_fecha($fecha_actual, $fecha_entrega);
+        return view('pedidos.pagar_paypal', compact('comunidades', 'totalPrice', 'usuario', 'pedido', 'fecha_actual', 'fecha_estimada'));
+    }
+
     public function provinciasDeComunidad($comunidadId)
     {
         $provincias = Provincia::where('comunidad_id', $comunidadId)->get();
@@ -117,6 +130,45 @@ class PedidoController extends Controller
         $datos['users_id'] = Auth::user()->id;
         Pedido::insert($datos);
         return redirect()->route('pedidos.index');
+    }
+
+    public function realizarPagoPaypal(Request $request, $precio)
+    {
+        $precio_final = substr($precio, 3);
+        $precio_final = str_replace(",", "", $precio_final);
+        $precio_final = str_replace(".", ".", $precio_final);
+        $precio_final = floatval($precio_final);
+        $fecha_pedido = fecha_actual(); // fecha específica
+        $copia = new DateTime('now', new DateTimeZone('Europe/Madrid'));
+        $fecha_entrega = $copia->add(new DateInterval('P2D')); // fecha + 2 días
+        $datos = $request->validate([
+            'DNI' => ['regex:/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/'],
+            'nombre' => ['regex:/^[a-z]+$/i'],
+            'apellido' => ['regex:/^[a-z]+$/i'],
+            'telefono' => ['regex:/(\+34|0034|34)?[ -]*(6|7|8|9)[ -]*([0-9][ -]*){8}/'],
+            'correo' => ['regex:#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i'],
+            'direccion' => ['required'],
+            'datos_adicionales' => ['required'],
+            'codigo_postal' => ['required'],
+            'comunidades_id' => ['required'],
+            'provincias_cod' => ['required'],
+        ]);
+
+        $fecha_entrega = cambio_fecha($fecha_pedido, $fecha_entrega);
+        $fecha_pedido = Carbon::parse($fecha_pedido);
+
+        $datos['numero_pedido'] = Str::random(9);
+        $datos['fecha_pedido'] = $fecha_pedido->format("Y-m-d\TH:i");
+        $datos['fecha_entrega'] = $fecha_entrega->format("Y-m-d\TH:i");
+        $datos['estado'] = "Pendiente";
+        $datos['importe_total'] =  $precio_final;
+        $datos['users_id'] = Auth::user()->id;
+        Pedido::insert($datos);
+        $pedido = Pedido::where('correo', $request->correo)->first();
+        $pedido_id = $pedido->id;
+
+        return redirect()->route('paypal.pay', ['id' => $pedido_id]);
+
     }
 
     /**

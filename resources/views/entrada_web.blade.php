@@ -330,7 +330,15 @@ $(document).ready(function() {
         var updatedHref = baseHref + '?total=' + encodeURIComponent(totalPrice);
 
         linkElement.setAttribute('href', updatedHref);
-        console.log(updatedHref)
+
+        var linkElement2 = document.getElementById('comprar-linkPaypal');
+
+        var baseHref2 = linkElement2.href.split('?')[0];
+
+        var updatedHref2 = baseHref2 + '?total=' + encodeURIComponent(totalPrice);
+
+        linkElement2.setAttribute('href', updatedHref2);
+
       }
     }, 1000);
   });

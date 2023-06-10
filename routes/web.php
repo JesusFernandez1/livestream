@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\GithubController;
+use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;
@@ -33,6 +34,12 @@ Route::controller(GithubController::class)->group(function () {
     Route::get('/auth/github/callback', 'callbackGithub');
 });
 
+Route::controller(PaypalController::class)->group(function(){
+    Route::get('/paypal/pay/{id}', 'payWithPaypal')->name('paypal.pay');
+    Route::get('/paypal/status/{id}','payPalStatus')->name('paypal.status');
+    Route::get('/pagocorrecto','pagoCorrecto')->name('pagofinalizado');
+});
+
 Route::controller(EmpleadoController::class)->group(function () {
     Route::get('base', [EmpleadoController::class, 'base'])->name('base');
 });
@@ -59,6 +66,8 @@ Route::get('/agregarListaDeseados', [UserController::class, 'agregarListaDeseado
 Route::controller(PedidoController::class)->group(function () {
     Route::get('pedidos/pedido_cancelado/{id}', [PedidoController::class, 'cancelarPedido'])->name('pedidos.cancelarPedido');
     Route::post('pedidos/crear_pedido/{total_price}', [PedidoController::class, 'realizarPedido'])->name('pedidos.realizarPedido');
+    Route::get('pedidos/pagar_paypal', [PedidoController::class, 'pagarPaypal'])->name('pedidos.pagarPaypal');
+    Route::post('pedidos/pago_paypal/{total_price}', [PedidoController::class, 'realizarPagoPaypal'])->name('pedidos.realizarPagoPaypal');
 });
 Route::get('provincias/{comunidad}', [PedidoController::class, 'provinciasDeComunidad']);
 Route::resource('pedidos', PedidoController::class);

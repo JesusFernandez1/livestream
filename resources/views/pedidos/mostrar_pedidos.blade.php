@@ -297,15 +297,36 @@ $(document).ready(function() {
             </tbody>
           </table>
         </div>
-        @isset($producto)
+        @isset($pedido)
         <div class="modal-footer">
-          <a href="{{ route('pedidos.cancelarPedido', $pedido)}}" class="btn btn-danger">Aceptar</a>
+          <a href="{{ route('pedidos.cancelarPedido', $pedido->id)}}" class="btn btn-danger cancelar">Aceptar</a>
           <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
         </div>
         @endisset
       </div>
     </div>
   </div>
+  <script>
+ $(document).ready(function() {
+  $('#borrarModal').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget);
+    var pedido = button.data('pedido');
+
+    // Obtener el valor correcto del objeto "pedido"
+    var pedidoId = pedido.id;
+
+    var eliminarDeseadosLink = $('#borrarModal').find('.cancelar');
+    var eliminarDeseadosRoute = eliminarDeseadosLink.attr('href');
+    
+    // Reemplazar el número final con el valor de "pedidoId"
+    eliminarDeseadosRoute = eliminarDeseadosRoute.replace(/\d+$/, pedidoId);
+
+    // Actualizar el atributo "href" del enlace
+    eliminarDeseadosLink.attr('href', eliminarDeseadosRoute);
+  });
+});
+
+  </script>
   <style>
   .custom-button {
     position: absolute;
